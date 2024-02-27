@@ -1,18 +1,14 @@
 package software.nhs.FHIRValidator;
 
-import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,7 +43,7 @@ public class HandlerStream implements RequestStreamHandler {
             ValidatorResponse validate = validator.validate(rawInput);
 
             try (PrintWriter writer = new PrintWriter(outputStream)) {
-                writer.print(validate.toString());
+                writer.print(new Gson().toJson(validate));
                 writer.close();
             }
 

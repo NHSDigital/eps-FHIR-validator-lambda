@@ -11,7 +11,7 @@ Globals:
     MemorySize: 4096
     Architectures:
       - x86_64
-    Runtime: java11
+    Runtime: java21
 
 Resources:
   FHIRValidatorResources:
@@ -33,6 +33,10 @@ Resources:
       CodeUri: ../
       Handler: software.nhs.FHIRValidator.HandlerStream::handleRequest
       Role: !GetAtt FHIRValidatorResources.Outputs.LambdaRoleArn
+      SnapStart:
+        ApplyOn: PublishedVersions
+      AutoPublishAlias: snap
+      
 
 
 Outputs:

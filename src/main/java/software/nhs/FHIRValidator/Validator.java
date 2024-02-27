@@ -1,9 +1,6 @@
 package software.nhs.FHIRValidator;
 
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
-
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,8 +47,6 @@ public class Validator {
 
 
     public Validator() {
-
-        // To learn more about the different ways to configure FhirInstanceValidator see: https://hapifhir.io/hapi-fhir/docs/validation/validation_support_modules.html
         ctx = FhirContext.forR4();
 
         // Create a chain that will hold our modules
@@ -110,7 +105,7 @@ public class Validator {
             .build();
     }
 
-    public void generateSnapshots(IValidationSupport supportChain) {
+    private void generateSnapshots(IValidationSupport supportChain) {
     List<StructureDefinition> structureDefinitions = supportChain.fetchAllStructureDefinitions();
     if (structureDefinitions == null) {
         return;
@@ -178,8 +173,6 @@ public class Validator {
         return structureDefinition;
     }
 
-
-
     private CanonicalType getBase(CanonicalType profile, IValidationSupport supportChain) {
         StructureDefinition structureDefinition = (StructureDefinition) supportChain.fetchStructureDefinition(profile.toString());
         
@@ -194,8 +187,7 @@ public class Validator {
         return null;
     }
 
-
-    public InMemoryTerminologyServerValidationSupport terminologyValidationSupport(FhirContext fhirContext) {
+    private InMemoryTerminologyServerValidationSupport terminologyValidationSupport(FhirContext fhirContext) {
     return new InMemoryTerminologyServerValidationSupport(fhirContext) {
         @Override
         public IValidationSupport.CodeValidationResult validateCodeInValueSet(
