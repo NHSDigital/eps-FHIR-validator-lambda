@@ -3,6 +3,8 @@ package software.nhs.FHIRValidator;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableList;
@@ -14,10 +16,14 @@ import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerVali
 import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
-
+import org.hl7.fhir.r4.model.CanonicalType;
+import org.hl7.fhir.r4.model.ElementDefinition;
+import org.hl7.fhir.r4.model.StructureDefinition;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
+import ca.uhn.fhir.context.support.IValidationSupport;
+import ca.uhn.fhir.context.support.ValidationSupportContext;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
 import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ValidationResult;
@@ -70,6 +76,8 @@ public class Validator {
             e.printStackTrace();
         }
         supportChain.addValidationSupport(npmPackageSupport);
+        generateSnapshots(supportChain);
+        supportChain.fetchCodeSystem("http://snomed.info/sct");
 
         // Create a validator using the FhirInstanceValidator module.
         FhirInstanceValidator validatorModule = new FhirInstanceValidator(supportChain);
@@ -81,6 +89,7 @@ public class Validator {
             ValidationResult result = validator.validateWithResult(resourceAsJsonText);
             return toValidatorResponse(result);
         } catch (JsonSyntaxException | NullPointerException | IllegalArgumentException | InvalidRequestException e) {
+            log.error(e.toString());
             return ValidatorResponse.builder()
                 .isSuccessful(false)
                 .errorMessages(ImmutableList.of(ValidatorErrorMessage.builder()
@@ -105,6 +114,89 @@ public class Validator {
             .build();
     }
 
+    public void generateSnapshots(IValidationSupport supportChain) {
+    List<StructureDefinition> structureDefinitions = supportChain.fetchAllStructureDefinitions();
+    if (structureDefinitions == null) {
+        return;
+    }
+    
+    ValidationSupportContext context = new ValidationSupportContext(supportChain);
+
+    structureDefinitions.stream()
+            .filter(this::shouldGenerateSnapshot)
+            .forEach(it -> {
+                try {
+                    circularReferenceCheck(it, supportChain);
+                } catch (Exception e) {
+                    log.error("Failed to generate snapshot for " + it, e);
+                }
+            });
+
+    structureDefinitions.stream()
+            .filter(this::shouldGenerateSnapshot)
+            .forEach(it -> {
+                try {
+                    supportChain.generateSnapshot(context, it, it.getUrl(), "https://fhir.nhs.uk/R4", it.getName());
+                } catch (Exception e) {
+                    log.error("Failed to generate snapshot for " + it, e);
+                }
+            });
+    }
+
+    private boolean shouldGenerateSnapshot(StructureDefinition structureDefinition) {
+        return !structureDefinition.hasSnapshot() && structureDefinition.getDerivation() == StructureDefinition.TypeDerivationRule.CONSTRAINT;
+    }
+
+    private StructureDefinition circularReferenceCheck(StructureDefinition structureDefinition, IValidationSupport supportChain) {
+        if (structureDefinition.hasSnapshot()) {
+            log.error(structureDefinition.getUrl() + " has snapshot!!");
+        }
+
+        for (ElementDefinition element : structureDefinition.getDifferential().getElement()) {
+            if ((element.getId().endsWith(".partOf") ||
+                element.getId().endsWith(".basedOn") ||
+                element.getId().endsWith(".replaces") ||
+                element.getId().contains("Condition.stage.assessment") ||
+                element.getId().contains("Observation.derivedFrom") ||
+                element.getId().contains("Observation.hasMember") ||
+                element.getId().contains("CareTeam.encounter") ||
+                element.getId().contains("CareTeam.reasonReference") ||
+                element.getId().contains("ServiceRequest.encounter") ||
+                element.getId().contains("ServiceRequest.reasonReference") ||
+                element.getId().contains("EpisodeOfCare.diagnosis.condition") ||
+                element.getId().contains("Encounter.diagnosis.condition") ||
+                element.getId().contains("Encounter.reasonReference") ||
+                element.getId().contains("Encounter.appointment")) && element.hasType()) {
+                
+                log.warn(structureDefinition.getUrl() + " has circular references (" + element.getId() + ")");
+                
+                for (ElementDefinition.TypeRefComponent typeRef : element.getType()) {
+                    if (typeRef.hasTargetProfile()) {
+                        for (CanonicalType targetProfile : typeRef.getTargetProfile()) {
+                            typeRef.setTargetProfile((List<CanonicalType>) getBase(targetProfile, supportChain));
+                        }
+                    }
+                }
+            }
+        }
+        return structureDefinition;
+    }
+
+
+
+    private CanonicalType getBase(CanonicalType profile, IValidationSupport supportChain) {
+        StructureDefinition structureDefinition = (StructureDefinition) supportChain.fetchStructureDefinition(profile.toString());
+        
+        if (structureDefinition != null && structureDefinition.hasBaseDefinition()) {
+            String baseProfile = structureDefinition.getBaseDefinition();
+            CanonicalType canonicalBaseProfile = new CanonicalType(baseProfile);
+            if (baseProfile.contains(".uk")) {
+                canonicalBaseProfile = getBase(canonicalBaseProfile, supportChain);
+            }
+            return canonicalBaseProfile;
+        }
+        return null;
+    }
     //private List<NpmPackage>() {
     //    val inputStream = ClassPathResource("manifest.json").inputStream;
     //    val packages = objectMapper.readValue(inputStream, Array<SimplifierPackage>::class.java);

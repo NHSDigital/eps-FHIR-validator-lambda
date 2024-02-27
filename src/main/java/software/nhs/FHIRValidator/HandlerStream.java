@@ -1,16 +1,27 @@
 package software.nhs.FHIRValidator;
 
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Handler implements RequestHandler<String, ValidatorResponse> {
+public class HandlerStream implements RequestStreamHandler {
 
     private final Validator validator;
 
-    public Handler() {
+    public HandlerStream() {
         log.info("Creating the Validator instance for the first time...");
 
         validator = new Validator();
@@ -23,10 +34,26 @@ public class Handler implements RequestHandler<String, ValidatorResponse> {
     }
 
     @Override
-    public ValidatorResponse handleRequest(String event, Context context) {
-        log.info(event);
-        ValidatorResponse validate = validator.validate(event);
-        return validate;
+    public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        try {
+            for (int length; (length = inputStream.read(buffer)) != -1; ) {
+                result.write(buffer, 0, length);
+            }
+            String rawInput=result.toString("UTF-8");
+            log.info(rawInput);
 
+            ValidatorResponse validate = validator.validate(rawInput);
+
+            try (PrintWriter writer = new PrintWriter(outputStream)) {
+                writer.print(validate.toString());
+                writer.close();
+            }
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
