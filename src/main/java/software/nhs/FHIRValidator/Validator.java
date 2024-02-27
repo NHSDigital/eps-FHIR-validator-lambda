@@ -14,13 +14,16 @@ import com.google.gson.JsonSyntaxException;
 import org.hl7.fhir.common.hapi.validation.support.CommonCodeSystemsTerminologyService;
 import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport;
+import org.hl7.fhir.common.hapi.validation.support.SnapshotGeneratingValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
+import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.StructureDefinition;
 
 import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.context.support.ConceptValidationOptions;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.context.support.IValidationSupport;
 import ca.uhn.fhir.context.support.ValidationSupportContext;
@@ -52,19 +55,12 @@ public class Validator {
         ctx = FhirContext.forR4();
 
         // Create a chain that will hold our modules
-        ValidationSupportChain supportChain = new ValidationSupportChain();
-
-        // DefaultProfileValidationSupport supplies base FHIR definitions. This is generally required
-        // even if you are using custom profiles, since those profiles will derive from the base
-        // definitions.
-        DefaultProfileValidationSupport defaultSupport = new DefaultProfileValidationSupport(ctx);
-        supportChain.addValidationSupport(defaultSupport);
-
-        // This module supplies several code systems that are commonly used in validation
-        supportChain.addValidationSupport(new CommonCodeSystemsTerminologyService(ctx));
-
-        // This module implements terminology services for in-memory code validation
-        supportChain.addValidationSupport(new InMemoryTerminologyServerValidationSupport(ctx));
+        ValidationSupportChain supportChain = new ValidationSupportChain(
+            new DefaultProfileValidationSupport(ctx),
+            new CommonCodeSystemsTerminologyService(ctx),
+            terminologyValidationSupport(ctx),
+            new SnapshotGeneratingValidationSupport(ctx)
+        );
 
         NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(ctx);
         try {
@@ -197,6 +193,40 @@ public class Validator {
         }
         return null;
     }
+
+
+    public InMemoryTerminologyServerValidationSupport terminologyValidationSupport(FhirContext fhirContext) {
+    return new InMemoryTerminologyServerValidationSupport(fhirContext) {
+        @Override
+        public IValidationSupport.CodeValidationResult validateCodeInValueSet(
+            ValidationSupportContext theValidationSupportContext,
+            ConceptValidationOptions theOptions,
+            String theCodeSystem,
+            String theCode,
+            String theDisplay,
+            IBaseResource theValueSet
+        ) {
+            String valueSetUrl = CommonCodeSystemsTerminologyService.getValueSetUrl(theValueSet);
+
+            if ("https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationRequest-Code".equals(valueSetUrl)
+                || "https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationDispense-Code".equals(valueSetUrl)
+                || "https://fhir.hl7.org.uk/ValueSet/UKCore-MedicationCode".equals(valueSetUrl)) {
+                return new IValidationSupport.CodeValidationResult()
+                    .setSeverity(IValidationSupport.IssueSeverity.WARNING)
+                    .setMessage("Unable to validate medication codes");
+            }
+
+            return super.validateCodeInValueSet(
+                theValidationSupportContext,
+                theOptions,
+                theCodeSystem,
+                theCode,
+                theDisplay,
+                theValueSet
+            );
+        }
+    };
+}
     //private List<NpmPackage>() {
     //    val inputStream = ClassPathResource("manifest.json").inputStream;
     //    val packages = objectMapper.readValue(inputStream, Array<SimplifierPackage>::class.java);
