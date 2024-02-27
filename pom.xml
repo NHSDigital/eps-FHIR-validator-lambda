@@ -59,35 +59,6 @@
             <!--Note that the scope is test-->
             <scope>test</scope>
         </dependency>
-        <!-- ================================================== -->
-
-        <!-- ============ Dependencies for FHIR DSTU3 ============ -->
-<!--
-        <dependency>
-            <groupId>ca.uhn.hapi.fhir</groupId>
-            <artifactId>hapi-fhir-validation-resources-dstu3</artifactId>
-            <version>5.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>ca.uhn.hapi.fhir</groupId>
-            <artifactId>hapi-fhir-structures-dstu3</artifactId>
-            <version>5.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>ca.uhn.hapi.fhir</groupId>
-            <artifactId>hapi-fhir-validation-resources-r4</artifactId>
-            <version>5.3.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>ca.uhn.hapi.fhir</groupId>
-            <artifactId>hapi-fhir-structures-r4</artifactId>
-            <version>5.3.0</version>
-            <scope>test</scope>
-        </dependency>
--->
-        <!-- ================================================== -->
-
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
@@ -181,16 +152,8 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>implementationGuides/*/*.json</include>
                     <include>log4j2.xml</include>
                     <include>package/*</include>
-                </includes>
-            </resource>
-            <!-- Copy the implementation guides packages from parent folder -->
-            <resource>
-                <directory>..</directory>
-                <includes>
-                    <include>implementationGuides/*/*.json</include>
                 </includes>
             </resource>
         </resources>

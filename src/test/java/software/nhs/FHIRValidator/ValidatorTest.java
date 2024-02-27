@@ -27,7 +27,7 @@ class ValidatorTest {
     @BeforeAll
     static void setup() {
         // Creating the HAPI validator takes several seconds. It's ok to reuse the same validator across tests to speed up tests
-        validator = new Validator(Validator.FHIR_R4, "testImplementationGuides-r4");
+        validator = new Validator();
         //validatorStu3 = new Validator(Validator.FHIR_STU3, "testImplementationGuides-stu3");
     }
 

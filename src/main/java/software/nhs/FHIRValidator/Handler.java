@@ -13,12 +13,7 @@ public class Handler implements RequestHandler<String, ValidatorResponse> {
     public Handler() {
         log.info("Creating the Validator instance for the first time...");
 
-        String fhirVersion = System.getenv("FHIR_VERSION");
-        if (fhirVersion == null){
-            fhirVersion = Validator.FHIR_R4;
-        }
-
-        validator = new Validator(fhirVersion);
+        validator = new Validator();
 
         log.info("Validating once to force the loading of all the validator related classes");
         // Validating a complex Patient yields better results. validating a trivial "empty" Patient won't load all the validation classes.
