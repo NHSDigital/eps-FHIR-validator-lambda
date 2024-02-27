@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  FHIR validator lambda
+
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 300
+    MemorySize: 1024
+    Architectures:
+      - x86_64
+    Runtime: java11
+
+Resources:
+  FHIRValidatorResources:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: lambda_resources.yaml
+      Parameters:
+        CloudWatchKMSKey: !ImportValue account-resources:CloudwatchLogsKmsKeyArn
+        SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
+        SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
+        EnableSplunk: "true"
+        LambdaName: !Sub "${AWS::StackName}-FHIRValidator"
+        LogRetentionDays: "30"
+
+  FHIRValidator:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-FHIRValidator"
+      CodeUri: ../
+      Handler: software.nhs.FHIRValidator.Handler::handleRequest
+      Role: !GetAtt FHIRValidatorResources.Outputs.LambdaRoleArn
+
+
+Outputs:
+  FHIRValidatorLambdaName:
+    Description: Name of the FHIR validator lambda
+    Value: !Ref FHIRValidator
+    Export:
+      Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorLambdaName"]]
+  FHIRValidatorLambdaArn:
+    Description: Arn of the FHIR validator lambda
+    Value: !GetAtt FHIRValidator.Arn
+    Export:
+      Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorLambdaArn"]]
+
