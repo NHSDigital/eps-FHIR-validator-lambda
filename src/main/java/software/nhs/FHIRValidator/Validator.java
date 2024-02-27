@@ -1,11 +1,15 @@
 package software.nhs.FHIRValidator;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
 import org.hl7.fhir.common.hapi.validation.support.CommonCodeSystemsTerminologyService;
@@ -18,6 +22,7 @@ import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.utilities.npm.NpmPackage;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.ConceptValidationOptions;
@@ -27,14 +32,18 @@ import ca.uhn.fhir.context.support.ValidationSupportContext;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
 import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ValidationResult;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import software.amazon.lambda.powertools.logging.LoggingUtils;
+import software.nhs.FHIRValidator.models.SimplifierPackage;
+import software.amazon.lambda.powertools.logging.Logging;
 
 
 /**
  * This class is a wrapper around the HAPI FhirValidator.
  * The FhirValidator is built using default settings and the available implementation guides are loaded into it.
  */
-@Slf4j
+
 public class Validator {
     private static final Gson GSON = new Gson();
     public static final String DEFAULT_IMPLEMENTATION_GUIDES_FOLDER = "implementationGuides";
@@ -44,7 +53,7 @@ public class Validator {
     private final FhirValidator validator;
 
     private final FhirContext ctx;
-
+    Logger log = LogManager.getLogger(Validator.class);
 
     public Validator() {
         ctx = FhirContext.forR4();
@@ -58,10 +67,12 @@ public class Validator {
         );
 
         NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(ctx);
+        SimplifierPackage[] packages = getPackages();
         try {
-            npmPackageSupport.loadPackageFromClasspath("classpath:package/fhir.r4.ukcore.stu3.currentbuild-0.0.3-pre-release.tgz");
-            npmPackageSupport.loadPackageFromClasspath("classpath:package/uk.nhsdigital.r4.test-2.8.17-prerelease.tgz");
-            npmPackageSupport.loadPackageFromClasspath("classpath:package/uk.nhsdigital.medicines.r4.test-2.8.3-prerelease.tgz");
+            for (SimplifierPackage individualPackage : packages) {
+                String packagePath = String.format("classpath:package/%s-%s.tgz", individualPackage.packageName, individualPackage.version);
+                npmPackageSupport.loadPackageFromClasspath(packagePath);
+            }
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -75,6 +86,7 @@ public class Validator {
         validator = ctx.newValidator().registerValidatorModule(validatorModule);
     }
 
+    @Logging
     public ValidatorResponse validate(String resourceAsJsonText) {
         try {
             ValidationResult result = validator.validateWithResult(resourceAsJsonText);
@@ -216,16 +228,26 @@ public class Validator {
                 theDisplay,
                 theValueSet
             );
+        }};
+    }
+    
+    private SimplifierPackage[] getPackages() {
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        InputStream inputStream = loader.getResourceAsStream("manifest.json");
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        try {
+            for (int length; (length = inputStream.read(buffer)) != -1; ) {
+                result.write(buffer, 0, length);
+            }
+            String rawInput=result.toString("UTF-8");
+            SimplifierPackage[] packages = new Gson().fromJson(rawInput, SimplifierPackage[].class);
+            return packages;
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
         }
-    };
-}
-    //private List<NpmPackage>() {
-    //    val inputStream = ClassPathResource("manifest.json").inputStream;
-    //    val packages = objectMapper.readValue(inputStream, Array<SimplifierPackage>::class.java);
-    //    return Arrays.stream(packages)
-    //        .map { "${it.packageName}-${it.version}.tgz" }
-    //        .map { ClassPathResource(it).inputStream }
-    //        .map { NpmPackage.fromPackage(it) }
-    //        .toList();
-    //}
+    }
 }
