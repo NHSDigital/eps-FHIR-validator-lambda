@@ -33,52 +33,120 @@ class ValidatorTest {
     }
 
     @Test
-    void validFHIR() {
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStream = loader.getResourceAsStream("examples/validFHIR.json");
-        ByteArrayOutputStream result = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        try {
-            for (int length; (length = inputStream.read(buffer)) != -1;) {
-                result.write(buffer, 0, length);
-            }
-            String rawInput = result.toString("UTF-8");
-            ValidatorResponse validatorResult = validator.validate(rawInput);
-            assertTrue((validatorResult.isSuccessful()));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    void validBundle() {
+        String FHIRDocument = Utils.getResourceContent("examples/validBundle.json");
+        ValidatorResponse validatorResult = validator.validate(FHIRDocument);
+        assertTrue((validatorResult.isSuccessful()));
+        List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
+        assertEquals(errorMessages.size(), 0);
     }
 
     @Test
-    void invalidFHIR() {
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStream = loader.getResourceAsStream("examples/invalidFHIR.json");
-        ByteArrayOutputStream result = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        try {
-            for (int length; (length = inputStream.read(buffer)) != -1;) {
-                result.write(buffer, 0, length);
-            }
-            String rawInput = result.toString("UTF-8");
-            ValidatorResponse validatorResult = validator.validate(rawInput);
-            assertFalse((validatorResult.isSuccessful()));
-            ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
-                    .msg("Bundle.entry[0] - Bundle entry missing fullUrl")
-                    .severity("error")
-                    .build();
-            ValidatorErrorMessage expectedMessage2 = ValidatorErrorMessage.builder()
-                    .msg("Bundle.entry[0] - Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry  ")
-                    .severity("error")
-                    .build();
-            List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
-            assertTrue(errorMessages.contains(expectedMessage1));
-            assertTrue(errorMessages.contains(expectedMessage2));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    void invalidBundle() {
+        String FHIRDocument = Utils.getResourceContent("examples/invalidBundle.json");
+        ValidatorResponse validatorResult = validator.validate(FHIRDocument);
+        assertFalse((validatorResult.isSuccessful()));
+        ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
+                .msg("Bundle.entry[0] - Bundle entry missing fullUrl")
+                .severity("error")
+                .build();
+        ValidatorErrorMessage expectedMessage2 = ValidatorErrorMessage.builder()
+                .msg("Bundle.entry[0] - Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry  ")
+                .severity("error")
+                .build();
+        List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
+        assertEquals(errorMessages.size(), 2);
+        assertTrue(errorMessages.contains(expectedMessage1));
+        assertTrue(errorMessages.contains(expectedMessage2));
+    }
+
+    @Test
+    void warningBundle() {
+        String FHIRDocument = Utils.getResourceContent("examples/warningBundle.json");
+        ValidatorResponse validatorResult = validator.validate(FHIRDocument);
+        assertTrue((validatorResult.isSuccessful()));
+        ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
+                .msg("Bundle.entry[4].resource.ofType(PractitionerRole).code[0].coding[0] - Unknown code in fragment CodeSystem 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000' for 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000'")
+                .severity("warning")
+                .build();
+        List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
+        assertEquals(errorMessages.size(), 1);
+        assertTrue(errorMessages.contains(expectedMessage1));
+    }
+
+    @Test
+    void mixedErrorWarningBundle() {
+        String FHIRDocument = Utils.getResourceContent("examples/mixedErrorWarning.json");
+        ValidatorResponse validatorResult = validator.validate(FHIRDocument);
+        assertFalse((validatorResult.isSuccessful()));
+        ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
+                .msg("Bundle.entry[0] - Bundle entry missing fullUrl")
+                .severity("error")
+                .build();
+        ValidatorErrorMessage expectedMessage2 = ValidatorErrorMessage.builder()
+                .msg("Bundle.entry[0] - Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry  ")
+                .severity("error")
+                .build();
+        ValidatorErrorMessage expectedMessage3 = ValidatorErrorMessage.builder()
+                .msg("Bundle.entry[4].resource.ofType(PractitionerRole).code[0].coding[0] - Unknown code in fragment CodeSystem 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000' for 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000'")
+                .severity("warning")
+                .build();
+        ValidatorErrorMessage expectedMessage4 = ValidatorErrorMessage.builder()
+                .msg("Bundle.entry[4].resource.ofType(PractitionerRole).code[0].coding[0].display - value should not start or finish with whitespace")
+                .severity("warning")
+                .build();
+        List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
+        assertEquals(errorMessages.size(), 4);
+        assertTrue(errorMessages.contains(expectedMessage1));
+        assertTrue(errorMessages.contains(expectedMessage2));
+        assertTrue(errorMessages.contains(expectedMessage3));
+        assertTrue(errorMessages.contains(expectedMessage4));
+    }
+
+    @Test
+    void validParameters() {
+        String FHIRDocument = Utils.getResourceContent("examples/validParameters.json");
+        ValidatorResponse validatorResult = validator.validate(FHIRDocument);
+        assertTrue((validatorResult.isSuccessful()));
+        List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
+        assertEquals(errorMessages.size(), 0);
+    }
+
+    @Test
+    void invalidParameters() {
+        String FHIRDocument = Utils.getResourceContent("examples/invalidParameters.json");
+        ValidatorResponse validatorResult = validator.validate(FHIRDocument);
+        assertFalse((validatorResult.isSuccessful()));
+        List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
+        ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
+                .msg("Parameters.parameter[0] - inv-1: 'A parameter must have one and only one of (value, resource, part)' Rule 'A parameter must have one and only one of (value, resource, part)' Failed")
+                .severity("error")
+                .build();
+        assertEquals(errorMessages.size(), 1);
+        assertTrue(errorMessages.contains(expectedMessage1));
+    }
+
+    @Test
+    void validOperationOutcome() {
+        String FHIRDocument = Utils.getResourceContent("examples/validOperationOutcome.json");
+        ValidatorResponse validatorResult = validator.validate(FHIRDocument);
+        assertTrue((validatorResult.isSuccessful()));
+        List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
+        assertEquals(errorMessages.size(), 0);
+    }
+
+    @Test
+    void invalidOperationOutcome() {
+        String FHIRDocument = Utils.getResourceContent("examples/invalidOperationOutcome.json");
+        ValidatorResponse validatorResult = validator.validate(FHIRDocument);
+        assertFalse((validatorResult.isSuccessful()));
+        List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
+        ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
+                .msg("OperationOutcome - OperationOutcome.issue: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/OperationOutcome)")
+                .severity("error")
+                .build();
+        assertEquals(errorMessages.size(), 1);
+        assertTrue(errorMessages.contains(expectedMessage1));
     }
 
     @Test

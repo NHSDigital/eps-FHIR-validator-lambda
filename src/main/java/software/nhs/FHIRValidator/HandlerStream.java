@@ -25,21 +25,8 @@ public class HandlerStream implements RequestStreamHandler {
         validator = new Validator();
 
         log.info("Validating once to force the loading of all the validator related classes");
-
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStream = loader.getResourceAsStream("primerPayload.json");
-        ByteArrayOutputStream result = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        try {
-            for (int length; (length = inputStream.read(buffer)) != -1;) {
-                result.write(buffer, 0, length);
-            }
-            String primerPayload = result.toString("UTF-8");
-            validator.validate(primerPayload);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        String primerPayload = Utils.getResourceContent("primerPayload.json");
+        validator.validate(primerPayload);
 
         log.info("Validator is ready");
     }

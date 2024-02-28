@@ -41,11 +41,6 @@ import software.amazon.lambda.powertools.logging.Logging;
  */
 
 public class Validator {
-    private static final Gson GSON = new Gson();
-    public static final String DEFAULT_IMPLEMENTATION_GUIDES_FOLDER = "implementationGuides";
-    public static final String FHIR_R4 = "4.0.1";
-    public static final String FHIR_STU3 = "3.0.1";
-
     private final FhirValidator validator;
 
     private final FhirContext ctx;
@@ -230,22 +225,8 @@ public class Validator {
     }
 
     private SimplifierPackage[] getPackages() {
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStream = loader.getResourceAsStream("manifest.json");
-        ByteArrayOutputStream result = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        try {
-            for (int length; (length = inputStream.read(buffer)) != -1;) {
-                result.write(buffer, 0, length);
-            }
-            String manifestContent = result.toString("UTF-8");
-            SimplifierPackage[] packages = new Gson().fromJson(manifestContent, SimplifierPackage[].class);
-            return packages;
-
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
-        }
+        String manifestContent = Utils.getResourceContent("manifest.json");
+        SimplifierPackage[] packages = new Gson().fromJson(manifestContent, SimplifierPackage[].class);
+        return packages;
     }
 }
