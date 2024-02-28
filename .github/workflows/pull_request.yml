@@ -1,4 +1,4 @@
-name: deploy_pr
+name: Pull requset test and deploy
 
 on:
   pull_request:
@@ -68,4 +68,3 @@ jobs:
       LOG_RETENTION_DAYS: 30
     secrets:
       CLOUD_FORMATION_DEPLOY_ROLE: ${{ secrets.DEV_CLOUD_FORMATION_DEPLOY_ROLE }}
-
