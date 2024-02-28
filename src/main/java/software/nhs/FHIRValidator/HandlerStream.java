@@ -50,9 +50,9 @@ public class HandlerStream implements RequestStreamHandler {
                 writer.close();
             }
 
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (IOException ex) {
+            log.error(ex.getMessage(), ex);
+            throw new RuntimeException("error in handleRequest", ex);
         }
     }
 }
