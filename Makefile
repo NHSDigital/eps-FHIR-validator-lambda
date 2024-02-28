@@ -4,7 +4,7 @@ guard-%:
 		exit 1; \
 	fi
 
-
+# install targets
 install: install-python install-hooks
 
 install-python:
@@ -13,6 +13,7 @@ install-python:
 install-hooks: install-python
 	poetry run pre-commit install --install-hooks --overwrite
 
+# lint targets
 lint: lint-samtemplates lint-python lint-githubactions lint-githubaction-scripts
 
 lint-python:
@@ -27,13 +28,20 @@ lint-githubactions:
 lint-githubaction-scripts:
 	shellcheck .github/scripts/*.sh
 
+# test targets
+
 test: download-dependencies
 	mvn test
 
-check-licenses:
-	scripts/check_python_licenses.sh
-	mvn validate
+check-licenses: check-licenses-python check-licenses-java
 
+check-licenses-python:
+	scripts/check_python_licenses.sh
+
+check-licenses-java:
+	mvn validate	
+
+# clean targets
 clean-packages:
 	rm -f src/main/resources/package/*.tgz
 
@@ -42,17 +50,21 @@ clean: clean-packages
 	mvn clean
 	rm -rf .aws-sam
 
-build: download-dependencies
+deep-clean: clean
+	rm -rf .venv
+	rm -rf .idea
+	rm -rf .mvn
+	rm -rf src/main/main.iml
+	rm -rf src/test/test.iml
+
+# build targets
+compile: download-dependencies
 	mvn package
-
-build-latest: clean-packages update-manifest build
-
-run:
-	mvn spring-boot:run
 
 download-dependencies:
 	poetry run scripts/download_dependencies.py
 
+# SAM targets
 sam-validate: 
 	sam validate --template-file SAMtemplates/main_template.yaml --region eu-west-2
 	sam validate --template-file SAMtemplates/lambda_resources.yaml --region eu-west-2
