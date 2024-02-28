@@ -2,29 +2,37 @@
 python = "^3.8"
 
 [tool.poetry]
-name = "validation-service-fhir-r4"
+name = "eps-FHIR-validator-lambda"
 version = "0.0.1-alpha"
-description = "Validation Service FHIR R4 API Definitions"
+description = "lambda for Validation Service FHIR R4 API Definitions"
 license = "MIT"
 authors = [
     "Anthony Brown <anthony.brown8@nhs.net>",
     "Matthew Popat <matthew.popat1@nhs.net>",
-    "Chris Matus <chris.matus@nhs.net>",
     "Phil Gee <phil.gee@nhs.net>",
     "Kris Szlapa <kris.szlapa1@nhs.net>",
     "Jack Spagnoli <jack.spagnoli1@nhs.net>",
     "Tom Smith <tom.smith24@nhs.net>",
     "Adam Brown <adam.brown41@nhs.net>",
-    "Sean Steberis <sean.steberis2@nhs.net>"
+    "Sean Steberis <sean.steberis2@nhs.net>",
+    "Natasa Fragkou <natasa.fragkou@nhs.net>"
 ]
 readme = "README.md"
-repository = "https://github.com/NHSDigital/validation-service-fhir-r4"
+repository = "https://github.com/NHSDigital/eps-FHIR-validator-lambda"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pyyaml = "^6.0"
+docopt = "^0.6.2"
+jsonpath-rw = "^1.4.0"
 semver = "^3.0.2"
-gitpython = "^3.1.41"
+gitpython = "^3.1.42"
+requests = "^2.31.0"
+boto3 = "^1.34.45"
+argparse = "^1.4.0"
 pre-commit = "^3.5.0"
+pytest = "^8.0.1"
+cfn-lint = "^0.85.2"
 
 [tool.poetry.dev-dependencies]
 requests = "2.31.0"
