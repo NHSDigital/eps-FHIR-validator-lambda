@@ -158,7 +158,6 @@ jobs:
       STACK_NAME: fhir-validator
       TARGET_ENVIRONMENT: int
       BUILD_ARTIFACT: packaged_code
-      TRUSTSTORE_FILE: truststore.pem
       VERSION_NUMBER: ${{needs.tag_release.outputs.spec_version}}
       COMMIT_ID: ${{needs.get_commit_id.outputs.commit_id}}
       LOG_LEVEL: DEBUG
