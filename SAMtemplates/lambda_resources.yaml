@@ -68,12 +68,17 @@ Resources:
             Principal:
               Service: "lambda.amazonaws.com"
             Action: "sts:AssumeRole"
-  LambdaPolicy:
-    Type: "AWS::IAM::ManagedPolicy"
+      ManagedPolicyArns:
+        - !ImportValue lambda-resources:LambdaInsightsLogGroupPolicy
+        - !ImportValue account-resources:LambdaEncryptCloudwatchKMSPolicy
+
+  LambdaManagedPolicy:
+    Type: AWS::IAM::ManagedPolicy
     Properties:
-      Description: "allow access to logs for lambda role"
+      Roles:
+        - !Ref LambdaRole
       PolicyDocument:
-        Version: "2012-10-17"
+        Version: 2012-10-17
         Statement:
           - Effect: Allow
             Action:
@@ -82,45 +87,14 @@ Resources:
             Resource:
               - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LambdaLogGroup}"
               - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LambdaLogGroup}:log-stream:*"
-      Roles:
-        - !Ref LambdaRole
-  LambdaKMSPolicy:
-    Type: "AWS::IAM::ManagedPolicy"
-    Properties:
-      Description: "allow access to cloudwatch KMS key for lambda role"
-      PolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: Allow
-            Action:
-              - kms:DescribeKey
-              - kms:GenerateDataKey*
-              - kms:Encrypt
-              - kms:ReEncrypt*
-            Resource:
-              - !Ref CloudWatchKMSKey
-      Roles:
-        - !Ref LambdaRole
-  LambdaSecretsKMSPolicy:
-    Type: "AWS::IAM::ManagedPolicy"
-    Properties:
-      Description: "allow access to secrets KMS key for lambda role"
-      PolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: Allow
-            Action:
-              - kms:Decrypt
-            Resource:
-              - !ImportValue account-resources:SecretsKMSKey
-      Roles:
-        - !Ref LambdaRole
+
   LambdaLogGroup:
     Type: "AWS::Logs::LogGroup"
     Properties:
       LogGroupName: !Sub "/aws/lambda/${LambdaName}"
       RetentionInDays: !Ref LogRetentionDays
       KmsKeyId: !Ref CloudWatchKMSKey
+
   LambdaSplunkSubscriptionFilter:
     Condition: ShouldUseSplunk
     Type: AWS::Logs::SubscriptionFilter

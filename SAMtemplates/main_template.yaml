@@ -3,6 +3,49 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   FHIR validator lambda
 
+Parameters:
+  VersionNumber:
+    Type: String
+    Description: Current release version
+    Default: "xxx"
+  CommitId:
+    Type: String
+    Description: Most recent commit hash
+    Default: "xxx"
+  LogLevel:
+    Type: String
+    Description: The log level to set in the lambda
+    Default: "INFO"
+  LogRetentionDays:
+    Type: Number
+    Description: How long to keep logs for
+    Default: 30
+    AllowedValues:
+      [
+        1,
+        3,
+        5,
+        7,
+        14,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        365,
+        400,
+        545,
+        731,
+        1096,
+        1827,
+        2192,
+        2557,
+        2922,
+        3288,
+        3653,
+      ]
+
 Resources:
   FHIRValidatorResources:
     Type: AWS::Serverless::Application
@@ -14,7 +57,7 @@ Resources:
         SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
         EnableSplunk: "true"
         LambdaName: !Sub "${AWS::StackName}-FHIRValidator"
-        LogRetentionDays: "30"
+        LogRetentionDays: !Ref LogRetentionDays
 
   FHIRValidator:
     Type: AWS::Serverless::Function
@@ -33,7 +76,6 @@ Resources:
       Runtime: java21
       Layers:
         - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:38"
-
 
 Outputs:
   FHIRValidatorLambdaName:
