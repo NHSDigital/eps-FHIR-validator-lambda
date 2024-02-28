@@ -1,4 +1,4 @@
-name: deploy_pr
+name: Pull request test and deploy
 
 on:
   pull_request:
@@ -64,8 +64,7 @@ jobs:
       BUILD_ARTIFACT: packaged_code
       VERSION_NUMBER: fhir-validator-PR-${{ needs.get_issue_number.outputs.issue_number }}
       COMMIT_ID: ${{ needs.get_commit_id.outputs.commit_id }}
-      LOG_LEVEL: DEBUG
+      LOG_LEVEL: INFO
       LOG_RETENTION_DAYS: 30
     secrets:
       CLOUD_FORMATION_DEPLOY_ROLE: ${{ secrets.DEV_CLOUD_FORMATION_DEPLOY_ROLE }}
-
