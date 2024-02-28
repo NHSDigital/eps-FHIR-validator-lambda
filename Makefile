@@ -30,7 +30,7 @@ lint-githubaction-scripts:
 test: download-dependencies
 	mvn test
 
-check-licences:
+check-licenses:
 	scripts/check_python_licenses.sh
 	mvn validate
 
