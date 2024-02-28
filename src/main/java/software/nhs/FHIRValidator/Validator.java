@@ -34,10 +34,10 @@ import org.apache.logging.log4j.Logger;
 import software.nhs.FHIRValidator.models.SimplifierPackage;
 import software.amazon.lambda.powertools.logging.Logging;
 
-
 /**
  * This class is a wrapper around the HAPI FhirValidator.
- * The FhirValidator is built using default settings and the available implementation guides are loaded into it.
+ * The FhirValidator is built using default settings and the available
+ * implementation guides are loaded into it.
  */
 
 public class Validator {
@@ -56,17 +56,17 @@ public class Validator {
 
         // Create a chain that will hold our modules
         ValidationSupportChain supportChain = new ValidationSupportChain(
-            new DefaultProfileValidationSupport(ctx),
-            new CommonCodeSystemsTerminologyService(ctx),
-            terminologyValidationSupport(ctx),
-            new SnapshotGeneratingValidationSupport(ctx)
-        );
+                new DefaultProfileValidationSupport(ctx),
+                new CommonCodeSystemsTerminologyService(ctx),
+                terminologyValidationSupport(ctx),
+                new SnapshotGeneratingValidationSupport(ctx));
 
         NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(ctx);
         SimplifierPackage[] packages = getPackages();
         try {
             for (SimplifierPackage individualPackage : packages) {
-                String packagePath = String.format("classpath:package/%s-%s.tgz", individualPackage.packageName, individualPackage.version);
+                String packagePath = String.format("classpath:package/%s-%s.tgz", individualPackage.packageName,
+                        individualPackage.version);
                 npmPackageSupport.loadPackageFromClasspath(packagePath);
             }
         } catch (IOException e) {
@@ -90,85 +90,87 @@ public class Validator {
         } catch (JsonSyntaxException | NullPointerException | IllegalArgumentException | InvalidRequestException e) {
             log.error(e.toString());
             return ValidatorResponse.builder()
-                .isSuccessful(false)
-                .errorMessages(ImmutableList.of(ValidatorErrorMessage.builder()
-                    .msg("Invalid JSON")
-                    .severity("error")
-                    .build()))
-                .build();
+                    .isSuccessful(false)
+                    .errorMessages(ImmutableList.of(ValidatorErrorMessage.builder()
+                            .msg("Invalid JSON")
+                            .severity("error")
+                            .build()))
+                    .build();
         }
     }
 
     private ValidatorResponse toValidatorResponse(ValidationResult result) {
         return ValidatorResponse.builder()
-            .isSuccessful(result.isSuccessful())
-            .errorMessages(result.getMessages().stream()
-                .map(singleValidationMessage -> ValidatorErrorMessage.builder()
-                    .severity(singleValidationMessage.getSeverity().getCode())
-                    .msg(singleValidationMessage.getLocationString() + " - " + singleValidationMessage.getMessage())
-                    .build())
-                    
-                .collect(Collectors.toList())
-            )
-            .build();
+                .isSuccessful(result.isSuccessful())
+                .errorMessages(result.getMessages().stream()
+                        .map(singleValidationMessage -> ValidatorErrorMessage.builder()
+                                .severity(singleValidationMessage.getSeverity().getCode())
+                                .msg(singleValidationMessage.getLocationString() + " - "
+                                        + singleValidationMessage.getMessage())
+                                .build())
+
+                        .collect(Collectors.toList()))
+                .build();
     }
 
     private void generateSnapshots(IValidationSupport supportChain) {
-    List<StructureDefinition> structureDefinitions = supportChain.fetchAllStructureDefinitions();
-    if (structureDefinitions == null) {
-        return;
-    }
-    
-    ValidationSupportContext context = new ValidationSupportContext(supportChain);
+        List<StructureDefinition> structureDefinitions = supportChain.fetchAllStructureDefinitions();
+        if (structureDefinitions == null) {
+            return;
+        }
 
-    structureDefinitions.stream()
-            .filter(this::shouldGenerateSnapshot)
-            .forEach(it -> {
-                try {
-                    circularReferenceCheck(it, supportChain);
-                } catch (Exception e) {
-                    log.error("Failed to generate snapshot for " + it, e);
-                }
-            });
+        ValidationSupportContext context = new ValidationSupportContext(supportChain);
 
-    structureDefinitions.stream()
-            .filter(this::shouldGenerateSnapshot)
-            .forEach(it -> {
-                try {
-                    supportChain.generateSnapshot(context, it, it.getUrl(), "https://fhir.nhs.uk/R4", it.getName());
-                } catch (Exception e) {
-                    log.error("Failed to generate snapshot for " + it, e);
-                }
-            });
+        structureDefinitions.stream()
+                .filter(this::shouldGenerateSnapshot)
+                .forEach(it -> {
+                    try {
+                        circularReferenceCheck(it, supportChain);
+                    } catch (Exception e) {
+                        log.error("Failed to generate snapshot for " + it, e);
+                    }
+                });
+
+        structureDefinitions.stream()
+                .filter(this::shouldGenerateSnapshot)
+                .forEach(it -> {
+                    try {
+                        supportChain.generateSnapshot(context, it, it.getUrl(), "https://fhir.nhs.uk/R4", it.getName());
+                    } catch (Exception e) {
+                        log.error("Failed to generate snapshot for " + it, e);
+                    }
+                });
     }
 
     private boolean shouldGenerateSnapshot(StructureDefinition structureDefinition) {
-        return !structureDefinition.hasSnapshot() && structureDefinition.getDerivation() == StructureDefinition.TypeDerivationRule.CONSTRAINT;
+        return !structureDefinition.hasSnapshot()
+                && structureDefinition.getDerivation() == StructureDefinition.TypeDerivationRule.CONSTRAINT;
     }
 
-    private StructureDefinition circularReferenceCheck(StructureDefinition structureDefinition, IValidationSupport supportChain) {
+    private StructureDefinition circularReferenceCheck(StructureDefinition structureDefinition,
+            IValidationSupport supportChain) {
         if (structureDefinition.hasSnapshot()) {
             log.error(structureDefinition.getUrl() + " has snapshot!!");
         }
 
         for (ElementDefinition element : structureDefinition.getDifferential().getElement()) {
             if ((element.getId().endsWith(".partOf") ||
-                element.getId().endsWith(".basedOn") ||
-                element.getId().endsWith(".replaces") ||
-                element.getId().contains("Condition.stage.assessment") ||
-                element.getId().contains("Observation.derivedFrom") ||
-                element.getId().contains("Observation.hasMember") ||
-                element.getId().contains("CareTeam.encounter") ||
-                element.getId().contains("CareTeam.reasonReference") ||
-                element.getId().contains("ServiceRequest.encounter") ||
-                element.getId().contains("ServiceRequest.reasonReference") ||
-                element.getId().contains("EpisodeOfCare.diagnosis.condition") ||
-                element.getId().contains("Encounter.diagnosis.condition") ||
-                element.getId().contains("Encounter.reasonReference") ||
-                element.getId().contains("Encounter.appointment")) && element.hasType()) {
-                
+                    element.getId().endsWith(".basedOn") ||
+                    element.getId().endsWith(".replaces") ||
+                    element.getId().contains("Condition.stage.assessment") ||
+                    element.getId().contains("Observation.derivedFrom") ||
+                    element.getId().contains("Observation.hasMember") ||
+                    element.getId().contains("CareTeam.encounter") ||
+                    element.getId().contains("CareTeam.reasonReference") ||
+                    element.getId().contains("ServiceRequest.encounter") ||
+                    element.getId().contains("ServiceRequest.reasonReference") ||
+                    element.getId().contains("EpisodeOfCare.diagnosis.condition") ||
+                    element.getId().contains("Encounter.diagnosis.condition") ||
+                    element.getId().contains("Encounter.reasonReference") ||
+                    element.getId().contains("Encounter.appointment")) && element.hasType()) {
+
                 log.warn(structureDefinition.getUrl() + " has circular references (" + element.getId() + ")");
-                
+
                 for (ElementDefinition.TypeRefComponent typeRef : element.getType()) {
                     if (typeRef.hasTargetProfile()) {
                         for (CanonicalType targetProfile : typeRef.getTargetProfile()) {
@@ -182,8 +184,9 @@ public class Validator {
     }
 
     private CanonicalType getBase(CanonicalType profile, IValidationSupport supportChain) {
-        StructureDefinition structureDefinition = (StructureDefinition) supportChain.fetchStructureDefinition(profile.toString());
-        
+        StructureDefinition structureDefinition = (StructureDefinition) supportChain
+                .fetchStructureDefinition(profile.toString());
+
         if (structureDefinition != null && structureDefinition.hasBaseDefinition()) {
             String baseProfile = structureDefinition.getBaseDefinition();
             CanonicalType canonicalBaseProfile = new CanonicalType(baseProfile);
@@ -196,48 +199,47 @@ public class Validator {
     }
 
     private InMemoryTerminologyServerValidationSupport terminologyValidationSupport(FhirContext fhirContext) {
-    return new InMemoryTerminologyServerValidationSupport(fhirContext) {
-        @Override
-        public IValidationSupport.CodeValidationResult validateCodeInValueSet(
-            ValidationSupportContext theValidationSupportContext,
-            ConceptValidationOptions theOptions,
-            String theCodeSystem,
-            String theCode,
-            String theDisplay,
-            IBaseResource theValueSet
-        ) {
-            String valueSetUrl = CommonCodeSystemsTerminologyService.getValueSetUrl(theValueSet);
+        return new InMemoryTerminologyServerValidationSupport(fhirContext) {
+            @Override
+            public IValidationSupport.CodeValidationResult validateCodeInValueSet(
+                    ValidationSupportContext theValidationSupportContext,
+                    ConceptValidationOptions theOptions,
+                    String theCodeSystem,
+                    String theCode,
+                    String theDisplay,
+                    IBaseResource theValueSet) {
+                String valueSetUrl = CommonCodeSystemsTerminologyService.getValueSetUrl(theValueSet);
 
-            if ("https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationRequest-Code".equals(valueSetUrl)
-                || "https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationDispense-Code".equals(valueSetUrl)
-                || "https://fhir.hl7.org.uk/ValueSet/UKCore-MedicationCode".equals(valueSetUrl)) {
-                return new IValidationSupport.CodeValidationResult()
-                    .setSeverity(IValidationSupport.IssueSeverity.WARNING)
-                    .setMessage("Unable to validate medication codes");
+                if ("https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationRequest-Code".equals(valueSetUrl)
+                        || "https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationDispense-Code".equals(valueSetUrl)
+                        || "https://fhir.hl7.org.uk/ValueSet/UKCore-MedicationCode".equals(valueSetUrl)) {
+                    return new IValidationSupport.CodeValidationResult()
+                            .setSeverity(IValidationSupport.IssueSeverity.WARNING)
+                            .setMessage("Unable to validate medication codes");
+                }
+
+                return super.validateCodeInValueSet(
+                        theValidationSupportContext,
+                        theOptions,
+                        theCodeSystem,
+                        theCode,
+                        theDisplay,
+                        theValueSet);
             }
-
-            return super.validateCodeInValueSet(
-                theValidationSupportContext,
-                theOptions,
-                theCodeSystem,
-                theCode,
-                theDisplay,
-                theValueSet
-            );
-        }};
+        };
     }
-    
+
     private SimplifierPackage[] getPackages() {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         InputStream inputStream = loader.getResourceAsStream("manifest.json");
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         try {
-            for (int length; (length = inputStream.read(buffer)) != -1; ) {
+            for (int length; (length = inputStream.read(buffer)) != -1;) {
                 result.write(buffer, 0, length);
             }
-            String rawInput=result.toString("UTF-8");
-            SimplifierPackage[] packages = new Gson().fromJson(rawInput, SimplifierPackage[].class);
+            String manifestContent = result.toString("UTF-8");
+            SimplifierPackage[] packages = new Gson().fromJson(manifestContent, SimplifierPackage[].class);
             return packages;
 
         } catch (IOException e) {

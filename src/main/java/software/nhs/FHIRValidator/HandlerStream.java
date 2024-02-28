@@ -31,11 +31,11 @@ public class HandlerStream implements RequestStreamHandler {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         try {
-            for (int length; (length = inputStream.read(buffer)) != -1; ) {
+            for (int length; (length = inputStream.read(buffer)) != -1;) {
                 result.write(buffer, 0, length);
             }
-            String rawInput=result.toString("UTF-8");
-            validator.validate(rawInput);
+            String primerPayload = result.toString("UTF-8");
+            validator.validate(primerPayload);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -50,10 +50,10 @@ public class HandlerStream implements RequestStreamHandler {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         try {
-            for (int length; (length = inputStream.read(buffer)) != -1; ) {
+            for (int length; (length = inputStream.read(buffer)) != -1;) {
                 result.write(buffer, 0, length);
             }
-            String rawInput=result.toString("UTF-8");
+            String rawInput = result.toString("UTF-8");
             log.info(rawInput);
 
             ValidatorResponse validate = validator.validate(rawInput);

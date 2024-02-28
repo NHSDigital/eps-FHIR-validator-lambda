@@ -10,12 +10,6 @@ import java.io.InputStream;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.google.gson.Gson;
-
-import software.nhs.FHIRValidator.Validator;
-import software.nhs.FHIRValidator.ValidatorErrorMessage;
-import software.nhs.FHIRValidator.ValidatorResponse;
-import software.nhs.FHIRValidator.models.SimplifierPackage;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -23,20 +17,19 @@ import org.junit.jupiter.api.Test;
 class ValidatorTest {
 
     public static final ValidatorResponse INVALID_JSON_VALIDATOR_RESPONSE = ValidatorResponse.builder()
-        .isSuccessful(false)
-        .errorMessages(ImmutableList.of(ValidatorErrorMessage.builder()
-            .msg("Invalid JSON")
-            .severity("error")
-            .build()))
-        .build();
+            .isSuccessful(false)
+            .errorMessages(ImmutableList.of(ValidatorErrorMessage.builder()
+                    .msg("Invalid JSON")
+                    .severity("error")
+                    .build()))
+            .build();
     static Validator validator;
-    static Validator validatorStu3;
 
     @BeforeAll
     static void setup() {
-        // Creating the HAPI validator takes several seconds. It's ok to reuse the same validator across tests to speed up tests
+        // Creating the HAPI validator takes several seconds. It's ok to reuse the same
+        // validator across tests to speed up tests
         validator = new Validator();
-        //validatorStu3 = new Validator(Validator.FHIR_STU3, "testImplementationGuides-stu3");
     }
 
     @Test
@@ -46,10 +39,10 @@ class ValidatorTest {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         try {
-            for (int length; (length = inputStream.read(buffer)) != -1; ) {
+            for (int length; (length = inputStream.read(buffer)) != -1;) {
                 result.write(buffer, 0, length);
             }
-            String rawInput=result.toString("UTF-8");
+            String rawInput = result.toString("UTF-8");
             ValidatorResponse validatorResult = validator.validate(rawInput);
             assertTrue((validatorResult.isSuccessful()));
         } catch (IOException e) {
@@ -65,10 +58,10 @@ class ValidatorTest {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         try {
-            for (int length; (length = inputStream.read(buffer)) != -1; ) {
+            for (int length; (length = inputStream.read(buffer)) != -1;) {
                 result.write(buffer, 0, length);
             }
-            String rawInput=result.toString("UTF-8");
+            String rawInput = result.toString("UTF-8");
             ValidatorResponse validatorResult = validator.validate(rawInput);
             assertFalse((validatorResult.isSuccessful()));
             ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
@@ -78,7 +71,7 @@ class ValidatorTest {
             ValidatorErrorMessage expectedMessage2 = ValidatorErrorMessage.builder()
                     .msg("Bundle.entry[0] - Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry  ")
                     .severity("error")
-                    .build();                    
+                    .build();
             List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
             assertTrue(errorMessages.contains(expectedMessage1));
             assertTrue(errorMessages.contains(expectedMessage2));
@@ -87,7 +80,6 @@ class ValidatorTest {
             e.printStackTrace();
         }
     }
-
 
     @Test
     void empty() {
