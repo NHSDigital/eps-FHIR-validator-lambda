@@ -1,4 +1,4 @@
-name: Pull requset test and deploy
+name: Pull request test and deploy
 
 on:
   pull_request:
