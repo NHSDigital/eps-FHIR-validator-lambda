@@ -4,14 +4,6 @@ Description: >
   FHIR validator lambda
 
 Parameters:
-  VersionNumber:
-    Type: String
-    Description: Current release version
-    Default: "xxx"
-  CommitId:
-    Type: String
-    Description: Most recent commit hash
-    Default: "xxx"
   LogLevel:
     Type: String
     Description: The log level to set in the lambda
@@ -76,6 +68,10 @@ Resources:
       Runtime: java21
       Layers:
         - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:38"
+      Environment:
+        Variables:
+          AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
+          POWERTOOLS_LOG_LEVEL: !Ref LogLevel
 
 Outputs:
   FHIRValidatorLambdaName:

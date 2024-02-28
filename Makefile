@@ -12,6 +12,9 @@ lint:
 	poetry run flake8 scripts/*.py --config .flake8
 	shellcheck scripts/*.sh
 
+lint-samtemplates:
+	poetry run cfn-lint -t SAMtemplates/*.yaml
+	
 test: download-dependencies
 	mvn test
 
