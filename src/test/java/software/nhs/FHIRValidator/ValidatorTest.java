@@ -51,7 +51,7 @@ class ValidatorTest {
                 .severity("error")
                 .build();
         ValidatorErrorMessage expectedMessage2 = ValidatorErrorMessage.builder()
-                .msg("Bundle.entry[0] - Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry  ")
+                .msg("Bundle.entry[0] - Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry")
                 .severity("error")
                 .build();
         List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
@@ -66,7 +66,7 @@ class ValidatorTest {
         ValidatorResponse validatorResult = validator.validate(FHIRDocument);
         assertTrue((validatorResult.isSuccessful()));
         ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
-                .msg("Bundle.entry[4].resource.ofType(PractitionerRole).code[0].coding[0] - Unknown code in fragment CodeSystem 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000' for 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000'")
+                .msg("Bundle.entry[4].resource/*PractitionerRole/null*/.code[0].coding[0] - Unknown code in fragment CodeSystem 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000' for 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000'")
                 .severity("warning")
                 .build();
         List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
@@ -84,15 +84,15 @@ class ValidatorTest {
                 .severity("error")
                 .build();
         ValidatorErrorMessage expectedMessage2 = ValidatorErrorMessage.builder()
-                .msg("Bundle.entry[0] - Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry  ")
+                .msg("Bundle.entry[0] - Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry")
                 .severity("error")
                 .build();
         ValidatorErrorMessage expectedMessage3 = ValidatorErrorMessage.builder()
-                .msg("Bundle.entry[4].resource.ofType(PractitionerRole).code[0].coding[0] - Unknown code in fragment CodeSystem 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000' for 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000'")
+                .msg("Bundle.entry[4].resource/*PractitionerRole/null*/.code[0].coding[0] - Unknown code in fragment CodeSystem 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000' for 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#S8000:G8000:R8000'")
                 .severity("warning")
                 .build();
         ValidatorErrorMessage expectedMessage4 = ValidatorErrorMessage.builder()
-                .msg("Bundle.entry[4].resource.ofType(PractitionerRole).code[0].coding[0].display - value should not start or finish with whitespace")
+                .msg("Bundle.entry[4].resource/*PractitionerRole/null*/.code[0].coding[0].display - value should not start or finish with whitespace 'Clinical Practitioner Access Role '")
                 .severity("warning")
                 .build();
         List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
@@ -119,7 +119,7 @@ class ValidatorTest {
         assertFalse((validatorResult.isSuccessful()));
         List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
         ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
-                .msg("Parameters.parameter[0] - inv-1: 'A parameter must have one and only one of (value, resource, part)' Rule 'A parameter must have one and only one of (value, resource, part)' Failed")
+                .msg("Parameters.parameter[0] - Rule inv-1: 'A parameter must have one and only one of (value, resource, part)' Failed")
                 .severity("error")
                 .build();
         assertEquals(errorMessages.size(), 1);
@@ -142,7 +142,7 @@ class ValidatorTest {
         assertFalse((validatorResult.isSuccessful()));
         List<ValidatorErrorMessage> errorMessages = validatorResult.getErrorMessages();
         ValidatorErrorMessage expectedMessage1 = ValidatorErrorMessage.builder()
-                .msg("OperationOutcome - OperationOutcome.issue: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/OperationOutcome)")
+                .msg("OperationOutcome - OperationOutcome.issue: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/OperationOutcome|4.0.1)")
                 .severity("error")
                 .build();
         assertEquals(errorMessages.size(), 1);

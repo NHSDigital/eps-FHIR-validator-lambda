@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import org.hl7.fhir.common.hapi.validation.support.CachingValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.CommonCodeSystemsTerminologyService;
 import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport;
@@ -24,6 +25,7 @@ import ca.uhn.fhir.context.support.ConceptValidationOptions;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.context.support.IValidationSupport;
 import ca.uhn.fhir.context.support.ValidationSupportContext;
+import ca.uhn.fhir.parser.DataFormatException;
 import ca.uhn.fhir.rest.server.exceptions.InternalErrorException;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
 import ca.uhn.fhir.validation.FhirValidator;
@@ -43,6 +45,7 @@ public class Validator {
     private final FhirValidator validator;
 
     private final FhirContext ctx;
+    // private final CapabilityStatementApplier capabilityStatementApplier;
     Logger log = LogManager.getLogger(Validator.class);
 
     public Validator() {
@@ -55,33 +58,39 @@ public class Validator {
                 terminologyValidationSupport(ctx),
                 new SnapshotGeneratingValidationSupport(ctx));
 
-        NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(ctx);
         SimplifierPackage[] packages = getPackages();
         try {
             for (SimplifierPackage individualPackage : packages) {
                 String packagePath = String.format("classpath:package/%s-%s.tgz", individualPackage.packageName,
                         individualPackage.version);
+                NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(ctx);
                 npmPackageSupport.loadPackageFromClasspath(packagePath);
+                supportChain.addValidationSupport(npmPackageSupport);
             }
         } catch (InternalErrorException | IOException ex) {
             log.error(ex.getMessage(), ex);
             throw new RuntimeException("error loading simplifier packages", ex);
         }
-        supportChain.addValidationSupport(npmPackageSupport);
+
         generateSnapshots(supportChain);
         supportChain.fetchCodeSystem("http://snomed.info/sct");
 
+        CachingValidationSupport validationSupport = new CachingValidationSupport(supportChain);
+
         // Create a validator using the FhirInstanceValidator module.
-        FhirInstanceValidator validatorModule = new FhirInstanceValidator(supportChain);
+        FhirInstanceValidator validatorModule = new FhirInstanceValidator(validationSupport);
         validator = ctx.newValidator().registerValidatorModule(validatorModule);
     }
 
     @Logging
     public ValidatorResponse validate(String resourceAsJsonText) {
         try {
-            ValidationResult result = validator.validateWithResult(resourceAsJsonText);
+            IBaseResource inputResource = ctx.newJsonParser().parseResource(resourceAsJsonText);
+            // capabilityStatementApplier.applyCapabilityStatementProfiles(resourceAsJsonText);
+            ValidationResult result = validator.validateWithResult(inputResource);
             return toValidatorResponse(result);
-        } catch (JsonSyntaxException | NullPointerException | IllegalArgumentException | InvalidRequestException e) {
+        } catch (JsonSyntaxException | NullPointerException | IllegalArgumentException | InvalidRequestException
+                | DataFormatException e) {
             log.error(e.toString());
             return ValidatorResponse.builder()
                     .isSuccessful(false)
@@ -202,7 +211,7 @@ public class Validator {
                     String theCode,
                     String theDisplay,
                     IBaseResource theValueSet) {
-                String valueSetUrl = CommonCodeSystemsTerminologyService.getValueSetUrl(theValueSet);
+                String valueSetUrl = CommonCodeSystemsTerminologyService.getValueSetUrl(fhirContext, theValueSet);
 
                 if ("https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationRequest-Code".equals(valueSetUrl)
                         || "https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationDispense-Code".equals(valueSetUrl)

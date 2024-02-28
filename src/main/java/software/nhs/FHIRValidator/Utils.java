@@ -12,12 +12,15 @@ public final class Utils {
 
     public static String getResourceContent(String resource) {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStream = loader.getResourceAsStream(resource);
-        ByteArrayOutputStream result = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
         try {
-            for (int length; (length = inputStream.read(buffer)) != -1;) {
-                result.write(buffer, 0, length);
+            ByteArrayOutputStream result;
+            try (InputStream inputStream = loader.getResourceAsStream(resource)) {
+                result = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+
+                for (int length; (length = inputStream.read(buffer)) != -1; ) {
+                    result.write(buffer, 0, length);
+                }
             }
             String rawData = result.toString("UTF-8");
             return rawData;
