@@ -1,5 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>software.nhs.FHIRValidator</groupId>
@@ -29,8 +30,10 @@
     </dependencyManagement>
     <dependencies>
 
-        <!--The following runtime dependencies are specific to a FHIR version-->
-        <!--Enable the dependencies for the FHIR version that you want to support -->
+        <!--The
+        following runtime dependencies are specific to a FHIR version-->
+        <!--Enable
+        the dependencies for the FHIR version that you want to support -->
         <!-- ============ Dependencies for FHIR R4 ============ -->
         <dependency>
             <groupId>ca.uhn.hapi.fhir</groupId>
@@ -86,7 +89,7 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-layout-template-json</artifactId>
             <version>${log4j.version}</version>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>software.amazon.lambda</groupId>
             <artifactId>powertools-logging</artifactId>
@@ -161,8 +164,8 @@
                     <source>11</source> <!-- or higher -->
                     <target>11</target> <!-- or higher -->
                     <complianceLevel>11</complianceLevel> <!-- or higher -->
-                    <forceAjcCompile>true</forceAjcCompile> 
-                    <sources/>
+                    <forceAjcCompile>true</forceAjcCompile>
+                    <sources />
                     <weaveDirectories>
                         <weaveDirectory>${project.build.directory}/classes</weaveDirectory>
                     </weaveDirectories>
@@ -180,7 +183,7 @@
                         </goals>
                     </execution>
                 </executions>
-           </plugin>            
+            </plugin>
             <!--
               Using the Apache Maven Shade plugin to package the jar
 
@@ -206,9 +209,10 @@
                         <configuration>
                             <transformers>
                                 <transformer
-                                        implementation="com.github.edwgiz.mavenShadePlugin.log4j2CacheTransformer.PluginsCacheFileTransformer">
+                                    implementation="com.github.edwgiz.maven_shade_plugin.log4j2_cache_transformer.PluginsCacheFileTransformer">
                                 </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
+                                <transformer
+                                    implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
                                     <resource>META-INF/TE-050AC.SF</resource>
                                     <resource>META-INF/TE-050AC.RSA</resource>
                                 </transformer>
