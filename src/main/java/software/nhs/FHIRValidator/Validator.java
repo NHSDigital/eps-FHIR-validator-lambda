@@ -24,6 +24,7 @@ import ca.uhn.fhir.context.support.ConceptValidationOptions;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.context.support.IValidationSupport;
 import ca.uhn.fhir.context.support.ValidationSupportContext;
+import ca.uhn.fhir.rest.server.exceptions.InternalErrorException;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
 import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ValidationResult;
@@ -62,9 +63,9 @@ public class Validator {
                         individualPackage.version);
                 npmPackageSupport.loadPackageFromClasspath(packagePath);
             }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (InternalErrorException | IOException ex) {
+            log.error(ex.getMessage(), ex);
+            throw new RuntimeException("error loading simplifier packages", ex);
         }
         supportChain.addValidationSupport(npmPackageSupport);
         generateSnapshots(supportChain);
