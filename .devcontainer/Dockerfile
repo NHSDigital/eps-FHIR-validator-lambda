@@ -39,7 +39,9 @@ RUN asdf plugin add python; \
     asdf plugin add poetry https://github.com/asdf-community/asdf-poetry.git; \
     asdf plugin add shellcheck https://github.com/luizm/asdf-shellcheck.git; \
     asdf plugin-add java; \
-    asdf plugin-add maven;
+    asdf plugin-add maven; \
+    asdf plugin add direnv; \
+    asdf plugin add actionlint;
 
 WORKDIR /workspaces/validation-service-fhir-r4
 ADD .tool-versions /workspaces/validation-service-fhir-r4/.tool-versions

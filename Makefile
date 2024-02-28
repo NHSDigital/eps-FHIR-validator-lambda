@@ -5,15 +5,27 @@ guard-%:
 	fi
 
 
-install:
+install: install-python install-hooks
+
+install-python:
 	poetry install
 
-lint:
+install-hooks: install-python
+	poetry run pre-commit install --install-hooks --overwrite
+
+lint: lint-samtemplates lint-python lint-githubactions lint-githubaction-scripts
+
+lint-python:
 	poetry run flake8 scripts/*.py --config .flake8
-	shellcheck scripts/*.sh
 
 lint-samtemplates:
 	poetry run cfn-lint -t SAMtemplates/*.yaml
+
+lint-githubactions:
+	actionlint
+
+lint-githubaction-scripts:
+	shellcheck .github/scripts/*.sh
 
 test: download-dependencies
 	mvn test
@@ -29,9 +41,6 @@ clean: clean-packages
 	rm -rf target
 	mvn clean
 	rm -rf .aws-sam
-
-update-manifest:
-	poetry run scripts/update_manifest.py
 
 build: download-dependencies
 	mvn package
@@ -75,6 +84,9 @@ sam-deploy-package: guard-artifact_bucket guard-artifact_bucket_prefix guard-sta
 			  EnableSplunk=true \
 			  LogLevel=$$LOG_LEVEL \
 			  LogRetentionDays=$$LOG_RETENTION_DAYS 
+
+aws-configure:
+	aws configure sso --region eu-west-2
 
 aws-login:
 	aws sso login --sso-session sso-session
