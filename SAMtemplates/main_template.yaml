@@ -3,16 +3,6 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   FHIR validator lambda
 
-
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
-Globals:
-  Function:
-    Timeout: 600
-    MemorySize: 4096
-    Architectures:
-      - x86_64
-    Runtime: java21
-
 Resources:
   FHIRValidatorResources:
     Type: AWS::Serverless::Application
@@ -36,7 +26,13 @@ Resources:
       SnapStart:
         ApplyOn: PublishedVersions
       AutoPublishAlias: snap
-      
+      Timeout: 600
+      MemorySize: 4096
+      Architectures:
+        - x86_64
+      Runtime: java21
+      Layers:
+        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:38"
 
 
 Outputs:
