@@ -45,7 +45,7 @@
           "vscjava.vscode-java-pack"
         ],
         "settings": {
-          "python.defaultInterpreterPath": "/workspaces/prescriptionsforpatients/.venv/bin/python",
+          "python.defaultInterpreterPath": "/workspaces/eps-FHIR-validator-lambda/.venv/bin/python",
           "python.analysis.autoSearchPaths": true,
           "python.analysis.extraPaths": [],
           "python.testing.unittestEnabled": false,

@@ -106,7 +106,7 @@ When the token expires, you may need to reauthorise using `make aws-login`
 The GitHub Actions require a secret to exist on the repo called "SONAR_TOKEN".
 This can be obtained from [SonarCloud](https://sonarcloud.io/)
 as described [here](https://docs.sonarsource.com/sonarqube/latest/user-guide/user-account/generating-and-using-tokens/).
-You will need the "Execute Analysis" permission for the project (NHSDigital_prescriptionsforpatients) in order for the token to work.
+You will need the "Execute Analysis" permission for the project (NHSDigital_eps-FHIR-validator-lambda) in order for the token to work.
 
 
 ### Continuous deployment for testing
@@ -200,6 +200,3 @@ These are used to do common commands
 Some pre-commit hooks are installed as part of the install above, to run basic lint checks and ensure you can't accidentally commit invalid changes.
 The pre-commit hook uses python package pre-commit and is configured in the file .pre-commit-config.yaml.
 A combination of these checks are also run in CI.
-
-
-
