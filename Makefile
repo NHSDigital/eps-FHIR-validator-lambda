@@ -14,7 +14,7 @@ lint:
 
 lint-samtemplates:
 	poetry run cfn-lint -t SAMtemplates/*.yaml
-	
+
 test: download-dependencies
 	mvn test
 
@@ -57,7 +57,7 @@ sam-sync: guard-AWS_DEFAULT_PROFILE guard-stack_name download-dependencies
 		--watch \
 		--template-file SAMtemplates/main_template.yaml
 
-sam-deploy-package: guard-artifact_bucket guard-artifact_bucket_prefix guard-stack_name guard-template_file guard-cloud_formation_execution_role guard-VERSION_NUMBER guard-COMMIT_ID guard-LOG_LEVEL guard-LOG_RETENTION_DAYS
+sam-deploy-package: guard-artifact_bucket guard-artifact_bucket_prefix guard-stack_name guard-template_file guard-cloud_formation_execution_role guard-LOG_LEVEL guard-LOG_RETENTION_DAYS
 	sam deploy \
 		--template-file $$template_file \
 		--stack-name $$stack_name \
@@ -73,8 +73,6 @@ sam-deploy-package: guard-artifact_bucket guard-artifact_bucket_prefix guard-sta
 		--tags "version=$$VERSION_NUMBER" \
 		--parameter-overrides \
 			  EnableSplunk=true \
-			  VersionNumber=$$VERSION_NUMBER \
-			  CommitId=$$COMMIT_ID \
 			  LogLevel=$$LOG_LEVEL \
 			  LogRetentionDays=$$LOG_RETENTION_DAYS 
 
