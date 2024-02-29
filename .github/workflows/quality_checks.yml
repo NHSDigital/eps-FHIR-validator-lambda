@@ -10,6 +10,10 @@ jobs:
   quality_checks:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'adopt'
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -48,11 +52,12 @@ jobs:
       - name: run lint
         run: make lint
 
-      - name: run unit tests
-        run: make test
-
-#      - name: SonarCloud Scan
-#        uses: SonarSource/sonarcloud-github-action@master
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: run tests and Sonar scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          # shellcheck source=/dev/null
+          . ~/.asdf/plugins/java/set-java-home.bash
+          make download-dependencies
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=NHSDigital_eps-FHIR-validator-lambda

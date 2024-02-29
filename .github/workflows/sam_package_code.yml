@@ -11,6 +11,10 @@ jobs:
       contents: read
       packages: read
     steps:
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'adopt'
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -57,4 +61,3 @@ jobs:
           name: packaged_code
           path: |
             .aws-sam/build
-

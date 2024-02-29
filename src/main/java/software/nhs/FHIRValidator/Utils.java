@@ -4,7 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public final class Utils {
+    static Logger log = LogManager.getLogger(Utils.class);
+
     public static String getResourceContent(String resource) {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         InputStream inputStream = loader.getResourceAsStream(resource);
@@ -17,9 +22,9 @@ public final class Utils {
             String rawData = result.toString("UTF-8");
             return rawData;
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+        } catch (IOException ex) {
+            log.error(ex.getMessage(), ex);
+            throw new RuntimeException("error in getResourceContent", ex);
         }
     }
 }
