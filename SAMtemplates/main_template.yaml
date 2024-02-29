@@ -84,4 +84,3 @@ Outputs:
     Value: !GetAtt FHIRValidator.Arn
     Export:
       Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorLambdaArn"]]
-

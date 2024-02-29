@@ -16,6 +16,8 @@
         <fhir.version>5.5.0</fhir.version>
         <log4j.version>2.23.0</log4j.version>
         <fasterxml.version>2.16.1</fasterxml.version>
+        <sonar.organization>nhsdigital</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencyManagement>
         <dependencies>
