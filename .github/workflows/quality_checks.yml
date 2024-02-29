@@ -48,11 +48,10 @@ jobs:
       - name: run lint
         run: make lint
 
-      - name: run unit tests
-        run: make test
-
-      - name: Sonar scan
+      - name: run tests and Sonar scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=NHSDigital_eps-FHIR-validator-lambda
+        run: |
+          make download-dependencies
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=NHSDigital_eps-FHIR-validator-lambda

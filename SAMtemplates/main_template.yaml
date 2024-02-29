@@ -65,7 +65,7 @@ Resources:
       MemorySize: 4096
       Architectures:
         - x86_64
-      Runtime: java21
+      Runtime: java17
       Layers:
         - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:38"
       Environment:
@@ -84,4 +84,3 @@ Outputs:
     Value: !GetAtt FHIRValidator.Arn
     Export:
       Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorLambdaArn"]]
-
