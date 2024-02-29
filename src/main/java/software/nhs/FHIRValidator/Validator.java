@@ -1,6 +1,8 @@
 package software.nhs.FHIRValidator;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +21,7 @@ import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.utilities.npm.NpmPackage;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.ConceptValidationOptions;
@@ -28,6 +31,7 @@ import ca.uhn.fhir.context.support.ValidationSupportContext;
 import ca.uhn.fhir.parser.DataFormatException;
 import ca.uhn.fhir.rest.server.exceptions.InternalErrorException;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
+import ca.uhn.fhir.util.ClasspathUtil;
 import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ValidationResult;
 import org.apache.logging.log4j.LogManager;
@@ -45,6 +49,7 @@ public class Validator {
     private final FhirValidator validator;
 
     private final FhirContext ctx;
+    private List<NpmPackage> npmPackages = new ArrayList<>();
     // private final CapabilityStatementApplier capabilityStatementApplier;
     Logger log = LogManager.getLogger(Validator.class);
 
@@ -59,6 +64,7 @@ public class Validator {
                 new SnapshotGeneratingValidationSupport(ctx));
 
         SimplifierPackage[] packages = getPackages();
+
         try {
             for (SimplifierPackage individualPackage : packages) {
                 String packagePath = String.format("classpath:package/%s-%s.tgz", individualPackage.packageName,
@@ -66,6 +72,10 @@ public class Validator {
                 NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(ctx);
                 npmPackageSupport.loadPackageFromClasspath(packagePath);
                 supportChain.addValidationSupport(npmPackageSupport);
+                try (InputStream is = ClasspathUtil.loadResourceAsStream(packagePath)) {
+                    NpmPackage pkg = NpmPackage.fromPackage(is);
+                    npmPackages.add(pkg);
+                }
             }
         } catch (InternalErrorException | IOException ex) {
             log.error(ex.getMessage(), ex);
@@ -86,8 +96,9 @@ public class Validator {
     public ValidatorResponse validate(String resourceAsJsonText) {
         try {
             IBaseResource inputResource = ctx.newJsonParser().parseResource(resourceAsJsonText);
+            inputResource.
             // capabilityStatementApplier.applyCapabilityStatementProfiles(resourceAsJsonText);
-            ValidationResult result = validator.validateWithResult(inputResource);
+                    ValidationResult result = validator.validateWithResult(inputResource);
             return toValidatorResponse(result);
         } catch (JsonSyntaxException | NullPointerException | IllegalArgumentException | InvalidRequestException
                 | DataFormatException e) {
