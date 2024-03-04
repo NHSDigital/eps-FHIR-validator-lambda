@@ -163,7 +163,8 @@ public class Validator {
                 bundleResources.add(entry.getResource());
             }
 
-            if (bundleResources.stream().allMatch(resource -> resource.getResourceType() == ResourceType.Bundle)) {
+            if (bundleResources.stream()
+                    .allMatch(resource -> ((Bundle) resource).getResourceType() == ResourceType.Bundle)) {
                 return bundleResources;
             }
         }
