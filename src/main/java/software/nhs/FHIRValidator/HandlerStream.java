@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hl7.fhir.r4.model.OperationOutcome;
+
 import software.amazon.lambda.powertools.logging.Logging;
 
 public class HandlerStream implements RequestStreamHandler {
@@ -43,7 +45,7 @@ public class HandlerStream implements RequestStreamHandler {
             String rawInput = result.toString("UTF-8");
             log.info(rawInput);
 
-            ValidatorResponse validate = validator.validate(rawInput);
+            OperationOutcome validate = validator.validate(rawInput);
 
             try (PrintWriter writer = new PrintWriter(outputStream)) {
                 writer.print(new Gson().toJson(validate));
