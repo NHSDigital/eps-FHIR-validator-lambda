@@ -45,10 +45,10 @@ public class HandlerStream implements RequestStreamHandler {
             String rawInput = result.toString("UTF-8");
             log.info(rawInput);
 
-            OperationOutcome validate = validator.validate(rawInput);
+            String validatorResult = validator.validate(rawInput);
 
             try (PrintWriter writer = new PrintWriter(outputStream)) {
-                writer.print(new Gson().toJson(validate));
+                writer.print(validatorResult);
                 writer.close();
             }
 

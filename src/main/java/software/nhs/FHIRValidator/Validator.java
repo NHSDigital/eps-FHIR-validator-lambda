@@ -100,7 +100,12 @@ public class Validator {
         validator = ctx.newValidator().registerValidatorModule(validatorModule);
     }
 
-    public OperationOutcome validate(String input) {
+    public String validate(String input) {
+        OperationOutcome result = parseAndValidateResource(input);
+        return ctx.newJsonParser().encodeResourceToString(result);
+    }
+
+    public OperationOutcome parseAndValidateResource(String input) {
 
         try {
             IBaseResource inputResource = ctx.newJsonParser().parseResource(input);
