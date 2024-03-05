@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import com.google.gson.JsonSyntaxException;
 
-import org.hl7.fhir.dstu2.model.ImplementationGuide;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.OperationOutcome;
@@ -37,28 +36,26 @@ import software.nhs.FHIRValidator.util.OperationOutcomeUtils;
 public class ValidateController {
     private final ValidatorConfiguration validatorConfiguration = new ValidatorConfiguration();
     private final FhirValidator validator = validatorConfiguration.validator;
+    private final FhirContext fhirContext = validatorConfiguration.fhirContext;
     private final ImplementationGuideParser implementationGuideParser = new ImplementationGuideParser(
-            validatorConfiguration.ctx);
+            fhirContext);
     private final CapabilityStatementApplier capabilityStatementApplier = new CapabilityStatementApplier(
             implementationGuideParser,
             validatorConfiguration.npmPackages);
     private final MessageDefinitionApplier messageDefinitionApplier = new MessageDefinitionApplier(
             implementationGuideParser, validatorConfiguration.npmPackages);
 
-    private final FhirContext ctx = validatorConfiguration.ctx;
-
-    // private final CapabilityStatementApplier capabilityStatementApplier;
     Logger log = LogManager.getLogger(ValidateController.class);
 
     public String validate(String input) {
         OperationOutcome result = parseAndValidateResource(input);
-        return ctx.newJsonParser().encodeResourceToString(result);
+        return fhirContext.newJsonParser().encodeResourceToString(result);
     }
 
     public OperationOutcome parseAndValidateResource(String input) {
 
         try {
-            IBaseResource inputResource = ctx.newJsonParser().parseResource(input);
+            IBaseResource inputResource = fhirContext.newJsonParser().parseResource(input);
             List<IBaseResource> resources = getResourcesToValidate(inputResource);
 
             List<OperationOutcome> operationOutcomeList = resources.stream()

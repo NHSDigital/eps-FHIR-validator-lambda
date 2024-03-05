@@ -45,31 +45,29 @@ import software.nhs.FHIRValidator.util.ResourceUtils;
 
 public class ValidatorConfiguration {
     public final FhirValidator validator;
-
-    public final FhirContext ctx;
+    public final FhirContext fhirContext;
     public List<NpmPackage> npmPackages = new ArrayList<>();
-    // private final CapabilityStatementApplier capabilityStatementApplier;
+
     Logger log = LogManager.getLogger(ValidatorConfiguration.class);
 
     public ValidatorConfiguration() {
-        ctx = FhirContext.forR4();
+        fhirContext = FhirContext.forR4();
 
         // Create a chain that will hold our modules
         ValidationSupportChain supportChain = new ValidationSupportChain(
-                new DefaultProfileValidationSupport(ctx),
-                new CommonCodeSystemsTerminologyService(ctx),
-                terminologyValidationSupport(ctx),
-                new SnapshotGeneratingValidationSupport(ctx));
+                new DefaultProfileValidationSupport(fhirContext),
+                new CommonCodeSystemsTerminologyService(fhirContext),
+                terminologyValidationSupport(fhirContext),
+                new SnapshotGeneratingValidationSupport(fhirContext));
 
         SimplifierPackage[] packages = getPackages();
+        NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(fhirContext);
 
         try {
             for (SimplifierPackage individualPackage : packages) {
                 String packagePath = String.format("classpath:package/%s-%s.tgz", individualPackage.packageName,
                         individualPackage.version);
-                NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(ctx);
                 npmPackageSupport.loadPackageFromClasspath(packagePath);
-                supportChain.addValidationSupport(npmPackageSupport);
                 try (InputStream is = ClasspathUtil.loadResourceAsStream(packagePath)) {
                     NpmPackage pkg = NpmPackage.fromPackage(is);
                     npmPackages.add(pkg);
@@ -79,7 +77,7 @@ public class ValidatorConfiguration {
             log.error(ex.getMessage(), ex);
             throw new RuntimeException("error loading simplifier packages", ex);
         }
-
+        supportChain.addValidationSupport(npmPackageSupport);
         generateSnapshots(supportChain);
         supportChain.fetchCodeSystem("http://snomed.info/sct");
 
@@ -87,7 +85,7 @@ public class ValidatorConfiguration {
 
         // Create a validator using the FhirInstanceValidator module.
         FhirInstanceValidator validatorModule = new FhirInstanceValidator(validationSupport);
-        validator = ctx.newValidator().registerValidatorModule(validatorModule);
+        validator = fhirContext.newValidator().registerValidatorModule(validatorModule);
     }
 
     public OperationOutcome createOperationOutcome(String diagnostics, String expression) {
