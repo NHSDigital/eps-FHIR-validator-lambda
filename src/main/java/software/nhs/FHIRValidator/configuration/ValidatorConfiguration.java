@@ -1,16 +1,12 @@
-package software.nhs.FHIRValidator;
+package software.nhs.FHIRValidator.configuration;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
-import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
 import org.hl7.fhir.common.hapi.validation.support.CachingValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.CommonCodeSystemsTerminologyService;
@@ -20,13 +16,10 @@ import org.hl7.fhir.common.hapi.validation.support.SnapshotGeneratingValidationS
 import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
 import org.hl7.fhir.instance.model.api.IBaseResource;
-import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.OperationOutcome;
-import org.hl7.fhir.r4.model.ResourceType;
 import org.hl7.fhir.r4.model.StructureDefinition;
-import org.hl7.fhir.r4.model.OperationOutcome.OperationOutcomeIssueComponent;
 import org.hl7.fhir.utilities.npm.NpmPackage;
 
 import ca.uhn.fhir.context.FhirContext;
@@ -34,18 +27,15 @@ import ca.uhn.fhir.context.support.ConceptValidationOptions;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.context.support.IValidationSupport;
 import ca.uhn.fhir.context.support.ValidationSupportContext;
-import ca.uhn.fhir.parser.DataFormatException;
 import ca.uhn.fhir.rest.server.exceptions.InternalErrorException;
-import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
 import ca.uhn.fhir.util.ClasspathUtil;
 import ca.uhn.fhir.validation.FhirValidator;
-import ca.uhn.fhir.validation.ValidationResult;
-import lombok.val;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import software.nhs.FHIRValidator.models.SimplifierPackage;
-import software.amazon.lambda.powertools.logging.Logging;
+import software.nhs.FHIRValidator.util.ResourceUtils;
 
 /**
  * This class is a wrapper around the HAPI FhirValidator.
@@ -53,15 +43,15 @@ import software.amazon.lambda.powertools.logging.Logging;
  * implementation guides are loaded into it.
  */
 
-public class Validator {
-    private final FhirValidator validator;
+public class ValidatorConfiguration {
+    public final FhirValidator validator;
 
-    private final FhirContext ctx;
-    private List<NpmPackage> npmPackages = new ArrayList<>();
+    public final FhirContext ctx;
+    public List<NpmPackage> npmPackages = new ArrayList<>();
     // private final CapabilityStatementApplier capabilityStatementApplier;
-    Logger log = LogManager.getLogger(Validator.class);
+    Logger log = LogManager.getLogger(ValidatorConfiguration.class);
 
-    public Validator() {
+    public ValidatorConfiguration() {
         ctx = FhirContext.forR4();
 
         // Create a chain that will hold our modules
@@ -100,34 +90,6 @@ public class Validator {
         validator = ctx.newValidator().registerValidatorModule(validatorModule);
     }
 
-    public String validate(String input) {
-        OperationOutcome result = parseAndValidateResource(input);
-        return ctx.newJsonParser().encodeResourceToString(result);
-    }
-
-    public OperationOutcome parseAndValidateResource(String input) {
-
-        try {
-            IBaseResource inputResource = ctx.newJsonParser().parseResource(input);
-            List<IBaseResource> resources = getResourcesToValidate(inputResource);
-
-            List<OperationOutcome> operationOutcomeList = resources.stream()
-                    .map(this::validateResource)
-                    .collect(Collectors.toList());
-
-            List<OperationOutcomeIssueComponent> operationOutcomeIssues = operationOutcomeList.stream()
-                    .filter(Objects::nonNull)
-                    .flatMap(operationOutcome -> operationOutcome.getIssue().stream())
-                    .collect(Collectors.toList());
-
-            return createOperationOutcome(operationOutcomeIssues);
-        } catch (JsonSyntaxException | NullPointerException | IllegalArgumentException | InvalidRequestException
-                | DataFormatException e) {
-            log.error(e.toString());
-            return createOperationOutcome(e.getMessage() != null ? e.getMessage() : "Invalid JSON", null);
-        }
-    }
-
     public OperationOutcome createOperationOutcome(String diagnostics, String expression) {
         OperationOutcome.OperationOutcomeIssueComponent issue = createOperationOutcomeIssue(diagnostics, expression);
         List<OperationOutcome.OperationOutcomeIssueComponent> issues = Collections.singletonList(issue);
@@ -150,45 +112,6 @@ public class Validator {
             issue.addExpression(expression);
         }
         return issue;
-    }
-
-    private OperationOutcome validateResource(IBaseResource resource) {
-        OperationOutcome result = (OperationOutcome) validator.validateWithResult(resource).toOperationOutcome();
-        return result;
-    }
-
-    private List<IBaseResource> getResourcesToValidate(IBaseResource inputResource) {
-        if (inputResource == null) {
-            return new ArrayList<>();
-        }
-
-        if (inputResource instanceof Bundle && ((Bundle) inputResource).getType() == Bundle.BundleType.SEARCHSET) {
-            List<IBaseResource> bundleResources = new ArrayList<>();
-            for (Bundle.BundleEntryComponent entry : ((Bundle) inputResource).getEntry()) {
-                bundleResources.add(entry.getResource());
-            }
-
-            if (bundleResources.stream()
-                    .allMatch(resource -> ((Bundle) resource).getResourceType() == ResourceType.Bundle)) {
-                return bundleResources;
-            }
-        }
-
-        return List.of(inputResource);
-    }
-
-    private ValidatorResponse toValidatorResponse(ValidationResult result) {
-        return ValidatorResponse.builder()
-                .isSuccessful(result.isSuccessful())
-                .errorMessages(result.getMessages().stream()
-                        .map(singleValidationMessage -> ValidatorErrorMessage.builder()
-                                .severity(singleValidationMessage.getSeverity().getCode())
-                                .msg(singleValidationMessage.getLocationString() + " - "
-                                        + singleValidationMessage.getMessage())
-                                .build())
-
-                        .collect(Collectors.toList()))
-                .build();
     }
 
     private void generateSnapshots(IValidationSupport supportChain) {
@@ -308,7 +231,7 @@ public class Validator {
     }
 
     private SimplifierPackage[] getPackages() {
-        String manifestContent = Utils.getResourceContent("manifest.json");
+        String manifestContent = ResourceUtils.getResourceContent("manifest.json");
         SimplifierPackage[] packages = new Gson().fromJson(manifestContent, SimplifierPackage[].class);
         return packages;
     }

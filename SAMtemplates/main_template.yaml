@@ -56,7 +56,7 @@ Resources:
     Properties:
       FunctionName: !Sub "${AWS::StackName}-FHIRValidator"
       CodeUri: ../
-      Handler: software.nhs.FHIRValidator.HandlerStream::handleRequest
+      Handler: software.nhs.FHIRValidator.handler.HandlerStream::handleRequest
       Role: !GetAtt FHIRValidatorResources.Outputs.LambdaRoleArn
       SnapStart:
         ApplyOn: PublishedVersions
@@ -84,4 +84,3 @@ Outputs:
     Value: !GetAtt FHIRValidator.Arn
     Export:
       Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorLambdaArn"]]
-
