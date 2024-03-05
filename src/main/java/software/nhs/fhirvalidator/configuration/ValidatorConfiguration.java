@@ -1,13 +1,13 @@
-package software.nhs.FHIRValidator;
+package software.nhs.fhirvalidator.configuration;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
+import org.hl7.fhir.common.hapi.validation.support.CachingValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.CommonCodeSystemsTerminologyService;
 import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport;
@@ -18,6 +18,7 @@ import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.utilities.npm.NpmPackage;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.ConceptValidationOptions;
@@ -25,13 +26,13 @@ import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.context.support.IValidationSupport;
 import ca.uhn.fhir.context.support.ValidationSupportContext;
 import ca.uhn.fhir.rest.server.exceptions.InternalErrorException;
-import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
+import ca.uhn.fhir.util.ClasspathUtil;
 import ca.uhn.fhir.validation.FhirValidator;
-import ca.uhn.fhir.validation.ValidationResult;
+import software.nhs.fhirvalidator.models.SimplifierPackage;
+import software.nhs.fhirvalidator.util.ResourceUtils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import software.nhs.FHIRValidator.models.SimplifierPackage;
-import software.amazon.lambda.powertools.logging.Logging;
 
 /**
  * This class is a wrapper around the HAPI FhirValidator.
@@ -39,29 +40,35 @@ import software.amazon.lambda.powertools.logging.Logging;
  * implementation guides are loaded into it.
  */
 
-public class Validator {
-    private final FhirValidator validator;
+public class ValidatorConfiguration {
+    public final FhirValidator validator;
+    public final FhirContext fhirContext;
+    public final List<NpmPackage> npmPackages = new ArrayList<>();
 
-    private final FhirContext ctx;
-    Logger log = LogManager.getLogger(Validator.class);
+    Logger log = LogManager.getLogger(ValidatorConfiguration.class);
 
-    public Validator() {
-        ctx = FhirContext.forR4();
+    public ValidatorConfiguration() {
+        fhirContext = FhirContext.forR4();
 
         // Create a chain that will hold our modules
         ValidationSupportChain supportChain = new ValidationSupportChain(
-                new DefaultProfileValidationSupport(ctx),
-                new CommonCodeSystemsTerminologyService(ctx),
-                terminologyValidationSupport(ctx),
-                new SnapshotGeneratingValidationSupport(ctx));
+                new DefaultProfileValidationSupport(fhirContext),
+                new CommonCodeSystemsTerminologyService(fhirContext),
+                terminologyValidationSupport(fhirContext),
+                new SnapshotGeneratingValidationSupport(fhirContext));
 
-        NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(ctx);
         SimplifierPackage[] packages = getPackages();
+        NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(fhirContext);
+
         try {
             for (SimplifierPackage individualPackage : packages) {
                 String packagePath = String.format("classpath:package/%s-%s.tgz", individualPackage.packageName,
                         individualPackage.version);
                 npmPackageSupport.loadPackageFromClasspath(packagePath);
+                try (InputStream is = ClasspathUtil.loadResourceAsStream(packagePath)) {
+                    NpmPackage pkg = NpmPackage.fromPackage(is);
+                    npmPackages.add(pkg);
+                }
             }
         } catch (InternalErrorException | IOException ex) {
             log.error(ex.getMessage(), ex);
@@ -71,40 +78,11 @@ public class Validator {
         generateSnapshots(supportChain);
         supportChain.fetchCodeSystem("http://snomed.info/sct");
 
+        CachingValidationSupport validationSupport = new CachingValidationSupport(supportChain);
+
         // Create a validator using the FhirInstanceValidator module.
-        FhirInstanceValidator validatorModule = new FhirInstanceValidator(supportChain);
-        validator = ctx.newValidator().registerValidatorModule(validatorModule);
-    }
-
-    @Logging
-    public ValidatorResponse validate(String resourceAsJsonText) {
-        try {
-            ValidationResult result = validator.validateWithResult(resourceAsJsonText);
-            return toValidatorResponse(result);
-        } catch (JsonSyntaxException | NullPointerException | IllegalArgumentException | InvalidRequestException e) {
-            log.error(e.toString());
-            return ValidatorResponse.builder()
-                    .isSuccessful(false)
-                    .errorMessages(ImmutableList.of(ValidatorErrorMessage.builder()
-                            .msg("Invalid JSON")
-                            .severity("error")
-                            .build()))
-                    .build();
-        }
-    }
-
-    private ValidatorResponse toValidatorResponse(ValidationResult result) {
-        return ValidatorResponse.builder()
-                .isSuccessful(result.isSuccessful())
-                .errorMessages(result.getMessages().stream()
-                        .map(singleValidationMessage -> ValidatorErrorMessage.builder()
-                                .severity(singleValidationMessage.getSeverity().getCode())
-                                .msg(singleValidationMessage.getLocationString() + " - "
-                                        + singleValidationMessage.getMessage())
-                                .build())
-
-                        .collect(Collectors.toList()))
-                .build();
+        FhirInstanceValidator validatorModule = new FhirInstanceValidator(validationSupport);
+        validator = fhirContext.newValidator().registerValidatorModule(validatorModule);
     }
 
     private void generateSnapshots(IValidationSupport supportChain) {
@@ -121,7 +99,7 @@ public class Validator {
                     try {
                         circularReferenceCheck(it, supportChain);
                     } catch (Exception e) {
-                        log.error("Failed to generate snapshot for " + it, e);
+                        log.error(String.format("Failed to generate snapshot for %s", it), e);
                     }
                 });
 
@@ -131,7 +109,7 @@ public class Validator {
                     try {
                         supportChain.generateSnapshot(context, it, it.getUrl(), "https://fhir.nhs.uk/R4", it.getName());
                     } catch (Exception e) {
-                        log.error("Failed to generate snapshot for " + it, e);
+                        log.error(String.format("Failed to generate snapshot for %s", it), e);
                     }
                 });
     }
@@ -144,7 +122,7 @@ public class Validator {
     private StructureDefinition circularReferenceCheck(StructureDefinition structureDefinition,
             IValidationSupport supportChain) {
         if (structureDefinition.hasSnapshot()) {
-            log.error(structureDefinition.getUrl() + " has snapshot!!");
+            log.error(String.format("%s has snapshot!!", structureDefinition.getUrl()));
         }
 
         for (ElementDefinition element : structureDefinition.getDifferential().getElement()) {
@@ -163,7 +141,8 @@ public class Validator {
                     element.getId().contains("Encounter.reasonReference") ||
                     element.getId().contains("Encounter.appointment")) && element.hasType()) {
 
-                log.warn(structureDefinition.getUrl() + " has circular references (" + element.getId() + ")");
+                log.warn(String.format("%s has circular references (%s)", structureDefinition.getUrl(),
+                        element.getId()));
 
                 for (ElementDefinition.TypeRefComponent typeRef : element.getType()) {
                     if (typeRef.hasTargetProfile()) {
@@ -202,7 +181,7 @@ public class Validator {
                     String theCode,
                     String theDisplay,
                     IBaseResource theValueSet) {
-                String valueSetUrl = CommonCodeSystemsTerminologyService.getValueSetUrl(theValueSet);
+                String valueSetUrl = CommonCodeSystemsTerminologyService.getValueSetUrl(fhirContext, theValueSet);
 
                 if ("https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationRequest-Code".equals(valueSetUrl)
                         || "https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationDispense-Code".equals(valueSetUrl)
@@ -224,8 +203,7 @@ public class Validator {
     }
 
     private SimplifierPackage[] getPackages() {
-        String manifestContent = Utils.getResourceContent("manifest.json");
-        SimplifierPackage[] packages = new Gson().fromJson(manifestContent, SimplifierPackage[].class);
-        return packages;
+        String manifestContent = ResourceUtils.getResourceContent("manifest.json");
+        return new Gson().fromJson(manifestContent, SimplifierPackage[].class);
     }
 }

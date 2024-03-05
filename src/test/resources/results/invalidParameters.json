@@ -1,0 +1,24 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 63
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Rule inv-1: 'A parameter must have one and only one of (value, resource, part)' Failed",
+            "location": [
+                "Parameters.parameter[0]",
+                "Line[1] Col[63]"
+            ]
+        }
+    ]
+}
