@@ -87,30 +87,6 @@ public class ValidatorConfiguration {
         validator = fhirContext.newValidator().registerValidatorModule(validatorModule);
     }
 
-    public OperationOutcome createOperationOutcome(String diagnostics, String expression) {
-        OperationOutcome.OperationOutcomeIssueComponent issue = createOperationOutcomeIssue(diagnostics, expression);
-        List<OperationOutcome.OperationOutcomeIssueComponent> issues = Collections.singletonList(issue);
-        return createOperationOutcome(issues);
-    }
-
-    public OperationOutcome createOperationOutcome(List<OperationOutcome.OperationOutcomeIssueComponent> issues) {
-        OperationOutcome operationOutcome = new OperationOutcome();
-        issues.forEach(operationOutcome::addIssue);
-        return operationOutcome;
-    }
-
-    public OperationOutcome.OperationOutcomeIssueComponent createOperationOutcomeIssue(String diagnostics,
-            String expression) {
-        OperationOutcome.OperationOutcomeIssueComponent issue = new OperationOutcome.OperationOutcomeIssueComponent();
-        issue.setSeverity(OperationOutcome.IssueSeverity.ERROR);
-        issue.setCode(OperationOutcome.IssueType.PROCESSING);
-        issue.setDiagnostics(diagnostics);
-        if (expression != null) {
-            issue.addExpression(expression);
-        }
-        return issue;
-    }
-
     private void generateSnapshots(IValidationSupport supportChain) {
         List<StructureDefinition> structureDefinitions = supportChain.fetchAllStructureDefinitions();
         if (structureDefinitions == null) {
