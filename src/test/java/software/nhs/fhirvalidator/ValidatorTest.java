@@ -182,6 +182,19 @@ class ValidatorTest {
     }
 
     @Test
+    void missingHeader() {
+        String FHIRDocument = ResourceUtils.getResourceContent("examples/missingHeader.json");
+        OperationOutcome validatorResult = validateController.parseAndValidateResource(FHIRDocument);
+        JsonObject actualJsonResult = JsonParser
+                .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
+
+        String expectedResult = ResourceUtils.getResourceContent("results/missingHeader.json");
+        JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
+
+        assertEquals(expectedJsonResult, actualJsonResult);
+    }
+
+    @Test
     void empty() {
         String FHIRDocument = "";
 
