@@ -1,0 +1,255 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2244
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = http://snomed.info/sct#39732311000001104)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[2244]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2242
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Unable to validate medication codes",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[2242]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4600
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = http://snomed.info/sct#322341003)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[4600]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4598
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Unable to validate medication codes",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[4598]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 6969
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = http://snomed.info/sct#321080004)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[6969]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 6967
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Unable to validate medication codes",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[6967]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 9323
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = http://snomed.info/sct#324252006)",
+            "location": [
+                "Bundle.entry[4].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[9323]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 9321
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Unable to validate medication codes",
+            "location": [
+                "Bundle.entry[4].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[9321]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 11984
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_PassThrough_TX_Message"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_PassThrough_TX_Message"
+                    }
+                ]
+            },
+            "diagnostics": "Unknown code in fragment CodeSystem 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#R8000' for 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#R8000'",
+            "location": [
+                "Bundle.entry[6].resource/*PractitionerRole/null*/.code[0].coding[0]",
+                "Line[1] Col[11984]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 12655
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Rule prac-gmc: 'GMC must be of the format CNNNNNNN' Failed",
+            "location": [
+                "Bundle.entry[7].resource/*Practitioner/null*/",
+                "Line[1] Col[12655]"
+            ]
+        }
+    ]
+}

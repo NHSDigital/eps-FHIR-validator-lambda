@@ -1,0 +1,2001 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1227
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1227]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1227
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1227]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1227
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1227]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 501
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#39732311000001104)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[501]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 499
+                }
+            ],
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[499]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 501
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[501]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 779
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[779]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 779
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[779]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 958
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_1_CC"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_1_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'Medication Request  Course of  Therapy  Codes' (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy|1.0.0), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.courseOfTherapyType",
+                "Line[1] Col[958]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1186
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[1186]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1186
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[1186]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2326
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/",
+                "Line[1] Col[2326]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2326
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/",
+                "Line[1] Col[2326]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2326
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/",
+                "Line[1] Col[2326]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1600
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#322341003)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[1600]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1598
+                }
+            ],
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[1598]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1600
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[1600]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1878
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[1878]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1878
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[1878]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2057
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_1_CC"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_1_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'Medication Request  Course of  Therapy  Codes' (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy|1.0.0), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.courseOfTherapyType",
+                "Line[1] Col[2057]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2285
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[2285]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2285
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[2285]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3438
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/",
+                "Line[1] Col[3438]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3438
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/",
+                "Line[1] Col[3438]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3438
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/",
+                "Line[1] Col[3438]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2712
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#321080004)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[2712]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2710
+                }
+            ],
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[2710]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2712
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[2712]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2990
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[2990]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2990
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[2990]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3169
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_1_CC"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_1_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'Medication Request  Course of  Therapy  Codes' (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy|1.0.0), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.courseOfTherapyType",
+                "Line[1] Col[3169]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3397
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[3397]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3397
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[3397]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4538
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/",
+                "Line[1] Col[4538]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4538
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/",
+                "Line[1] Col[4538]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4538
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/",
+                "Line[1] Col[4538]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3812
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#324252006)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[3812]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3810
+                }
+            ],
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[3810]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3812
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[3812]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4090
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[4090]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4090
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[4090]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4269
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_1_CC"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_1_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'Medication Request  Course of  Therapy  Codes' (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy|1.0.0), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.courseOfTherapyType",
+                "Line[1] Col[4269]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4497
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[4497]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4497
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[4497]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1149
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1149]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1149
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1149]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1149
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1149]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 497
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#324252006)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[497]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 495
+                }
+            ],
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[495]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 497
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[497]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 775
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[775]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 775
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[775]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 954
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_1_CC"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_1_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'Medication Request  Course of  Therapy  Codes' (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy|1.0.0), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.courseOfTherapyType",
+                "Line[1] Col[954]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1108
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[1108]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1108
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[1108]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Bundle_BUNDLE_Not_Local"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Bundle_BUNDLE_Not_Local"
+                    }
+                ]
+            },
+            "diagnostics": "URN reference is not locally contained within the bundle urn:uuid:56166769-c1c4-4d07-afa8-132b5dfca666",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.requester"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1227
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1227]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1227
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1227]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1227
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1227]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 501
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_2_CC"
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_2_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'NHS Digital Medication Code' (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode|2.1.0), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#39732311000001104)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[501]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 499
+                }
+            ],
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
+                "Line[1] Col[499]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 501
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
+                "Line[1] Col[501]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 779
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[779]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 779
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
+                "Line[1] Col[779]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 958
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Terminology_TX_NoValid_1_CC"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Terminology_TX_NoValid_1_CC"
+                    }
+                ]
+            },
+            "diagnostics": "None of the codings provided are in the value set 'Medication Request  Course of  Therapy  Codes' (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy|1.0.0), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.courseOfTherapyType",
+                "Line[1] Col[958]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1186
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[1186]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1186
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "Validation_VAL_Profile_Minimum"
+                }
+            ],
+            "severity": "error",
+            "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "Validation_VAL_Profile_Minimum"
+                    }
+                ]
+            },
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
+                "Line[1] Col[1186]"
+            ]
+        }
+    ]
+}
