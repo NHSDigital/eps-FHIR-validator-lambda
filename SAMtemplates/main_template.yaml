@@ -56,7 +56,7 @@ Resources:
     Properties:
       FunctionName: !Sub "${AWS::StackName}-FHIRValidator"
       CodeUri: ../
-      Handler: software.nhs.FHIRValidator.handler.HandlerStream::handleRequest
+      Handler: software.nhs.fhirvalidator.handler.HandlerStream::handleRequest
       Role: !GetAtt FHIRValidatorResources.Outputs.LambdaRoleArn
       SnapStart:
         ApplyOn: PublishedVersions
