@@ -13,6 +13,10 @@ import org.hl7.fhir.r4.model.Bundle;
 public final class FhirUtils {
     static Logger log = LogManager.getLogger(FhirUtils.class);
 
+    private FhirUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static List<IBaseResource> getResourcesOfType(IBaseResource resource, String resourceType) {
         List<IBaseResource> matchingResources = new ArrayList<>();
 

@@ -35,7 +35,7 @@ import org.apache.logging.log4j.Logger;
 public class ValidateController {
     private static final ValidatorConfiguration validatorConfiguration = new ValidatorConfiguration();
     private static final FhirValidator validator = validatorConfiguration.validator;
-    private final FhirContext fhirContext = validatorConfiguration.fhirContext;
+    private static final FhirContext fhirContext = validatorConfiguration.fhirContext;
     private final ImplementationGuideParser implementationGuideParser = new ImplementationGuideParser(
             fhirContext);
     private final CapabilityStatementApplier capabilityStatementApplier = new CapabilityStatementApplier(
@@ -81,8 +81,7 @@ public class ValidateController {
         if (messageDefinitionErrors != null) {
             return messageDefinitionErrors;
         }
-        OperationOutcome result = (OperationOutcome) validator.validateWithResult(resource).toOperationOutcome();
-        return result;
+        return (OperationOutcome) validator.validateWithResult(resource).toOperationOutcome();
     }
 
     private List<IBaseResource> getResourcesToValidate(IBaseResource inputResource) {

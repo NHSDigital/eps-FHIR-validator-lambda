@@ -49,7 +49,6 @@ public class HandlerStream implements RequestStreamHandler {
 
             try (PrintWriter writer = new PrintWriter(outputStream)) {
                 writer.print(validatorResult);
-                writer.close();
             }
 
         } catch (IOException ex) {

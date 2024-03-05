@@ -125,7 +125,7 @@ public class ValidatorConfiguration {
                     try {
                         circularReferenceCheck(it, supportChain);
                     } catch (Exception e) {
-                        log.error("Failed to generate snapshot for " + it, e);
+                        log.error(String.format("Failed to generate snapshot for %s", it), e);
                     }
                 });
 

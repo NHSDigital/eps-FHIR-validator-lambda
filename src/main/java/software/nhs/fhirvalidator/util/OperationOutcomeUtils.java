@@ -6,6 +6,11 @@ import java.util.List;
 import org.hl7.fhir.r4.model.OperationOutcome;
 
 public class OperationOutcomeUtils {
+
+    private OperationOutcomeUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static OperationOutcome createOperationOutcome(String diagnostics, String expression) {
         OperationOutcome.OperationOutcomeIssueComponent issue = createOperationOutcomeIssue(diagnostics, expression);
         List<OperationOutcome.OperationOutcomeIssueComponent> issues = Collections.singletonList(issue);

@@ -10,6 +10,10 @@ import org.apache.logging.log4j.Logger;
 public class ResourceUtils {
     static Logger log = LogManager.getLogger(ResourceUtils.class);
 
+    private ResourceUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static String getResourceContent(String resource) {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         try {
@@ -22,8 +26,7 @@ public class ResourceUtils {
                     result.write(buffer, 0, length);
                 }
             }
-            String rawData = result.toString("UTF-8");
-            return rawData;
+            return result.toString("UTF-8");
 
         } catch (IOException ex) {
             log.error(ex.getMessage(), ex);
