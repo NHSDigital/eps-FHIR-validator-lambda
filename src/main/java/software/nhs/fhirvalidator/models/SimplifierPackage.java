@@ -1,4 +1,4 @@
-package software.nhs.FHIRValidator.models;
+package software.nhs.fhirvalidator.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

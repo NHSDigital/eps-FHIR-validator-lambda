@@ -1,4 +1,4 @@
-package software.nhs.FHIRValidator;
+package software.nhs.fhirvalidator.handler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,25 +8,27 @@ import java.io.PrintWriter;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
-import com.google.gson.Gson;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import software.amazon.lambda.powertools.logging.Logging;
+import software.nhs.fhirvalidator.controller.ValidateController;
+import software.nhs.fhirvalidator.util.ResourceUtils;
 
 public class HandlerStream implements RequestStreamHandler {
 
-    private final Validator validator;
+    private final ValidateController validateController;
     Logger log = LogManager.getLogger(HandlerStream.class);
 
     public HandlerStream() {
         log.info("Creating the Validator instance for the first time...");
 
-        validator = new Validator();
+        validateController = new ValidateController();
 
         log.info("Validating once to force the loading of all the validator related classes");
-        String primerPayload = Utils.getResourceContent("primerPayload.json");
-        validator.validate(primerPayload);
+        String primerPayload = ResourceUtils.getResourceContent("primerPayload.json");
+        validateController.validate(primerPayload);
 
         log.info("Validator is ready");
     }
@@ -43,11 +45,10 @@ public class HandlerStream implements RequestStreamHandler {
             String rawInput = result.toString("UTF-8");
             log.info(rawInput);
 
-            ValidatorResponse validate = validator.validate(rawInput);
+            String validatorResult = validateController.validate(rawInput);
 
             try (PrintWriter writer = new PrintWriter(outputStream)) {
-                writer.print(new Gson().toJson(validate));
-                writer.close();
+                writer.print(validatorResult);
             }
 
         } catch (IOException ex) {
