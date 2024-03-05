@@ -7,10 +7,10 @@ import software.nhs.fhirvalidator.handler.HandlerStream;
 
 import org.junit.jupiter.api.Test;
 
-public class HandlerTest {
+class HandlerTest {
 
     @Test
-    public void logInfoAndWarnMessages() {
+    void logInfoAndWarnMessages() {
         LogCaptor logCaptor = LogCaptor.forClass(HandlerStream.class);
 
         new HandlerStream();
