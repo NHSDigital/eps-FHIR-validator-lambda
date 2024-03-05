@@ -3,7 +3,6 @@ package software.nhs.fhirvalidator.configuration;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -18,7 +17,6 @@ import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.CanonicalType;
 import org.hl7.fhir.r4.model.ElementDefinition;
-import org.hl7.fhir.r4.model.OperationOutcome;
 import org.hl7.fhir.r4.model.StructureDefinition;
 import org.hl7.fhir.utilities.npm.NpmPackage;
 

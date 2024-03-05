@@ -12,6 +12,7 @@ import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.OperationOutcome;
 import org.hl7.fhir.r4.model.ResourceType;
 import org.hl7.fhir.r4.model.OperationOutcome.OperationOutcomeIssueComponent;
+import org.hl7.fhir.r4.model.Resource;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.DataFormatException;
@@ -93,7 +94,9 @@ public class ValidateController {
             if (((Bundle) inputResource).getType() == Bundle.BundleType.SEARCHSET) {
                 List<IBaseResource> bundleResources = new ArrayList<>();
                 for (Bundle.BundleEntryComponent entry : ((Bundle) inputResource).getEntry()) {
-                    bundleResources.add(entry.getResource());
+                    if (entry.getResource().fhirType() == "Bundle") {
+                        bundleResources.add(entry.getResource());
+                    }
                 }
 
                 if (bundleResources.stream()

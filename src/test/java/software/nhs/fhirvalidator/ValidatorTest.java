@@ -169,6 +169,19 @@ class ValidatorTest {
     }
 
     @Test
+    void searchSet() {
+        String FHIRDocument = ResourceUtils.getResourceContent("examples/searchSet.json");
+        OperationOutcome validatorResult = validateController.parseAndValidateResource(FHIRDocument);
+        JsonObject actualJsonResult = JsonParser
+                .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
+
+        String expectedResult = ResourceUtils.getResourceContent("results/searchSet.json");
+        JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
+
+        assertEquals(expectedJsonResult, actualJsonResult);
+    }
+
+    @Test
     void empty() {
         String FHIRDocument = "";
 
