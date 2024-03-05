@@ -2,24 +2,15 @@ package software.nhs.FHIRValidator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import ca.uhn.fhir.context.FhirContext;
-import lombok.val;
-import net.sf.saxon.functions.ConstantFunction.True;
 import software.nhs.FHIRValidator.controller.ValidateController;
-import software.nhs.FHIRValidator.util.FhirUtils;
 import software.nhs.FHIRValidator.util.ResourceUtils;
 
 import org.hl7.fhir.r4.model.OperationOutcome;

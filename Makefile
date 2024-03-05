@@ -39,7 +39,10 @@ check-licenses-python:
 	scripts/check_python_licenses.sh
 
 check-licenses-java:
-	mvn validate	
+	mvn validate
+
+show-unused-dependencies:
+	mvn dependency:analyze
 
 # clean targets
 clean-packages:
