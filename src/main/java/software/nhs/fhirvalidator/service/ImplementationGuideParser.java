@@ -5,7 +5,6 @@ import ca.uhn.fhir.parser.IParser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hl7.fhir.common.hapi.validation.support.PrePopulatedValidationSupport;
 import org.hl7.fhir.r4.model.*;
 import org.hl7.fhir.utilities.npm.NpmPackage;
 
@@ -21,16 +20,6 @@ public class ImplementationGuideParser {
 
     public ImplementationGuideParser(FhirContext fhirContext) {
         this.fhirContext = fhirContext;
-    }
-
-    public PrePopulatedValidationSupport createPrePopulatedValidationSupport(NpmPackage npmPackage) throws IOException {
-        PrePopulatedValidationSupport prePopulatedSupport = new PrePopulatedValidationSupport(fhirContext);
-
-        getResourcesOfType(npmPackage, StructureDefinition.class).forEach(prePopulatedSupport::addStructureDefinition);
-        getResourcesOfType(npmPackage, CodeSystem.class).forEach(prePopulatedSupport::addCodeSystem);
-        getResourcesOfType(npmPackage, ValueSet.class).forEach(prePopulatedSupport::addValueSet);
-
-        return prePopulatedSupport;
     }
 
     public <T extends Resource> List<T> getResourcesOfType(NpmPackage npmPackage, Class<T> resourceType)
