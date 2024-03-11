@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fhir.version>7.0.2</fhir.version>
         <log4j.version>2.23.1</log4j.version>
-        <fasterxml.version>2.16.1</fasterxml.version>
+        <fasterxml.version>2.16.2</fasterxml.version>
         <sonar.organization>nhsdigital</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
