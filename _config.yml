@@ -21,7 +21,7 @@
 title: EPS FHIR validator lambda releases
 description: >- # this means to ignore newlines until "baseurl:"
   EPS FHIR validator lambda release history
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/eps-FHIR-validator-lambda" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username: jekyll
