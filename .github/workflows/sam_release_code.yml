@@ -136,6 +136,12 @@ jobs:
           RELEASE_TAG: ${{ inputs.VERSION_NUMBER }}
           DEV_CLOUD_FORMATION_EXECUTE_LAMBDA_ROLE: ${{ secrets.DEV_CLOUD_FORMATION_EXECUTE_LAMBDA_ROLE }}
 
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+  
       - name: update release tag in github pages
         # if: ${{ inputs.TARGET_ENVIRONMENT != 'dev-pr' }}
         run: |
