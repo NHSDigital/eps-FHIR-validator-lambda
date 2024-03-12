@@ -56,43 +56,54 @@ jobs:
         env:
           PYTHON_CONFIGURE_OPTS: --enable-shared 
   
-      - name: Install python packages
+      - name: Install node packages
         run: |
-          make install-python
+          make install-node
 
-      - name: Set SPEC_VERSION env var for merges to main
-        run: echo "SPEC_VERSION=$(poetry run python scripts/calculate_version.py)" >> "$GITHUB_ENV"
-        if: github.ref == 'refs/heads/main'
-
-      - name: Set SPEC_VERSION env var for tags
-        run: echo "SPEC_VERSION=${{ github.ref_name }}" >> "$GITHUB_ENV"
-        if: github.ref != 'refs/heads/main'
-
-      - name: Create release (tags and main)
-        id: create-release
-        # using commit hash for version v1.13.0
-        uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5
-        continue-on-error: true
+      - name: Set SPEC_VERSION to be next tag varsion
+        id: output_spec_version
+        run: |
+          export NEKT_VERSION=$(npx semantic-release --dry-run | grep -i 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
+          tagFormat=$(jq -r .tagFormat .releaserc)
+          if [ "${tagFormat}" = "null" ]
+          then
+            tagFormat="v\${version}"
+          fi
+          SPEC_VERSION=$(echo "$tagFormat" | sed "s/\${version}/$NEXT_VERSION/")
+          echo "## SPEC VERSION :** ${SPEC_VERSION}" >> "$GITHUB_STEP_SUMMARY"
+          echo "SPEC_VERSION=${SPEC_VERSION }" >> "$GITHUB_OUTPUT"
+          echo "SPEC_VERSION=${SPEC_VERSION}" >> $GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+  
+      - name: tag release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx semantic-release
+
+      - name: Get release for editing
+        id: get_release
+        # version 1.2.4
+        uses: cardinalby/git-get-release-action@cedef2faf69cb7c55b285bad07688d04430b7ada
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           tag: ${{ env.SPEC_VERSION }}
-          commit: ${{  github.sha }}
+
+      - name: Edit Release
+        # version 1.2.0
+        uses: irongut/EditRelease@ccf529ad26dddf9996e7dd0f24ca5da4ea507cc2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          id: ${{ steps.get_release.outputs.id }}
           body: |
-            ## Commit message
-            ${{ github.event.head_commit.message }}
             ## Info
             [See code diff](${{ github.event.compare }})
             [Release workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
             It was initialized by [${{ github.event.sender.login }}](${{ github.event.sender.html_url }})
-
-      - name: output SPEC_VERSION
-        id: output_spec_version
-        run: |
-          echo "## RELEASE TAG :** ${{ env.SPEC_VERSION  }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "SPEC_VERSION=${{ env.SPEC_VERSION }}" >> "$GITHUB_OUTPUT"
-
+            
   package_code:
     needs: tag_release
     uses: ./.github/workflows/sam_package_code.yml

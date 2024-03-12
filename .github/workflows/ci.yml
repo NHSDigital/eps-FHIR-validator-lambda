@@ -3,7 +3,6 @@ name: merge to main workflow
 on:
   push:
     branches: [main]
-    tags: [v**]
 
 env:
   BRANCH_NAME: ${{ github.event.ref.BRANCH_NAME }}
@@ -58,19 +57,26 @@ jobs:
         env:
           PYTHON_CONFIGURE_OPTS: --enable-shared 
   
-      - name: Install python packages
+      - name: Install node packages
         run: |
-          make install-python
+          make install-node
 
-      - name: Set SPEC_VERSION env var for merges to main
-        run: echo "SPEC_VERSION=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
-        if: github.ref == 'refs/heads/main'
-
-      - name: output SPEC_VERSION
+      - name: Set SPEC_VERSION env var to be short git SHA and get next tag varsion
         id: output_spec_version
         run: |
-          echo "## RELEASE TAG :** ${{ env.SPEC_VERSION  }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "SPEC_VERSION=${{ env.SPEC_VERSION }}" >> "$GITHUB_OUTPUT"
+          SPEC_VERSION=$(git rev-parse --short HEAD)
+          export NEXT_VERSION=$(npx semantic-release --dry-run | grep -i 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
+          tagFormat=$(jq -r .tagFormat .releaserc)
+          if [ "${tagFormat}" = "null" ]
+          then
+            tagFormat="v\${version}"
+          fi
+          NEW_SPEC_VERSION=$(echo "$tagFormat" | sed "s/\${version}/$NEXT_VERSION/")
+          echo "## SPEC VERSION :** ${SPEC_VERSION}" >> "$GITHUB_STEP_SUMMARY"
+          echo "## NEXT TAG WILL BE :** ${NEW_SPEC_VERSION}" >> "$GITHUB_STEP_SUMMARY"
+          echo "SPEC_VERSION=${SPEC_VERSION }" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_TOKEN: ${{ github.token }}         
 
   package_code:
     needs: tag_release
