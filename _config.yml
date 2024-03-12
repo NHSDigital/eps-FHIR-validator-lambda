@@ -62,3 +62,4 @@ exclude:
   - .devcontainer
   - .tool-versions
   - Makefile
+  - .pre-commit-config.yaml
