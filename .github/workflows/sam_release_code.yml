@@ -57,7 +57,7 @@ jobs:
     environment: ${{ inputs.TARGET_ENVIRONMENT }}
     permissions:
       id-token: write
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout local github actions
