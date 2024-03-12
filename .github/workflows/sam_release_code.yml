@@ -136,7 +136,7 @@ jobs:
           RELEASE_TAG: ${{ inputs.VERSION_NUMBER }}
           DEV_CLOUD_FORMATION_EXECUTE_LAMBDA_ROLE: ${{ secrets.DEV_CLOUD_FORMATION_EXECUTE_LAMBDA_ROLE }}
 
-      - name: update environment_release
+      - name: update release tag in github pages
         # if: ${{ inputs.TARGET_ENVIRONMENT != 'dev-pr' }}
         run: |
           cd gh-pages
