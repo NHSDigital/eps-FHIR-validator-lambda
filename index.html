@@ -1,0 +1,41 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: page
+---
+Latest releases
+<table>
+  <tr>
+    <th>Environment</th>
+    <th>Tag</th>
+    <th>Date release</th>
+  </tr>
+  {% for environment in site.data.environments %}
+  <tr>
+    <td>{{ environment.name }}</td>
+    {% assign file_name = environment.name | append: "_latest" %}
+    <td>{{ site.data[file_name][0]tag }}</td>
+    <td>{{ site.data[file_name][0]release_datetime }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% for environment in site.data.environments %}
+<p>
+  {{ environment.name }} release history
+  {% assign file_name = environment.name | append: "_releases" %}
+<table>
+  <tr>
+    <th>tag</th>
+    <th>date released</th>
+  </tr>
+  {% for releases in site.data[file_name] reversed %}
+  <tr>
+    <td>{{ releases.tag }}</td>
+    <td>{{ releases.release_datetime }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</p>
+{% endfor %}
