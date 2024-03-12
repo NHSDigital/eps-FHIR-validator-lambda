@@ -9,7 +9,7 @@ RUN apt-get update \
     openjdk-8-jdk jq apt-transport-https ca-certificates gnupg-agent \
     software-properties-common bash-completion python3-pip make libbz2-dev \
     libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev liblzma-dev netcat
+    xz-utils tk-dev liblzma-dev netcat ruby-full build-essential zlib1g-dev
 
 # install aws stuff
 RUN wget -O /tmp/awscliv2.zip "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" && \
@@ -29,7 +29,10 @@ USER vscode
 # Install ASDF
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3; \
     echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc; \
-    echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc;
+    echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc; \
+    echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc; \
+    echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc; \
+    echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc;
 
 ENV PATH="$PATH:/home/vscode/.asdf/bin/"
 

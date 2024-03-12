@@ -36,3 +36,4 @@ build/
 .aws-sam
 .mvn
 src/main/resources/package/*.tgz
+_site/
