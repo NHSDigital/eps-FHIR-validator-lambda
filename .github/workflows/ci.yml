@@ -76,7 +76,7 @@ jobs:
           NEW_SPEC_VERSION=$(echo "$tagFormat" | sed "s/\${version}/$NEXT_VERSION/")
           echo "## SPEC VERSION :** ${SPEC_VERSION}" >> "$GITHUB_STEP_SUMMARY"
           echo "## NEXT TAG WILL BE :** ${NEW_SPEC_VERSION}" >> "$GITHUB_STEP_SUMMARY"
-          echo "SPEC_VERSION=${SPEC_VERSION }" >> "$GITHUB_OUTPUT"
+          echo "SPEC_VERSION=${SPEC_VERSION}" >> "$GITHUB_OUTPUT"
           echo "SPEC_VERSION=${SPEC_VERSION}" >> "$GITHUB_ENV"
         env:
           GITHUB_TOKEN: ${{ github.token }}         
