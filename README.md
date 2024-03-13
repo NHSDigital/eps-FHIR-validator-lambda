@@ -1,6 +1,8 @@
 # eps-FHIR-validator-lambda
 
-![Build](https://github.com/NHSDigital/eps-FHIR-validator-lambda/workflows/release/badge.svg?branch=main)
+![Build](https://github.com/NHSDigital/eps-FHIR-validator-lambda/actions/workflows/ci.yml/badge.svg?branch=main)   
+Release history can be found ot https://github.com/NHSDigital/eps-FHIR-validator-lambda/releases. Descriptions for the types of changes in a release can be found in the [contributing guidelines](./CONTRIBUTING.md)   
+Deployment history can be found at https://nhsdigital.github.io/eps-FHIR-validator-lambda/
 
 This contains a cloud formation stack which contains a lambda which can be used to validate FHIR R4 messages against implementation guides on [Simplifier](https://simplifier.net/).
 
@@ -200,3 +202,9 @@ These are used to do common commands
 Some pre-commit hooks are installed as part of the install above, to run basic lint checks and ensure you can't accidentally commit invalid changes.
 The pre-commit hook uses python package pre-commit and is configured in the file .pre-commit-config.yaml.
 A combination of these checks are also run in CI.
+
+
+### Github pages
+
+We use github pages to display deployment information. The source for github pages is in the gh-pages branch.   
+As part of the ci and release workflows, the release tag (either the short commit SHA or release tag) is appended to _data/{environment}_releases.csv so we have a history of releases and replaced in _data/{environment}_latest.csv so we now what the latest released version is
