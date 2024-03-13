@@ -4,7 +4,7 @@
         {
             "severity": "error",
             "code": "processing",
-            "diagnostics": "HAPI-1861: Failed to parse JSON encoded FHIR content: Unexpected character ('a' (code 97)): was expecting double-quote to start field name\n at [line: 1, column: 3]"
+            "diagnostics": "HAPI-1861: Failed to parse JSON encoded FHIR content: Unexpected character ('a' (code 97)): was expecting double-quote to start field name\n at [line: 1, column: 2]"
         }
     ]
 }
