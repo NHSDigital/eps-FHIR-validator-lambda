@@ -27,7 +27,7 @@ jobs:
     needs: quality_checks
     runs-on: ubuntu-latest
     outputs:
-      spec_version: ${{steps.output_spec_version.outputs.SPEC_VERSION}}
+      version_tag: ${{steps.output_version_tag.outputs.VERSION_TAG}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -61,10 +61,10 @@ jobs:
         run: |
           make install-node
 
-      - name: Set SPEC_VERSION env var to be short git SHA and get next tag varsion
-        id: output_spec_version
+      - name: Set VERSION_TAG env var to be short git SHA and get next tag varsion
+        id: output_version_tag
         run: |
-          SPEC_VERSION=$(git rev-parse --short HEAD)
+          VERSION_TAG=$(git rev-parse --short HEAD)
           NEXT_VERSION=$(npx semantic-release --dry-run | grep -i 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
           tagFormat=$(jq -r .tagFormat .releaserc)
           if [ "${tagFormat}" = "null" ]
@@ -73,11 +73,11 @@ jobs:
           fi
           # disabling shellcheck as replace does not work
           # shellcheck disable=SC2001
-          NEW_SPEC_VERSION=$(echo "$tagFormat" | sed "s/\${version}/$NEXT_VERSION/")
-          echo "## SPEC VERSION :** ${SPEC_VERSION}" >> "$GITHUB_STEP_SUMMARY"
-          echo "## NEXT TAG WILL BE :** ${NEW_SPEC_VERSION}" >> "$GITHUB_STEP_SUMMARY"
-          echo "SPEC_VERSION=${SPEC_VERSION}" >> "$GITHUB_OUTPUT"
-          echo "SPEC_VERSION=${SPEC_VERSION}" >> "$GITHUB_ENV"
+          NEW_VERSION_TAG=$(echo "$tagFormat" | sed "s/\${version}/$NEXT_VERSION/")
+          echo "## VERSION TAG : ${VERSION_TAG}" >> "$GITHUB_STEP_SUMMARY"
+          echo "## NEXT TAG WILL BE :** ${NEW_VERSION_TAG}" >> "$GITHUB_STEP_SUMMARY"
+          echo "VERSION_TAG=${VERSION_TAG}" >> "$GITHUB_OUTPUT"
+          echo "VERSION_TAG=${VERSION_TAG}" >> "$GITHUB_ENV"
         env:
           GITHUB_TOKEN: ${{ github.token }}         
 
@@ -89,11 +89,11 @@ jobs:
     needs: [tag_release, package_code, get_commit_id]
     uses: ./.github/workflows/sam_release_code.yml
     with:
-      ARTIFACT_BUCKET_PREFIX: ${{needs.tag_release.outputs.spec_version}}
+      ARTIFACT_BUCKET_PREFIX: ${{needs.tag_release.outputs.version_tag}}
       STACK_NAME: fhir-validator
       TARGET_ENVIRONMENT: dev
       BUILD_ARTIFACT: packaged_code
-      VERSION_NUMBER: ${{needs.tag_release.outputs.spec_version}}
+      VERSION_NUMBER: ${{needs.tag_release.outputs.version_tag}}
       COMMIT_ID: ${{needs.get_commit_id.outputs.commit_id}}
       LOG_LEVEL: INFO
       LOG_RETENTION_DAYS: 30
@@ -110,11 +110,11 @@ jobs:
     needs: [tag_release, release_dev, package_code, get_commit_id]
     uses: ./.github/workflows/sam_release_code.yml
     with:
-      ARTIFACT_BUCKET_PREFIX: ${{needs.tag_release.outputs.spec_version}}
+      ARTIFACT_BUCKET_PREFIX: ${{needs.tag_release.outputs.version_tag}}
       STACK_NAME: fhir-validator
       TARGET_ENVIRONMENT: qa
       BUILD_ARTIFACT: packaged_code
-      VERSION_NUMBER: ${{needs.tag_release.outputs.spec_version}}
+      VERSION_NUMBER: ${{needs.tag_release.outputs.version_tag}}
       COMMIT_ID: ${{needs.get_commit_id.outputs.commit_id}}
       LOG_LEVEL: INFO
       LOG_RETENTION_DAYS: 30
