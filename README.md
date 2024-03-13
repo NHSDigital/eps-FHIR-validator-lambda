@@ -202,3 +202,9 @@ These are used to do common commands
 Some pre-commit hooks are installed as part of the install above, to run basic lint checks and ensure you can't accidentally commit invalid changes.
 The pre-commit hook uses python package pre-commit and is configured in the file .pre-commit-config.yaml.
 A combination of these checks are also run in CI.
+
+
+### Github pages
+
+We use github pages to display deployment information. The source for github pages is in the gh-pages branch.   
+As part of the ci and release workflows, the release tag (either the short commit SHA or release tag) is appended to _data/{environment}_releases.csv so we have a history of releases and replaced in _data/{environment}_latest.csv so we now what the latest released version is
