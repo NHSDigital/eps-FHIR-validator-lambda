@@ -63,16 +63,18 @@ jobs:
       - name: Set SPEC_VERSION to be next tag varsion
         id: output_spec_version
         run: |
-          export NEKT_VERSION=$(npx semantic-release --dry-run | grep -i 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
+          NEXT_VERSION=$(npx semantic-release --dry-run | grep -i 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
           tagFormat=$(jq -r .tagFormat .releaserc)
           if [ "${tagFormat}" = "null" ]
           then
             tagFormat="v\${version}"
           fi
+          # disabling shellcheck as replace does not work
+          # shellcheck disable=SC2001
           SPEC_VERSION=$(echo "$tagFormat" | sed "s/\${version}/$NEXT_VERSION/")
           echo "## SPEC VERSION :** ${SPEC_VERSION}" >> "$GITHUB_STEP_SUMMARY"
           echo "SPEC_VERSION=${SPEC_VERSION }" >> "$GITHUB_OUTPUT"
-          echo "SPEC_VERSION=${SPEC_VERSION}" >> $GITHUB_ENV
+          echo "SPEC_VERSION=${SPEC_VERSION}" >> "$GITHUB_ENV"
         env:
           GITHUB_TOKEN: ${{ github.token }}
   
