@@ -65,3 +65,8 @@ exclude:
   - .pre-commit-config.yaml
   - target
   - node_modules
+  - pyproject.toml
+  - poetry.lock
+  - poetry.toml
+  - package.json
+  - package-lock.json
