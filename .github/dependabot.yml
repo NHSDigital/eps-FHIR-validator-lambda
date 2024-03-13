@@ -10,7 +10,7 @@
 # rebase-strategy is set to 'disabled', as automated rebasing was causing
 # too many CI environments to be created, reducing available capacity for
 # us and other teams as well.
-######################################################################### 
+#########################################################################
 
 version: 2
 updates:
@@ -20,7 +20,9 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-  
+    commit-message:
+      prefix: "Upgrade: [dependabot] - "
+
   ###################################
   # Java workspace  ##################
   ###################################
@@ -30,6 +32,8 @@ updates:
     schedule:
       interval: "daily"
     open-pull-requests-limit: 20
+    commit-message:
+      prefix: "Upgrade: [dependabot] - "
 
   ###################################
   # Poetry  #########################
@@ -39,3 +43,5 @@ updates:
     schedule:
       interval: "daily"
     versioning-strategy: increase
+    commit-message:
+      prefix: "Upgrade: [dependabot] - "
