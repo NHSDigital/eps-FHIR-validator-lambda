@@ -1,6 +1,8 @@
 # eps-FHIR-validator-lambda
 
-![Build](https://github.com/NHSDigital/eps-FHIR-validator-lambda/workflows/release/badge.svg?branch=main)
+![Build](https://github.com/NHSDigital/eps-FHIR-validator-lambda/actions/workflows/ci.yml/badge.svg?branch=main)   
+Release history can be found ot https://github.com/NHSDigital/eps-FHIR-validator-lambda/releases. Descriptions for the types of changes in a release can be found in the [contributing guidelines](./CONTRIBUTING.md)   
+Deployment history can be found at https://nhsdigital.github.io/eps-FHIR-validator-lambda/
 
 This contains a cloud formation stack which contains a lambda which can be used to validate FHIR R4 messages against implementation guides on [Simplifier](https://simplifier.net/).
 
