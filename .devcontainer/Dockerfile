@@ -44,7 +44,8 @@ RUN asdf plugin add python; \
     asdf plugin-add java; \
     asdf plugin-add maven; \
     asdf plugin add direnv; \
-    asdf plugin add actionlint;
+    asdf plugin add actionlint; \
+    asdf plugin add nodejs;
 
 WORKDIR /workspaces/validation-service-fhir-r4
 ADD .tool-versions /workspaces/validation-service-fhir-r4/.tool-versions
