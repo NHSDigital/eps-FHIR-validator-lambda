@@ -1,9 +1,14 @@
 # eps-FHIR-validator-lambda
 
 ![Build](https://github.com/NHSDigital/eps-FHIR-validator-lambda/actions/workflows/ci.yml/badge.svg?branch=main)   
-Release history can be found ot https://github.com/NHSDigital/eps-FHIR-validator-lambda/releases. Descriptions for the types of changes in a release can be found in the [contributing guidelines](./CONTRIBUTING.md)   
+![Release](https://github.com/NHSDigital/eps-FHIR-validator-lambda/actions/workflows/release.yml/badge.svg?branch=main)   
+
+## Versions and deployments
+Version release history can be found ot https://github.com/NHSDigital/eps-FHIR-validator-lambda/releases.   
+We use eslint convention for commit messages for commits to main branch. Descriptions for the types of changes in a release can be found in the [contributing guidelines](./CONTRIBUTING.md)   
 Deployment history can be found at https://nhsdigital.github.io/eps-FHIR-validator-lambda/
 
+## Introduction
 This contains a cloud formation stack which contains a lambda which can be used to validate FHIR R4 messages against implementation guides on [Simplifier](https://simplifier.net/).
 
 - `scripts/` Utilities helpful to developers of this specification.
@@ -149,6 +154,7 @@ There are `make` commands that are run as part of the CI pipeline and help alias
 
 - `install-python` installs python dependencies
 - `install-hooks` installs git pre commit hooks
+- `install-node` installs node dependencies
 - `install` runs all install targets
 
 #### SAM targets
@@ -207,4 +213,12 @@ A combination of these checks are also run in CI.
 ### Github pages
 
 We use github pages to display deployment information. The source for github pages is in the gh-pages branch.   
-As part of the ci and release workflows, the release tag (either the short commit SHA or release tag) is appended to _data/{environment}_releases.csv so we have a history of releases and replaced in _data/{environment}_latest.csv so we now what the latest released version is
+As part of the ci and release workflows, the release tag (either the short commit SHA or release tag) is appended to _data/{environment}_releases.csv so we have a history of releases and replaced in _data/{environment}_latest.csv so we now what the latest released version is.   
+There are different makefile targets in this branch. These are
+- `run-jekyll` - runs the site locally so changes can be previewed during development
+- `sync-main` - syncs common files from main branch to gh-pages branch. You must commit and push after running this
+- `install-python` installs python dependencies
+- `install-hooks` installs git pre commit hooks
+- `install-node` installs node dependencies
+- `install-jekyll` installs dependencies to be able to run jekyll locally
+- `install` runs all install targets
