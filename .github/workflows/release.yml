@@ -1,4 +1,4 @@
-name: release to environments
+name: deploy to environments
 
 on:
   workflow_dispatch:
