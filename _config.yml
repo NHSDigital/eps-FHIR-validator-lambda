@@ -63,3 +63,5 @@ exclude:
   - .tool-versions
   - Makefile
   - .pre-commit-config.yaml
+  - target
+  - node_modules
