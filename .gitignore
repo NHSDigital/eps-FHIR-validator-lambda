@@ -38,3 +38,7 @@ build/
 src/main/resources/package/*.tgz
 _site/
 node_modules/
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
