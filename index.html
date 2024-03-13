@@ -4,12 +4,12 @@
 
 layout: page
 ---
-Latest releases
+Latest deployments
 <table>
   <tr>
     <th>Environment</th>
     <th>Tag</th>
-    <th>Date release</th>
+    <th>Date deployed</th>
   </tr>
   {% for environment in site.data.environments %}
   <tr>
@@ -23,12 +23,12 @@ Latest releases
 
 {% for environment in site.data.environments %}
 <p>
-  {{ environment.name }} release history
+  {{ environment.name }} deployment history
   {% assign file_name = environment.name | append: "_releases" %}
 <table>
   <tr>
     <th>tag</th>
-    <th>date released</th>
+    <th>date deployed</th>
   </tr>
   {% for releases in site.data[file_name] reversed %}
   <tr>
