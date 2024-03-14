@@ -30,16 +30,17 @@ Latest deployments
 
 {% for environment in site.data.environments %}
 <p>
-  {{ environment.name }} deployment history
+  Recent {{ environment.name }} deployment history. For full history see <a href="{{ environment.name}}.html">here</a>
   {% assign file_name = environment.name | append: "_releases" %}
 <table>
   <tr>
     <th>tag</th>
     <th>date deployed</th>
   </tr>
-  {% for releases in site.data[file_name] reversed %}
+  {% assign releases = site.data[file_name] | reverse %}
+  {% for release in releases limit:5 %}
   <tr>
-    {% assign tag = releases.tag %}
+    {% assign tag = release.tag %}
     {% if tag contains "." %}
     {% assign link = "https://github.com/NHSDigital/eps-FHIR-validator-lambda/releases/tag/" | append: tag %}
     {% else %}
@@ -47,7 +48,7 @@ Latest deployments
     "https://github.com/NHSDigital/eps-FHIR-validator-lambda/commit/" | append: tag %}
     {% endif %}
     <td><a href={{ link }} target="_blank">{{ tag }}</a></td>
-    <td>{{ releases.release_datetime }}</td>
+    <td>{{ release.release_datetime }}</td>
   </tr>
   {% endfor %}
 </table>
