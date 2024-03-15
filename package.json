@@ -1,4 +1,15 @@
 {
+    "name": "eps-fhir-validator-lambda",
+    "version": "0.0.1",
+    "description": "eps fhir validator lambda",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/NHSDigital/eps-FHIR-validator-lambda"
+    },
+    "author": "NHS Digital",
+    "license": "MIT",
+    "homepage": "https://github.com/NHSDigital/eps-FHIR-validator-lambda",
     "devDependencies": {
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/release-notes-generator": "^12.1.0",
