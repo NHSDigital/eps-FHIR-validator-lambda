@@ -2,25 +2,5 @@
 layout: page
 ---
 Full dev deployment history
-{% assign file_name = "dev_releases" %}
-<table>
-    <tr>
-        <th>tag</th>
-        <th>date deployed</th>
-    </tr>
-    {% assign releases = site.data[file_name] | reverse %}
-    {% for release in releases %}
-    <tr>
-        {% assign tag = release.tag %}
-        {% if tag contains "." %}
-        {% assign link = "https://github.com/NHSDigital/eps-FHIR-validator-lambda/releases/tag/" | append: tag %}
-        {% else %}
-        {% assign link =
-        "https://github.com/NHSDigital/eps-FHIR-validator-lambda/commit/" | append: tag %}
-        {% endif %}
-        <td><a href={{ link }} target="_blank">{{ tag }}</a></td>
-        <td>{{ release.release_datetime }}</td>
-    </tr>
-    {% endfor %}
-</table>
-</p>
+{% assign file_name = "dev_deployments" %}
+{% include full_deployment_history.html %}
