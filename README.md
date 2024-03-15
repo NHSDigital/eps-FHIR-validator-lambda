@@ -213,7 +213,7 @@ A combination of these checks are also run in CI.
 ### Github pages
 
 We use github pages to display deployment information. The source for github pages is in the gh-pages branch.   
-As part of the ci and release workflows, the release tag (either the short commit SHA or release tag) is appended to _data/{environment}_releases.csv so we have a history of releases and replaced in _data/{environment}_latest.csv so we now what the latest released version is.   
+As part of the ci and release workflows, the release tag (either the short commit SHA or release tag) is appended to _data/{environment}_deployments.csv so we have a history of releases and replaced in _data/{environment}_latest.csv so we now what the latest released version is.   
 There are different makefile targets in this branch. These are
 - `run-jekyll` - runs the site locally so changes can be previewed during development
 - `sync-main` - syncs common files from main branch to gh-pages branch. You must commit and push after running this
