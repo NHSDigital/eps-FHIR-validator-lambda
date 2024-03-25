@@ -33,19 +33,27 @@ import org.apache.logging.log4j.Logger;
  */
 
 public class ValidateController {
-    private static final ValidatorConfiguration validatorConfiguration = new ValidatorConfiguration();
-    private static final FhirValidator validator = validatorConfiguration.validator;
-    private static final FhirContext fhirContext = validatorConfiguration.fhirContext;
-    private final ImplementationGuideParser implementationGuideParser = new ImplementationGuideParser(
-            fhirContext);
-    private final CapabilityStatementApplier capabilityStatementApplier = new CapabilityStatementApplier(
-            implementationGuideParser,
-            validatorConfiguration.npmPackages);
-    private final MessageDefinitionApplier messageDefinitionApplier = new MessageDefinitionApplier(
-            implementationGuideParser, validatorConfiguration.npmPackages);
+    private ValidatorConfiguration validatorConfiguration;
+    private FhirValidator validator;
+    private FhirContext fhirContext;
+    private ImplementationGuideParser implementationGuideParser;
+    private CapabilityStatementApplier capabilityStatementApplier;
+    private MessageDefinitionApplier messageDefinitionApplier;
 
     Logger log = LogManager.getLogger(ValidateController.class);
 
+    public ValidateController(String PROFILE_MANIFEST_FILE) {
+        validatorConfiguration = new ValidatorConfiguration(PROFILE_MANIFEST_FILE);
+        validator = validatorConfiguration.validator;
+        fhirContext = validatorConfiguration.fhirContext;
+        implementationGuideParser = new ImplementationGuideParser(
+            fhirContext);
+        capabilityStatementApplier = new CapabilityStatementApplier(
+            implementationGuideParser,
+            validatorConfiguration.npmPackages);
+        messageDefinitionApplier = new MessageDefinitionApplier(
+            implementationGuideParser, validatorConfiguration.npmPackages);
+    }
     public String validate(String input) {
         OperationOutcome result = parseAndValidateResource(input);
         return fhirContext.newJsonParser().encodeResourceToString(result);

@@ -41,13 +41,15 @@ import org.apache.logging.log4j.Logger;
  */
 
 public class ValidatorConfiguration {
+    private String PROFILE_MANIFEST_FILE;
     public final FhirValidator validator;
     public final FhirContext fhirContext;
     public final List<NpmPackage> npmPackages = new ArrayList<>();
 
     Logger log = LogManager.getLogger(ValidatorConfiguration.class);
 
-    public ValidatorConfiguration() {
+    public ValidatorConfiguration(String _PROFILE_MANIFEST_FILE) {
+        PROFILE_MANIFEST_FILE = _PROFILE_MANIFEST_FILE;
         fhirContext = FhirContext.forR4();
 
         // Create a chain that will hold our modules
@@ -203,7 +205,7 @@ public class ValidatorConfiguration {
     }
 
     private SimplifierPackage[] getPackages() {
-        String manifestContent = ResourceUtils.getResourceContent("manifest.json");
+        String manifestContent = ResourceUtils.getResourceContent(this.PROFILE_MANIFEST_FILE);
         return new Gson().fromJson(manifestContent, SimplifierPackage[].class);
     }
 }

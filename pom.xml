@@ -155,7 +155,8 @@
                     <include>log4j2.xml</include>
                     <include>package/*</include>
                     <include>primerPayload.json</include>
-                    <include>manifest.json</include>
+                    <include>nhs_digital.manifest.json</include>
+                    <include>uk_core.manifest.json</include>
                 </includes>
             </resource>
         </resources>

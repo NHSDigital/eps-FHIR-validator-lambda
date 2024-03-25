@@ -39,7 +39,7 @@ Parameters:
       ]
 
 Resources:
-  FHIRValidatorResources:
+  FHIRValidatorUKCoreResources:
     Type: AWS::Serverless::Application
     Properties:
       Location: lambda_resources.yaml
@@ -48,16 +48,16 @@ Resources:
         SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
         SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
         EnableSplunk: "true"
-        LambdaName: !Sub "${AWS::StackName}-FHIRValidator"
+        LambdaName: !Sub "${AWS::StackName}-FHIRValidatorUKCore"
         LogRetentionDays: !Ref LogRetentionDays
 
-  FHIRValidator:
+  FHIRValidatorUKCore:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub "${AWS::StackName}-FHIRValidator"
+      FunctionName: !Sub "${AWS::StackName}-FHIRValidatorUKCore"
       CodeUri: ../
       Handler: software.nhs.fhirvalidator.handler.HandlerStream::handleRequest
-      Role: !GetAtt FHIRValidatorResources.Outputs.LambdaRoleArn
+      Role: !GetAtt FHIRValidatorUKCoreResources.Outputs.LambdaRoleArn
       SnapStart:
         ApplyOn: PublishedVersions
       AutoPublishAlias: snap
@@ -72,6 +72,7 @@ Resources:
         Variables:
           AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
           POWERTOOLS_LOG_LEVEL: !Ref LogLevel
+          PROFILE_MANIFEST_FILE: uk_core.manifest.json
 
 Outputs:
   FHIRValidatorLambdaName:

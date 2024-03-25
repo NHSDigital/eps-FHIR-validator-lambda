@@ -22,7 +22,7 @@ import org.hl7.fhir.r4.model.Patient;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class ValidatorTest {
+class ValidatorTestNHSDigital {
 
     static ValidateController validateController;
     static FhirContext fhirContext;
@@ -52,7 +52,8 @@ class ValidatorTest {
     static void setup() {
         // Creating the HAPI validator takes several seconds. It's ok to reuse the same
         // validator across tests to speed up tests
-        validateController = new ValidateController();
+        String manifest_file = "nhs_digital.manifest.json";
+        validateController = new ValidateController(manifest_file);
         fhirContext = FhirContext.forR4();
     }
 
@@ -87,10 +88,10 @@ class ValidatorTest {
         String expectedResult = ResourceUtils.getResourceContent("results/validBundle.json");
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
-        //assertEquals(expectedJsonResult, actualJsonResult);
+        assertEquals(expectedJsonResult, actualJsonResult);
 
-        //assertFalse(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.ERROR));
-        //assertTrue(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.WARNING));
+        assertFalse(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.ERROR));
+        assertTrue(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.WARNING));
     }
 
     @Test
@@ -103,17 +104,17 @@ class ValidatorTest {
         String expectedResult = ResourceUtils.getResourceContent("results/invalidBundle.json");
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
-        // assertEquals(expectedJsonResult, actualJsonResult);
+        assertEquals(expectedJsonResult, actualJsonResult);
 
-        // assertTrue(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.ERROR));
-        // assertTrue(issueListHasDiagnosticMessageAtSeverity(validatorResult.getIssue(), "Bundle entry missing fullUrl",
-        //        OperationOutcome.IssueSeverity.ERROR));
-        //assertTrue(issueListHasDiagnosticMessageAtSeverity(validatorResult.getIssue(),
-        //        "Unable to find a match for profile urn:uuid:56166769-c1c4-4d07-afa8-132b5dfca666 among choices: https://fhir.nhs.uk/StructureDefinition/NHSDigital-PractitionerRole-EPSLegal",
-        //        OperationOutcome.IssueSeverity.ERROR));
-        //assertTrue(issueListHasDiagnosticMessageAtSeverity(validatorResult.getIssue(),
-        //        "Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry",
-        //        OperationOutcome.IssueSeverity.ERROR));
+        assertTrue(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.ERROR));
+        assertTrue(issueListHasDiagnosticMessageAtSeverity(validatorResult.getIssue(), "Bundle entry missing fullUrl",
+                OperationOutcome.IssueSeverity.ERROR));
+        assertTrue(issueListHasDiagnosticMessageAtSeverity(validatorResult.getIssue(),
+                "Unable to find a match for profile urn:uuid:56166769-c1c4-4d07-afa8-132b5dfca666 among choices: https://fhir.nhs.uk/StructureDefinition/NHSDigital-PractitionerRole-EPSLegal",
+                OperationOutcome.IssueSeverity.ERROR));
+        assertTrue(issueListHasDiagnosticMessageAtSeverity(validatorResult.getIssue(),
+                "Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry",
+                OperationOutcome.IssueSeverity.ERROR));
     }
 
     @Test
@@ -165,7 +166,7 @@ class ValidatorTest {
         String expectedResult = ResourceUtils.getResourceContent("results/invalidOperationOutcome.json");
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
-        // assertEquals(expectedJsonResult, actualJsonResult);
+        assertEquals(expectedJsonResult, actualJsonResult);
     }
 
     @Test
@@ -178,7 +179,7 @@ class ValidatorTest {
         String expectedResult = ResourceUtils.getResourceContent("results/searchSet.json");
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
-        //assertEquals(expectedJsonResult, actualJsonResult);
+        assertEquals(expectedJsonResult, actualJsonResult);
     }
 
     @Test
