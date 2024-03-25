@@ -22,7 +22,7 @@ import org.hl7.fhir.r4.model.Patient;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class ValidatorTestNHSDigital {
+class Validator_nhs_digital_Test {
 
     static ValidateController validateController;
     static FhirContext fhirContext;
@@ -293,4 +293,18 @@ class ValidatorTestNHSDigital {
         assertEquals(expectedJsonResult, actualJsonResult);
     }
 
+    @Test
+    void psuUpdate() {
+        String FHIRDocument = ResourceUtils.getResourceContent("examples/psu_update.json");
+        OperationOutcome validatorResult = validateController.parseAndValidateResource(FHIRDocument);
+        JsonObject actualJsonResult = JsonParser
+                .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
+
+        String expectedResult = ResourceUtils.getResourceContent("results/psu_nhs_digital.json");
+        JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
+
+        assertEquals(expectedJsonResult, actualJsonResult);
+
+        assertTrue(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.ERROR));
+    }
 }
