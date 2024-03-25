@@ -2,6 +2,7 @@ package software.nhs.fhirvalidator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -67,6 +68,14 @@ class Validator_uk_core_Test {
 
         assertFalse(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.ERROR));
         assertFalse(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.WARNING));
+    }
+
+    @Test
+    void validBundle_nhsdigitalProfile() {
+        String FHIRDocument = ResourceUtils.getResourceContent("examples/validBundle.json");
+        OperationOutcome validatorResult = validateController.parseAndValidateResource(FHIRDocument);
+  
+        assertTrue(issueListHasSeverity(validatorResult.getIssue(), OperationOutcome.IssueSeverity.ERROR));
     }
 
     @Test
