@@ -75,13 +75,14 @@ Resources:
           PROFILE_MANIFEST_FILE: uk_core.manifest.json
 
 Outputs:
-  FHIRValidatorLambdaName:
-    Description: Name of the FHIR validator lambda
-    Value: !Ref FHIRValidator
+  FHIRValidatorUKCoreLambdaName:
+    Description: Name of the FHIR validator UK Core lambda
+    Value: !Ref FHIRValidatorUKCore
     Export:
-      Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorLambdaName"]]
-  FHIRValidatorLambdaArn:
-    Description: Arn of the FHIR validator lambda
-    Value: !GetAtt FHIRValidator.Arn
+      Name:
+        !Join [":", [!Ref "AWS::StackName", "FHIRValidatorUKCoreLambdaName"]]
+  FHIRValidatorUKCoreLambdaArn:
+    Description: Arn of the FHIR validator UK Core lambda
+    Value: !GetAtt FHIRValidatorUKCore.Arn
     Export:
-      Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorLambdaArn"]]
+      Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorUKCoreLambdaArn"]]
