@@ -23,8 +23,13 @@ public class HandlerStream implements RequestStreamHandler {
 
     public HandlerStream() {
         log.info("Creating the Validator instance for the first time...");
+        String manifest_file = System.getenv("PROFILE_MANIFEST_FILE");
+        if (manifest_file == null) {
+            manifest_file = "nhs_digital.manifest.json";
+        }
+        log.info(String.format("Using manifest file : %s", manifest_file));
 
-        validateController = new ValidateController();
+        validateController = new ValidateController(manifest_file);
 
         log.info("Validating once to force the loading of all the validator related classes");
         String primerPayload = ResourceUtils.getResourceContent("primerPayload.json");
