@@ -44,6 +44,7 @@ Resources:
     Properties:
       Location: lambda_resources.yaml
       Parameters:
+        StackName: !Ref AWS::StackName
         CloudWatchKMSKey: !ImportValue account-resources:CloudwatchLogsKmsKeyArn
         SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
         SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
