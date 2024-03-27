@@ -5,6 +5,9 @@ Description: >
   Resources for a lambda
 
 Parameters:
+  StackName:
+    Type: String
+    Description: The name of the main stack
   CloudWatchKMSKey:
     Type: String
     Description: Cloudwatch KMS key
@@ -125,7 +128,7 @@ Outputs:
     Description: Lambda execution policy arn
     Value: !GetAtt ExecuteLambdaManagedPolicy.PolicyArn
     Export:
-      Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorUKCoreExecuteLambdaPolicyArn"]]
+      Name: !Sub ${StackName}:FHIRValidatorUKCoreExecuteLambdaPolicyArn
   LambdaRoleArn:
     Description: "LambdaRole ARN"
     Value: !GetAtt LambdaRole.Arn
