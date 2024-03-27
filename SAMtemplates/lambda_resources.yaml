@@ -125,7 +125,7 @@ Outputs:
     Description: Lambda execution policy arn
     Value: !GetAtt ExecuteLambdaManagedPolicy.PolicyArn
     Export:
-      !Join [":", [!Ref "AWS::StackName", "FHIRValidatorUKCoreExecuteLambdaPolicyArn"]]
+      Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorUKCoreExecuteLambdaPolicyArn"]]
   LambdaRoleArn:
     Description: "LambdaRole ARN"
     Value: !GetAtt LambdaRole.Arn
