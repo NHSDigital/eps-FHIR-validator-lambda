@@ -49,6 +49,7 @@ Resources:
         SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
         EnableSplunk: "true"
         LambdaName: !Sub "${AWS::StackName}-FHIRValidatorUKCore"
+        LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorUKCore
         LogRetentionDays: !Ref LogRetentionDays
 
   FHIRValidatorUKCore:
