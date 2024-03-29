@@ -26,7 +26,7 @@ requests = "^2.31.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^7.0.0"
-pip-licenses = "^4.3.4"
+pip-licenses = "^4.4.0"
 pre-commit = "^3.5.0"
 cfn-lint = "^0.86.1"
 
