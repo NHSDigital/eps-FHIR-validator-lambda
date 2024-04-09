@@ -8,6 +8,12 @@
     <packaging>jar</packaging>
     <version>dev</version>
     <name>FHIRValidator</name>
+    <licenses>
+		<license>
+			<name>The MIT License</name>
+			<url>https://opensource.org/license/mit</url>
+		</license>
+	</licenses>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -161,6 +167,26 @@
             </resource>
         </resources>
         <plugins>
+            <plugin>
+                <groupId>se.ayoy.maven-plugins</groupId>
+                <artifactId>ayoy-license-verifier-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <licenseFile>${project.basedir}/licenses/licenses.xml</licenseFile>
+                    <excludedMissingLicensesFile>${project.basedir}/licenses/allowedMissingLicense.xml</excludedMissingLicensesFile>
+                    <failOnForbidden>true</failOnForbidden>
+                    <failOnMissing>true</failOnMissing>
+                    <failOnUnknown>true</failOnUnknown>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.6.1</version>
