@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'temurin'
+          distribution: 'corretto'
       - name: Checkout code
         uses: actions/checkout@v4
         with:
