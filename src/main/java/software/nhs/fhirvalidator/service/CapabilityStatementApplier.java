@@ -10,6 +10,7 @@ import software.nhs.fhirvalidator.util.FhirUtils;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CapabilityStatementApplier {
     private final List<CapabilityStatement.CapabilityStatementRestResourceComponent> restResources;
@@ -20,7 +21,7 @@ public class CapabilityStatementApplier {
             ImplementationGuideParser implementationGuideParser,
             List<NpmPackage> npmPackages) {
 
-        this.restResources = npmPackages.stream()
+        this.restResources = (npmPackages.stream()
                 .flatMap(packageItem -> {
                     try {
                         return implementationGuideParser
@@ -31,8 +32,8 @@ public class CapabilityStatementApplier {
                     }
                 })
                 .flatMap(capabilityStatement -> capabilityStatement.getRest().stream())
-                .flatMap(rest -> rest.getResource().stream())
-                .toList();
+                .flatMap(rest -> rest.getResource().stream()))
+                .collect(Collectors.toList());
     }
 
     public void applyCapabilityStatementProfiles(IBaseResource resource) {

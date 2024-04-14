@@ -31,7 +31,7 @@ public class MessageDefinitionApplier {
                         throw new RuntimeException("error in MessageDefinitionApplier", ex);
                     }
                 })
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public OperationOutcome applyMessageDefinition(IBaseResource resource) {

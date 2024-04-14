@@ -1,6 +1,7 @@
 package software.nhs.fhirvalidator.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -56,8 +57,25 @@ public class ValidateController {
     }
     public String validate(String input) {
         OperationOutcome result = parseAndValidateResource(input);
-        return fhirContext.newJsonParser().encodeResourceToString(result);
-    }
+        String body = fhirContext.newJsonParser().encodeResourceToString(result);
+
+        String response = """
+            {
+                "statusCode": %s,
+                "body": %s,
+                "headers": %s
+            }
+            """;
+
+        int statusCode = 200;
+        for (OperationOutcomeIssueComponent operationOutcome : result.getIssue()) {
+           if (operationOutcome.getSeverity() == OperationOutcome.IssueSeverity.ERROR) {
+                statusCode = 400;
+            }
+        }
+        String headers = "{}";
+        return String.format(response, statusCode, body, headers);
+}
 
     public OperationOutcome parseAndValidateResource(String input) {
 
@@ -111,6 +129,6 @@ public class ValidateController {
             }
         }
 
-        return List.of(inputResource);
+        return Arrays.asList(inputResource);
     }
 }
