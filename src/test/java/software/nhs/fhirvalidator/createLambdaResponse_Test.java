@@ -20,7 +20,7 @@ import com.google.gson.JsonParser;
 
 import ca.uhn.fhir.context.FhirContext;
 
-public class createLambdaResponse_Test {
+class createLambdaResponse_Test {
     static ValidateController validateController;
     static FhirContext fhirContext;
     static OperationOutcome.OperationOutcomeIssueComponent informationIssue;

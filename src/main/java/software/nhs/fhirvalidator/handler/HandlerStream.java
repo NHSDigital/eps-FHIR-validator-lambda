@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
@@ -48,7 +49,7 @@ public class HandlerStream implements RequestStreamHandler {
             for (int length; (length = inputStream.read(buffer)) != -1;) {
                 result.write(buffer, 0, length);
             }
-            String rawInput = result.toString("UTF-8");
+            String rawInput = result.toString();
             log.info(rawInput);
 
             OperationOutcome validateResult = validateController.parseAndValidateResource(rawInput);

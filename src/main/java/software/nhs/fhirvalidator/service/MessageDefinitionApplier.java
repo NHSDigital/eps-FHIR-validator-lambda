@@ -35,7 +35,7 @@ public class MessageDefinitionApplier {
     }
 
     public OperationOutcome applyMessageDefinition(IBaseResource resource) {
-        if (!(resource instanceof Bundle) || ((Bundle) resource).getType() != Bundle.BundleType.MESSAGE) {
+        if (!(resource instanceof Bundle _resource) || (_resource.getType() != Bundle.BundleType.MESSAGE)) {
             return null;
         }
 
