@@ -119,7 +119,7 @@ public class ValidateController {
             return new ArrayList<>();
         }
 
-        if (inputResource instanceof Bundle && ((Bundle) inputResource).getType() == Bundle.BundleType.SEARCHSET) {
+        if (inputResource instanceof Bundle _inputResource && (_inputResource.getType() == Bundle.BundleType.SEARCHSET)) {
             List<IBaseResource> bundleResources = new ArrayList<>();
             for (Bundle.BundleEntryComponent entry : ((Bundle) inputResource).getEntry()) {
                 if (entry.getResource().fhirType().equals("Bundle")) {
