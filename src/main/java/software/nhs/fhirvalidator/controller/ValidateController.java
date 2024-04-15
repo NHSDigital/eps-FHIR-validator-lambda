@@ -55,8 +55,8 @@ public class ValidateController {
         messageDefinitionApplier = new MessageDefinitionApplier(
             implementationGuideParser, validatorConfiguration.npmPackages);
     }
-    public String validate(String input) {
-        OperationOutcome result = parseAndValidateResource(input);
+
+    public String createLambdaResponse(OperationOutcome result) {
         String body = fhirContext.newJsonParser().encodeResourceToString(result);
 
         String response = """
@@ -75,10 +75,9 @@ public class ValidateController {
         }
         String headers = "{}";
         return String.format(response, statusCode, body, headers);
-}
+    }
 
     public OperationOutcome parseAndValidateResource(String input) {
-
         try {
             IBaseResource inputResource = fhirContext.newJsonParser().parseResource(input);
             List<IBaseResource> resources = getResourcesToValidate(inputResource);

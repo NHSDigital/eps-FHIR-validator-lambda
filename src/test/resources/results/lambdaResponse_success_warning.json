@@ -1,0 +1,14 @@
+{
+    "statusCode": 200,
+    "body": {
+        "resourceType": "OperationOutcome",
+        "issue": [
+            {
+                "severity": "warning",
+                "code": "informational",
+                "diagnostics": "This is a warning"
+            }
+        ]
+    },
+    "headers": {}
+}

@@ -11,6 +11,7 @@ import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hl7.fhir.r4.model.OperationOutcome;
 
 import software.amazon.lambda.powertools.logging.Logging;
 import software.nhs.fhirvalidator.controller.ValidateController;
@@ -33,7 +34,7 @@ public class HandlerStream implements RequestStreamHandler {
 
         log.info("Validating once to force the loading of all the validator related classes");
         String primerPayload = ResourceUtils.getResourceContent("primerPayload.json");
-        validateController.validate(primerPayload);
+        validateController.parseAndValidateResource(primerPayload);
 
         log.info("Validator is ready");
     }
@@ -50,10 +51,11 @@ public class HandlerStream implements RequestStreamHandler {
             String rawInput = result.toString("UTF-8");
             log.info(rawInput);
 
-            String validatorResult = validateController.validate(rawInput);
+            OperationOutcome validateResult = validateController.parseAndValidateResource(rawInput);
+            String lambdaResponse = validateController.createLambdaResponse(validateResult);
 
             try (PrintWriter writer = new PrintWriter(outputStream)) {
-                writer.print(validatorResult);
+                writer.print(lambdaResponse);
             }
 
         } catch (IOException ex) {

@@ -1,0 +1,14 @@
+{
+    "statusCode": 400,
+    "body": {
+        "resourceType": "OperationOutcome",
+        "issue": [
+            {
+                "severity": "error",
+                "code": "exception",
+                "diagnostics": "This is an error"
+            }
+        ]
+    },
+    "headers": {}
+}
