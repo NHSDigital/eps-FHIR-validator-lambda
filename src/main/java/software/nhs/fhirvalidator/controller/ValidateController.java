@@ -73,7 +73,12 @@ public class ValidateController {
                 statusCode = 400;
             }
         }
-        String headers = "{}";
+        String headers = """
+            {
+                "Content-Type": "application/fhir+json",
+                "Cache-Control": "no-cache"
+              }
+        """;
         return String.format(response, statusCode, body, headers);
     }
 
