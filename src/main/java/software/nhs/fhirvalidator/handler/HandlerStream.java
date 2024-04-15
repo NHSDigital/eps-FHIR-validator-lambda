@@ -38,7 +38,7 @@ public class HandlerStream implements RequestStreamHandler {
         log.info("Validator is ready");
     }
 
-    @Logging
+    @Logging(clearState = true)
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
