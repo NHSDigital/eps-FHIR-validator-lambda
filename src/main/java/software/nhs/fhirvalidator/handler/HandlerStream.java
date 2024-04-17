@@ -49,7 +49,7 @@ public class HandlerStream implements RequestStreamHandler {
             for (int length; (length = inputStream.read(buffer)) != -1;) {
                 result.write(buffer, 0, length);
             }
-            String rawInput = result.toString("UTF-8");
+            String rawInput = result.toString();
 
             String validatorResult = validateController.validate(rawInput);
 
