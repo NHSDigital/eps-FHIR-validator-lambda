@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 
+import net.sf.saxon.functions.ConstantFunction.True;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,7 +40,7 @@ public class HandlerStream implements RequestStreamHandler {
         log.info("Validator is ready");
     }
 
-    @Logging
+    @Logging(logEvent = true, clearState = true, correlationIdPath = "/headers/x-request-id")
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
@@ -48,7 +50,6 @@ public class HandlerStream implements RequestStreamHandler {
                 result.write(buffer, 0, length);
             }
             String rawInput = result.toString("UTF-8");
-            log.info(rawInput);
 
             String validatorResult = validateController.validate(rawInput);
 
