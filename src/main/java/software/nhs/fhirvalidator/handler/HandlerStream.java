@@ -38,7 +38,7 @@ public class HandlerStream implements RequestStreamHandler {
         log.info("Validator is ready");
     }
 
-    @Logging
+    @Logging(logEvent = true, clearState = true, correlationIdPath = "/headers/x-request-id")
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
@@ -47,8 +47,7 @@ public class HandlerStream implements RequestStreamHandler {
             for (int length; (length = inputStream.read(buffer)) != -1;) {
                 result.write(buffer, 0, length);
             }
-            String rawInput = result.toString("UTF-8");
-            log.info(rawInput);
+            String rawInput = result.toString();
 
             String validatorResult = validateController.validate(rawInput);
 

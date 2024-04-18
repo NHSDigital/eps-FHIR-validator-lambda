@@ -8,15 +8,22 @@
     <packaging>jar</packaging>
     <version>dev</version>
     <name>FHIRValidator</name>
+    <licenses>
+        <license>
+            <name>The MIT License</name>
+            <url>https://opensource.org/license/mit</url>
+        </license>
+    </licenses>
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fhir.version>7.0.2</fhir.version>
         <log4j.version>2.23.1</log4j.version>
         <fasterxml.version>2.17.0</fasterxml.version>
         <sonar.organization>nhsdigital</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <aspectj.version>1.9.22</aspectj.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -116,7 +123,7 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.9.22</version>
+            <version>${aspectj.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -162,6 +169,27 @@
         </resources>
         <plugins>
             <plugin>
+                <groupId>se.ayoy.maven-plugins</groupId>
+                <artifactId>ayoy-license-verifier-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <licenseFile>${project.basedir}/licenses/licenses.xml</licenseFile>
+                    <excludedMissingLicensesFile>
+                        ${project.basedir}/licenses/allowedMissingLicense.xml</excludedMissingLicensesFile>
+                    <failOnForbidden>true</failOnForbidden>
+                    <failOnMissing>true</failOnMissing>
+                    <failOnUnknown>true</failOnUnknown>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.6.1</version>
             </plugin>
@@ -177,10 +205,15 @@
                 <groupId>dev.aspectj</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
                 <version>1.14</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjtools</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
-                    <source>11</source> <!-- or higher -->
-                    <target>11</target> <!-- or higher -->
-                    <complianceLevel>11</complianceLevel> <!-- or higher -->
+                    <complianceLevel>21</complianceLevel> <!-- or higher -->
                     <forceAjcCompile>true</forceAjcCompile>
                     <sources />
                     <weaveDirectories>
