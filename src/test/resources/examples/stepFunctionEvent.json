@@ -1,83 +1,75 @@
 {
-    "parameters": {
-        "FunctionName": "arn:aws:lambda:eu-west-2:591291862413:function:fhir-validator-pr-84-FHIRValidatorUKCore:snap",
-        "Payload": {
-            "body": {
-                "resourceType": "Bundle",
-                "type": "transaction",
-                "entry": [
-                    {
-                        "fullUrl": "urn:uuid:4d70678c-81e4-4ff4-8c67-17596fd0aa46",
-                        "resource": {
-                            "resourceType": "Task",
-                            "id": "4d70678c-81e4-4ff4-8c67-17596fd0aa46",
-                            "basedOn": [
-                                {
-                                    "identifier": {
-                                        "system": "https://fhir.nhs.uk/Id/prescription-order-number",
-                                        "value": "16B2E0-A83008-81C13H"
-                                    }
-                                }
-                            ],
-                            "status": "completed",
-                            "businessStatus": {
-                                "coding": [
-                                    {
-                                        "system": "https://fhir.nhs.uk/CodeSystem/task-businessStatus-nppt",
-                                        "code": "dispatched"
-                                    }
-                                ]
-                            },
-                            "intent": "order",
-                            "focus": {
-                                "identifier": {
-                                    "system": "https://fhir.nhs.uk/Id/prescription-order-item-number",
-                                    "value": "6989b7bd-8db6-428c-a593-4022e3044c00"
-                                }
-                            },
-                            "for": {
-                                "identifier": {
-                                    "system": "https://fhir.nhs.uk/Id/nhs-number",
-                                    "value": "9449304130"
-                                }
-                            },
-                            "lastModified": "2023-10-11T10:11:12Z",
-                            "owner": {
-                                "identifier": {
-                                    "system": "https://fhir.nhs.uk/Id/ods-organization-code",
-                                    "value": "C9Z1O"
-                                }
+    "body": {
+        "resourceType": "Bundle",
+        "type": "transaction",
+        "entry": [
+            {
+                "fullUrl": "urn:uuid:4d70678c-81e4-4ff4-8c67-17596fd0aa46",
+                "resource": {
+                    "resourceType": "Task",
+                    "id": "4d70678c-81e4-4ff4-8c67-17596fd0aa46",
+                    "basedOn": [
+                        {
+                            "identifier": {
+                                "system": "https://fhir.nhs.uk/Id/prescription-order-number",
+                                "value": "16B2E0-A83008-81C13H"
                             }
-                        },
-                        "request": {
-                            "method": "POST",
-                            "url": "Task"
+                        }
+                    ],
+                    "status": "completed",
+                    "businessStatus": {
+                        "coding": [
+                            {
+                                "system": "https://fhir.nhs.uk/CodeSystem/task-businessStatus-nppt",
+                                "code": "dispatched"
+                            }
+                        ]
+                    },
+                    "intent": "order",
+                    "focus": {
+                        "identifier": {
+                            "system": "https://fhir.nhs.uk/Id/prescription-order-item-number",
+                            "value": "6989b7bd-8db6-428c-a593-4022e3044c00"
+                        }
+                    },
+                    "for": {
+                        "identifier": {
+                            "system": "https://fhir.nhs.uk/Id/nhs-number",
+                            "value": "9449304130"
+                        }
+                    },
+                    "lastModified": "2023-10-11T10:11:12Z",
+                    "owner": {
+                        "identifier": {
+                            "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+                            "value": "C9Z1O"
                         }
                     }
-                ]
-            },
-            "headers": {
-                "Accept": "*/*",
-                "Accept-Encoding": "gzip, deflate, br",
-                "apigw-request-id": "a2114da1-2935-4c68-8121-7269f7383552",
-                "Authorization": "Bearer nSoPA0PNA2JG8phqPwtCn9ys1G6z",
-                "Content-Type": "application/json",
-                "Host": "psu-pr-150.dev.eps.national.nhs.uk",
-                "nhsd-nhslogin-user": "P9:9912003071",
-                "Postman-Token": "adbc0b2b-b61d-43e0-9050-7785b3f2f5a3",
-                "User-Agent": "PostmanRuntime/7.37.3",
-                "X-Amzn-Trace-Id": "Root=1-6628e1dc-429207b1594115310e245db3",
-                "x-correlation-id": "186977df-f0dd-442d-8ee1-adb8758b9641",
-                "X-Forwarded-For": "86.5.218.71",
-                "X-Forwarded-Port": "443",
-                "X-Forwarded-Proto": "https",
-                "x-request-id": "9220bf1b-89d6-40e7-8d76-8a95315b3da5"
-            },
-            "querystring": {},
-            "path": {}
-        }
+                },
+                "request": {
+                    "method": "POST",
+                    "url": "Task"
+                }
+            }
+        ]
     },
-    "region": "eu-west-2",
-    "resource": "invoke",
-    "resourceType": "lambda"
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "apigw-request-id": "5600dff8-6553-42e3-a0ff-c2c9d04d3de6",
+        "Authorization": "Bearer nSoPA0PNA2JG8phqPwtCn9ys1G6z",
+        "Content-Type": "application/json",
+        "Host": "psu-pr-150.dev.eps.national.nhs.uk",
+        "nhsd-nhslogin-user": "P9:9912003071",
+        "Postman-Token": "8ca7a240-0b9e-4c1f-90d8-a526faa533e2",
+        "User-Agent": "PostmanRuntime/7.37.3",
+        "X-Amzn-Trace-Id": "Root=1-66290323-47ec5ff50d05147878b956d3",
+        "x-correlation-id": "ead03d9a-d14e-414d-9e01-217319210ddd",
+        "X-Forwarded-For": "86.5.218.71",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https",
+        "x-request-id": "c39f1caa-cd63-438d-bc2b-fafd3f02ed41"
+    },
+    "querystring": {},
+    "path": {}
 }

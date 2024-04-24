@@ -52,10 +52,7 @@ public class HandlerStream implements RequestStreamHandler {
             }
             String rawInput = result.toString();
             log.info(rawInput);
-            JsonObject jsonPayload = JsonParser.parseString(rawInput)
-                .getAsJsonObject().get("parameters")
-                .getAsJsonObject().get("Payload")
-                .getAsJsonObject();
+            JsonObject jsonPayload = JsonParser.parseString(rawInput).getAsJsonObject();
             JsonObject headers = jsonPayload.get("headers").getAsJsonObject();
             String xRequestID = headers.get("x-request-id") == null ? "" : headers.get("x-request-id").getAsString();
             LoggingUtils.appendKey("x-request-id", xRequestID);
