@@ -55,13 +55,13 @@ public class HandlerStream implements RequestStreamHandler {
             log.info(rawInput);
             JsonObject jsonObject = JsonParser.parseString(rawInput).getAsJsonObject();
             JsonObject headers = jsonObject.get("headers").getAsJsonObject();
-            LoggingUtils.appendKey("x-request-id", headers.get("x-request-id").getAsString());
-            LoggingUtils.appendKey("nhsd-correlation-id", headers.get("nhsd-correlation-id").getAsString());
-            LoggingUtils.appendKey("nhsd-request-id", headers.get("nhsd-request-id").getAsString());
-            LoggingUtils.appendKey("x-correlation-id", headers.get("x-correlation-id").getAsString());
-            LoggingUtils.appendKey("apigw-request-id", headers.get("apigw-request-id").getAsString());
+            LoggingUtils.appendKey("x-request-id", headers.get("x-request-id").toString());
+            LoggingUtils.appendKey("nhsd-correlation-id", headers.get("nhsd-correlation-id").toString());
+            LoggingUtils.appendKey("nhsd-request-id", headers.get("nhsd-request-id").toString());
+            LoggingUtils.appendKey("x-correlation-id", headers.get("x-correlation-id").toString());
+            LoggingUtils.appendKey("apigw-request-id", headers.get("apigw-request-id").toString());
             log.info("Got all the headers");
-            String validatorResult = validateController.validate(jsonObject.get("body").getAsString());
+            String validatorResult = validateController.validate(jsonObject.get("body").toString());
 
 
             try (PrintWriter writer = new PrintWriter(outputStream)) {
