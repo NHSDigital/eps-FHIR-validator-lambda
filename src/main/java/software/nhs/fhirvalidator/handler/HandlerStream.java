@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -29,7 +28,7 @@ public class HandlerStream implements RequestStreamHandler {
         log.info("Creating the Validator instance for the first time...");
         String manifest_file = System.getenv("PROFILE_MANIFEST_FILE");
         if (manifest_file == null) {
-            manifest_file = "nhs_digital.manifest.json";
+            manifest_file = "uk_core.manifest.json";
         }
         log.info(String.format("Using manifest file : %s", manifest_file));
 
@@ -53,21 +52,25 @@ public class HandlerStream implements RequestStreamHandler {
             }
             String rawInput = result.toString();
             log.info(rawInput);
-            JsonObject jsonObject = JsonParser.parseString(rawInput).getAsJsonObject();
-            JsonObject headers = jsonObject.get("headers").getAsJsonObject();
-            String xRequestID = headers.get("x-request-id").isJsonNull() ? "" : headers.get("x-request-id").getAsString();
-            String nhsdCorrelationID = headers.get("nhsd-correlation-id").isJsonNull() ? "" : headers.get("nhsd-correlation-id").getAsString();
-            String nhsdRequestID = headers.get("nhsd-request-id").isJsonNull() ? "" : headers.get("nhsd-request-id").getAsString();
-            String xCorrelationID = headers.get("x-correlation-id").isJsonNull() ? "" : headers.get("x-correlation-id").getAsString();
-            String apigwRequestID = headers.get("apigw-request-id").isJsonNull() ? "" : headers.get("apigw-request-id").getAsString();
+            JsonObject jsonPayload = JsonParser.parseString(rawInput)
+                .getAsJsonObject().get("parameters")
+                .getAsJsonObject().get("Payload")
+                .getAsJsonObject();
+            JsonObject headers = jsonPayload.get("headers").getAsJsonObject();
+            String xRequestID = headers.get("x-request-id") == null ? "" : headers.get("x-request-id").getAsString();
             LoggingUtils.appendKey("x-request-id", xRequestID);
+            String nhsdCorrelationID = headers.get("nhsd-correlation-id") == null ? "" : headers.get("nhsd-correlation-id").getAsString();
             LoggingUtils.appendKey("nhsd-correlation-id", nhsdCorrelationID);
+            String nhsdRequestID = headers.get("nhsd-request-id") == null ? "" : headers.get("nhsd-request-id").getAsString();
             LoggingUtils.appendKey("nhsd-request-id", nhsdRequestID);
+            String xCorrelationID = headers.get("x-correlation-id") == null ? "" : headers.get("x-correlation-id").getAsString();
             LoggingUtils.appendKey("x-correlation-id", xCorrelationID);
+            String apigwRequestID = headers.get("apigw-request-id") == null ? "" : headers.get("apigw-request-id").getAsString();
             LoggingUtils.appendKey("apigw-request-id", apigwRequestID);
-            log.info("Got all the headers");
-            String validatorResult = validateController.validate(jsonObject.get("body").toString());
-
+ 
+            log.info("Calling validate function");
+            String validatorResult = validateController.validate(jsonPayload.get("body").toString());
+            log.info(validatorResult);
 
             try (PrintWriter writer = new PrintWriter(outputStream)) {
                 writer.print(validatorResult);

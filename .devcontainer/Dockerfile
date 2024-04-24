@@ -6,10 +6,11 @@ RUN apt-get update \
     && apt-get -y install --no-install-recommends htop vim curl git build-essential \
     libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev libbz2-dev \
     zlib1g-dev unixodbc unixodbc-dev libsecret-1-0 libsecret-1-dev libsqlite3-dev \
-    openjdk-8-jdk jq apt-transport-https ca-certificates gnupg-agent \
+    jq apt-transport-https ca-certificates gnupg-agent \
     software-properties-common bash-completion python3-pip make libbz2-dev \
     libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev liblzma-dev netcat ruby-full build-essential zlib1g-dev
+    xz-utils tk-dev liblzma-dev netcat ruby-full build-essential zlib1g-dev \
+    && apt remove -y openjdk-8-jdk-headless openjdk-8-jre-headless openjdk-8-jre
 
 # install aws stuff
 RUN wget -O /tmp/awscliv2.zip "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" && \
