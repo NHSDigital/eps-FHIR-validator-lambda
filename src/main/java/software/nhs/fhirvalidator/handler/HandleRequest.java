@@ -37,13 +37,15 @@ public class HandleRequest implements RequestHandler<APIGatewayProxyRequestEvent
     @Logging(clearState = true, correlationIdPath = "/headers/x-request-id")
     @Override
     public String handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
+        log.info(input.toString());
         LoggingUtils.appendKey("x-request-id", input.getHeaders().get("x-request-id"));
         LoggingUtils.appendKey("nhsd-correlation-id", input.getHeaders().get("nhsd-correlation-id"));
         LoggingUtils.appendKey("nhsd-request-id", input.getHeaders().get("nhsd-request-id"));
         LoggingUtils.appendKey("x-correlation-id", input.getHeaders().get("x-correlation-id"));
         LoggingUtils.appendKey("apigw-request-id", input.getHeaders().get("apigw-request-id"));
-        log.info(input.toString());
+
         String validatorResult = validateController.validate(input.getBody());
+        log.info(validatorResult);
         return validatorResult;
     }
 }
