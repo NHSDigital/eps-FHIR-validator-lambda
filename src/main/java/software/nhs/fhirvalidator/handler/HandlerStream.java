@@ -55,11 +55,16 @@ public class HandlerStream implements RequestStreamHandler {
             log.info(rawInput);
             JsonObject jsonObject = JsonParser.parseString(rawInput).getAsJsonObject();
             JsonObject headers = jsonObject.get("headers").getAsJsonObject();
-            LoggingUtils.appendKey("x-request-id", headers.get("x-request-id").toString());
-            LoggingUtils.appendKey("nhsd-correlation-id", headers.get("nhsd-correlation-id").toString());
-            LoggingUtils.appendKey("nhsd-request-id", headers.get("nhsd-request-id").toString());
-            LoggingUtils.appendKey("x-correlation-id", headers.get("x-correlation-id").toString());
-            LoggingUtils.appendKey("apigw-request-id", headers.get("apigw-request-id").toString());
+            String xRequestID = headers.get("x-request-id").isJsonNull() ? "" : headers.get("x-request-id").getAsString();
+            String nhsdCorrelationID = headers.get("nhsd-correlation-id").isJsonNull() ? "" : headers.get("nhsd-correlation-id").getAsString();
+            String nhsdRequestID = headers.get("nhsd-request-id").isJsonNull() ? "" : headers.get("nhsd-request-id").getAsString();
+            String xCorrelationID = headers.get("x-correlation-id").isJsonNull() ? "" : headers.get("x-correlation-id").getAsString();
+            String apigwRequestID = headers.get("apigw-request-id").isJsonNull() ? "" : headers.get("apigw-request-id").getAsString();
+            LoggingUtils.appendKey("x-request-id", xRequestID);
+            LoggingUtils.appendKey("nhsd-correlation-id", nhsdCorrelationID);
+            LoggingUtils.appendKey("nhsd-request-id", nhsdRequestID);
+            LoggingUtils.appendKey("x-correlation-id", xCorrelationID);
+            LoggingUtils.appendKey("apigw-request-id", apigwRequestID);
             log.info("Got all the headers");
             String validatorResult = validateController.validate(jsonObject.get("body").toString());
 
