@@ -1,18 +1,8 @@
 package software.nhs.fhirvalidator.handler;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
-import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +21,7 @@ public class HandleRequest implements RequestHandler<APIGatewayProxyRequestEvent
         log.info("Creating the Validator instance for the first time...");
         String manifest_file = System.getenv("PROFILE_MANIFEST_FILE");
         if (manifest_file == null) {
-            manifest_file = "nhs_digital.manifest.json";
+            manifest_file = "uk_core.manifest.json";
         }
         log.info(String.format("Using manifest file : %s", manifest_file));
 
@@ -44,7 +34,7 @@ public class HandleRequest implements RequestHandler<APIGatewayProxyRequestEvent
         log.info("Validator is ready");
     }
 
-    @Logging(clearState = true, correlationIdPath = "/headers/x-request-id", logEvent = true)
+    @Logging(clearState = true, correlationIdPath = "/headers/x-request-id")
     @Override
     public String handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
         LoggingUtils.appendKey("x-request-id", input.getHeaders().get("x-request-id"));
@@ -52,6 +42,7 @@ public class HandleRequest implements RequestHandler<APIGatewayProxyRequestEvent
         LoggingUtils.appendKey("nhsd-request-id", input.getHeaders().get("nhsd-request-id"));
         LoggingUtils.appendKey("x-correlation-id", input.getHeaders().get("x-correlation-id"));
         LoggingUtils.appendKey("apigw-request-id", input.getHeaders().get("apigw-request-id"));
+        log.info(input.toString());
         String validatorResult = validateController.validate(input.getBody());
         return validatorResult;
     }
