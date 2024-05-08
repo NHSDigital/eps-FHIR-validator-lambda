@@ -62,7 +62,7 @@ Resources:
       Role: !GetAtt FHIRValidatorUKCoreResources.Outputs.LambdaRoleArn
       SnapStart:
         ApplyOn: PublishedVersions
-      AutoPublishAlias: snapv1
+      AutoPublishAlias: snap
       Timeout: 600
       MemorySize: 4096
       Architectures:
