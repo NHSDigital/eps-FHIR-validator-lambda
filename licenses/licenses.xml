@@ -47,10 +47,12 @@
             <names>
                 <name>The MIT License</name>
                 <name>MIT License</name>
+                <name>MIT</name>
             </names>
             <urls>
                 <url>http://code.google.com/p/mockito/wiki/License</url>
                 <url>http://www.opensource.org/licenses/mit-license</url>
+                <url>https://opensource.org/licenses/MIT</url>
             </urls>
         </license>
         <license>

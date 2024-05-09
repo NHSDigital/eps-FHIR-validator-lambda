@@ -8,11 +8,14 @@ import java.io.PrintWriter;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import software.amazon.lambda.powertools.logging.Logging;
+import software.amazon.lambda.powertools.logging.LoggingUtils;
 import software.nhs.fhirvalidator.controller.ValidateController;
 import software.nhs.fhirvalidator.util.ResourceUtils;
 
@@ -25,7 +28,7 @@ public class HandlerStream implements RequestStreamHandler {
         log.info("Creating the Validator instance for the first time...");
         String manifest_file = System.getenv("PROFILE_MANIFEST_FILE");
         if (manifest_file == null) {
-            manifest_file = "nhs_digital.manifest.json";
+            manifest_file = "uk_core.manifest.json";
         }
         log.info(String.format("Using manifest file : %s", manifest_file));
 
@@ -49,8 +52,22 @@ public class HandlerStream implements RequestStreamHandler {
             }
             String rawInput = result.toString();
             log.info(rawInput);
-
-            String validatorResult = validateController.validate(rawInput);
+            JsonObject jsonPayload = JsonParser.parseString(rawInput).getAsJsonObject();
+            JsonObject headers = jsonPayload.get("headers").getAsJsonObject();
+            String xRequestID = headers.get("x-request-id") == null ? "" : headers.get("x-request-id").getAsString();
+            LoggingUtils.appendKey("x-request-id", xRequestID);
+            String nhsdCorrelationID = headers.get("nhsd-correlation-id") == null ? "" : headers.get("nhsd-correlation-id").getAsString();
+            LoggingUtils.appendKey("nhsd-correlation-id", nhsdCorrelationID);
+            String nhsdRequestID = headers.get("nhsd-request-id") == null ? "" : headers.get("nhsd-request-id").getAsString();
+            LoggingUtils.appendKey("nhsd-request-id", nhsdRequestID);
+            String xCorrelationID = headers.get("x-correlation-id") == null ? "" : headers.get("x-correlation-id").getAsString();
+            LoggingUtils.appendKey("x-correlation-id", xCorrelationID);
+            String apigwRequestID = headers.get("apigw-request-id") == null ? "" : headers.get("apigw-request-id").getAsString();
+            LoggingUtils.appendKey("apigw-request-id", apigwRequestID);
+ 
+            log.info("Calling validate function");
+            String validatorResult = validateController.validate(jsonPayload.get("body").toString());
+            log.info(validatorResult);
 
             try (PrintWriter writer = new PrintWriter(outputStream)) {
                 writer.print(validatorResult);
