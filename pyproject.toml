@@ -22,7 +22,7 @@ repository = "https://github.com/NHSDigital/eps-FHIR-validator-lambda"
 
 [tool.poetry.dependencies]
 python = "3.8.15"
-requests = "^2.31.0"
+requests = "^2.32.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^7.0.0"
