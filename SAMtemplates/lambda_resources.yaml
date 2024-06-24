@@ -11,7 +11,7 @@ Parameters:
   CloudWatchKMSKey:
     Type: String
     Description: Cloudwatch KMS key
-    Default: none
+    AllowedPattern: "^arn:[a-z0-9-]+:kms:[a-z0-9-]+:\\d{12}:(key|alias)/.+\\Z"
   SplunkSubscriptionFilterRole:
     Type: String
     Description: Subscription filter role for sending logs to splunk
@@ -31,7 +31,7 @@ Parameters:
   LambdaArn:
     Type: String
     Description: Arn of lambda we are creating resources for.
-    Default: none
+    AllowedPattern: "^(arn:(aws|aws-cn|aws-us-gov):[^:]+:[^:]*:(?:\\d{12}|\\*)?:.+|\\*)$"
   LogRetentionDays:
     Type: Number
     Description: How long to keep logs for
