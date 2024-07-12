@@ -115,13 +115,13 @@ files = [
 
 [[package]]
 name = "cfn-lint"
-version = "1.5.0"
+version = "1.6.0"
 description = "Checks CloudFormation templates for practices and behaviour that could potentially be improved"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "cfn_lint-1.5.0-py3-none-any.whl", hash = "sha256:46ecae4dc6dc0eedf7a4169fbe24d893ff3125c3b53d05d3cab196f704709731"},
-    {file = "cfn_lint-1.5.0.tar.gz", hash = "sha256:7fdcf1b1393ace49d50f7e8f047f90811a1c463a1cd57489d4781a31f205a8d0"},
+    {file = "cfn_lint-1.6.0-py3-none-any.whl", hash = "sha256:d0d3db1e9a41de976abf6c3df83e04be95115a306dd13f408cf125fdbc2ae455"},
+    {file = "cfn_lint-1.6.0.tar.gz", hash = "sha256:bb88febce2dbe1cbcdb74d2d545667c40af964942524d32038eb62d0c1ae1556"},
 ]
 
 [package.dependencies]
@@ -460,20 +460,21 @@ setuptools = "*"
 
 [[package]]
 name = "pip-licenses"
-version = "4.4.0"
+version = "4.5.0"
 description = "Dump the software license list of Python packages installed with pip."
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "pip-licenses-4.4.0.tar.gz", hash = "sha256:996817118375445243a34faafe23c06f6b2d250247c4046571b5a6722d45be69"},
-    {file = "pip_licenses-4.4.0-py3-none-any.whl", hash = "sha256:dbad2ac5a25f574cabe2716f2f031a0c5fa359bed9b3ef615301f4e546893b46"},
+    {file = "pip-licenses-4.5.0.tar.gz", hash = "sha256:ef00cecd58ea9a9484f11ddaa4baa6994b611e94239a4449b98e0feb309074a5"},
+    {file = "pip_licenses-4.5.0-py3-none-any.whl", hash = "sha256:1f52b73654dddb2ad0e3853e3884fb8aee1226bae7897b0e4122ad983c942f75"},
 ]
 
 [package.dependencies]
 prettytable = ">=2.3.0"
+tomli = ">=2"
 
 [package.extras]
-test = ["docutils", "mypy", "pytest-cov", "pytest-pycodestyle", "pytest-runner"]
+test = ["docutils", "mypy", "pytest-cov", "pytest-pycodestyle", "pytest-runner", "tomli-w"]
 
 [[package]]
 name = "pkgutil-resolve-name"
@@ -1047,6 +1048,17 @@ files = [
 mpmath = ">=0.19"
 
 [[package]]
+name = "tomli"
+version = "2.0.1"
+description = "A lil' TOML parser"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
+    {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.10.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -1122,4 +1134,4 @@ test = ["big-O", "jaraco.functools", "jaraco.itertools", "jaraco.test", "more-it
 [metadata]
 lock-version = "2.0"
 python-versions = "3.8.15"
-content-hash = "eb71a5741b9b32140d2de7c066a737c261142a014704162af1516ee46c210673"
+content-hash = "35ab46efa05591233cec0dee6ea495f6c0fcd1a34c60bff2d88f86ccdccc5eba"
