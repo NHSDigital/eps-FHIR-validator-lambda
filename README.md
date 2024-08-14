@@ -185,6 +185,8 @@ These are used to do common commands
 - `lint-githubactions` runs lint for github actions
 - `lint-githubactions-scriptns` runs lint for github actions scripts
 - `test` runs unit tests for all code
+- `cfn-guard` runs cfn-guard for sam and cloudformation templates
+
 
 #### Compiling
 
