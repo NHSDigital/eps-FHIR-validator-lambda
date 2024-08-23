@@ -75,6 +75,12 @@ Resources:
           AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
           POWERTOOLS_LOG_LEVEL: !Ref LogLevel
           PROFILE_MANIFEST_FILE: uk_core.manifest.json
+    Metadata:
+      guard:
+        SuppressedRules:
+          - LAMBDA_DLQ_CHECK
+          - LAMBDA_INSIDE_VPC
+          - LAMBDA_CONCURRENCY_CHECK
 
 Outputs:
   FHIRValidatorUKCoreLambdaName:
