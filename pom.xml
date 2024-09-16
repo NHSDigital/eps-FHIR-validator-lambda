@@ -18,7 +18,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fhir.version>7.2.2</fhir.version>
+        <fhir.version>7.4.0</fhir.version>
         <log4j.version>2.24.0</log4j.version>
         <fasterxml.version>2.17.2</fasterxml.version>
         <sonar.organization>nhsdigital</sonar.organization>
