@@ -10,6 +10,25 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
                     "valueInteger": 1004
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[0].resource/*Task/4d70678c-81e4-4ff4-8c67-17596fd0aa46*/",
+                "Line[1] Col[1004]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1004
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",

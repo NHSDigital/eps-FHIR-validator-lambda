@@ -69,7 +69,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/successfulResult.json");
+        String expectedResult = ResourceUtils.getResourceContent("results/validSimpleBundle.json");
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -124,7 +124,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/successfulResult.json");
+        String expectedResult = ResourceUtils.getResourceContent("results/validParameters.json");
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -150,7 +150,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/successfulResult.json");
+        String expectedResult = ResourceUtils.getResourceContent("results/successfulOperationOutcome.json");
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);

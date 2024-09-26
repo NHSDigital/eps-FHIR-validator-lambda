@@ -10,6 +10,25 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
                     "valueInteger": 1227
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1227]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1227
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
@@ -44,7 +63,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -53,11 +72,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1227]"
@@ -138,7 +157,7 @@
             ],
             "severity": "information",
             "code": "processing",
-            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
                 "Line[1] Col[499]"
@@ -156,7 +175,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -165,11 +184,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "diagnostics": "Slice 'CodeableConcept.coding:SNOMED': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
                 "Line[1] Col[501]"
@@ -218,7 +237,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -227,11 +246,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[779]"
@@ -311,7 +330,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -320,14 +339,33 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[1186]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2326
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[1].resource/*MedicationRequest/null*/",
+                "Line[1] Col[2326]"
             ]
         },
         {
@@ -373,7 +411,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -382,11 +420,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/",
                 "Line[1] Col[2326]"
@@ -467,7 +505,7 @@
             ],
             "severity": "information",
             "code": "processing",
-            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
                 "Line[1] Col[1598]"
@@ -485,7 +523,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -494,11 +532,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "diagnostics": "Slice 'CodeableConcept.coding:SNOMED': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
                 "Line[1] Col[1600]"
@@ -547,7 +585,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -556,11 +594,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[1878]"
@@ -640,7 +678,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -649,14 +687,33 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[2285]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3438
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[2].resource/*MedicationRequest/null*/",
+                "Line[1] Col[3438]"
             ]
         },
         {
@@ -702,7 +759,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -711,11 +768,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/",
                 "Line[1] Col[3438]"
@@ -796,7 +853,7 @@
             ],
             "severity": "information",
             "code": "processing",
-            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
                 "Line[1] Col[2710]"
@@ -814,7 +871,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -823,11 +880,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "diagnostics": "Slice 'CodeableConcept.coding:SNOMED': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
                 "Line[1] Col[2712]"
@@ -876,7 +933,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -885,11 +942,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[2990]"
@@ -969,7 +1026,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -978,14 +1035,33 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[3397]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4538
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[3].resource/*MedicationRequest/null*/",
+                "Line[1] Col[4538]"
             ]
         },
         {
@@ -1031,7 +1107,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1040,11 +1116,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/",
                 "Line[1] Col[4538]"
@@ -1125,7 +1201,7 @@
             ],
             "severity": "information",
             "code": "processing",
-            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
                 "Line[1] Col[3810]"
@@ -1143,7 +1219,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1152,11 +1228,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "diagnostics": "Slice 'CodeableConcept.coding:SNOMED': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
                 "Line[1] Col[3812]"
@@ -1205,7 +1281,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1214,11 +1290,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[4090]"
@@ -1298,7 +1374,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1307,14 +1383,109 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[4497]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 4934
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[4].resource/*PractitionerRole/56166769-c1c4-4d07-afa8-132b5dfca666*/",
+                "Line[1] Col[4934]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 5225
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[5].resource/*Practitioner/a8c85454-f8cb-498d-9629-78e2cb5fa47a*/",
+                "Line[1] Col[5225]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 5792
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[6].resource/*Organization/3b4b03a5-52ba-4ba6-9b82-70350aa109d8*/",
+                "Line[1] Col[5792]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 6406
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[7].resource/*Organization/afb07f8b-e8d7-4cad-895d-494e6b35b2a1*/",
+                "Line[1] Col[6406]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1149
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1149]"
             ]
         },
         {
@@ -1360,7 +1531,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1369,11 +1540,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1149]"
@@ -1454,7 +1625,7 @@
             ],
             "severity": "information",
             "code": "processing",
-            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
                 "Line[1] Col[495]"
@@ -1472,7 +1643,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1481,11 +1652,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "diagnostics": "Slice 'CodeableConcept.coding:SNOMED': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
                 "Line[1] Col[497]"
@@ -1534,7 +1705,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1543,11 +1714,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[775]"
@@ -1627,7 +1798,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1636,14 +1807,71 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[1108]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1545
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[1].resource/*PractitionerRole/815c6eb3-41f8-4f48-9e0d-2983624d4f90*/",
+                "Line[1] Col[1545]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1840
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[2].resource/*Practitioner/acd5b009-c78f-40f2-a48b-b38ac72de992*/",
+                "Line[1] Col[1840]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2403
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[3].resource/*Organization/9683c147-ddad-41d9-9858-6e585c3f04df*/",
+                "Line[1] Col[2403]"
             ]
         },
         {
@@ -1666,6 +1894,25 @@
             "diagnostics": "URN reference is not locally contained within the bundle urn:uuid:56166769-c1c4-4d07-afa8-132b5dfca666",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.requester"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1227
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[0].resource/*MedicationRequest/null*/",
+                "Line[1] Col[1227]"
             ]
         },
         {
@@ -1711,7 +1958,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1720,11 +1967,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1227]"
@@ -1805,7 +2052,7 @@
             ],
             "severity": "information",
             "code": "processing",
-            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
                 "Line[1] Col[499]"
@@ -1823,7 +2070,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1832,11 +2079,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "diagnostics": "Slice 'CodeableConcept.coding:SNOMED': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept)",
                 "Line[1] Col[501]"
@@ -1885,7 +2132,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1894,11 +2141,11 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[779]"
@@ -1978,7 +2225,7 @@
                 },
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
+                    "valueString": "Validation_VAL_Profile_Minimum_SLICE"
                 }
             ],
             "severity": "error",
@@ -1987,14 +2234,90 @@
                 "coding": [
                     {
                         "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
+                        "code": "Validation_VAL_Profile_Minimum_SLICE"
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[1186]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1623
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[1].resource/*PractitionerRole/815c6eb3-41f8-4f48-9e0d-2983624d4f90*/",
+                "Line[1] Col[1623]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 1918
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[2].resource/*Practitioner/acd5b009-c78f-40f2-a48b-b38ac72de992*/",
+                "Line[1] Col[1918]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 2481
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[3].resource/*Organization/9683c147-ddad-41d9-9858-6e585c3f04df*/",
+                "Line[1] Col[2481]"
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+                    "valueInteger": 1
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+                    "valueInteger": 3089
+                }
+            ],
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "location": [
+                "Bundle.entry[4].resource/*Organization/154dcc4a-0006-4272-9758-9dcb8d95ce8b*/",
+                "Line[1] Col[3089]"
             ]
         }
     ]

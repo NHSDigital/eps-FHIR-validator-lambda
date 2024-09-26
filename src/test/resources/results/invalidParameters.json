@@ -10,11 +10,23 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
                     "valueInteger": 63
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "http://hl7.org/fhir/StructureDefinition/Parameters#inv-1"
                 }
             ],
             "severity": "error",
             "code": "processing",
-            "diagnostics": "Rule inv-1: 'A parameter must have one and only one of (value, resource, part)' Failed",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "http://hl7.org/fhir/StructureDefinition/Parameters#inv-1"
+                    }
+                ]
+            },
+            "diagnostics": "Constraint failed: inv-1: 'A parameter must have one and only one of (value, resource, part)'",
             "location": [
                 "Parameters.parameter[0]",
                 "Line[1] Col[63]"
