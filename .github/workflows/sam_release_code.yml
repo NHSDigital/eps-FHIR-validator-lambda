@@ -39,6 +39,9 @@ on:
       MARK_JIRA_RELEASED:
         type: boolean
         default: false
+      ENABLE_ALERTS:
+        type: boolean
+        default: true
     secrets:
       CLOUD_FORMATION_DEPLOY_ROLE:
         required: true
@@ -105,6 +108,7 @@ jobs:
           TARGET_ENVIRONMENT: ${{ inputs.TARGET_ENVIRONMENT }}
           template_file: template.yaml
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
+          ENABLE_ALERTS: ${{ inputs.ENABLE_ALERTS }}
         run: ./release_code.sh
 
       - name: create_int_release_notes
