@@ -20,7 +20,8 @@ Resources:
       FilterName: FHIRValidatorErrors
       # Catch any messages that are strings that contain line breaks (Java stack traces)
       FilterPattern: '{ ($.message = "error") }'
-      LogGroupName: !Sub /aws/lambda/{FHIRValidatorUKCoreLambdaName}
+      LogGroupName:
+        Fn::ImportValue: !Sub ${StackName}:functions:${FHIRValidatorUKCoreLambdaName}:LambdaLogGroupName
       MetricTransformations:
         - MetricNamespace: LambdaLogFilterMetrics
           MetricName: ErrorCount
