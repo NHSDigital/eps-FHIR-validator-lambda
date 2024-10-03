@@ -101,7 +101,8 @@ sam-deploy-package: guard-artifact_bucket guard-artifact_bucket_prefix guard-sta
 		--parameter-overrides \
 			  EnableSplunk=true \
 			  LogLevel=$$LOG_LEVEL \
-			  LogRetentionDays=$$LOG_RETENTION_DAYS 
+			  LogRetentionDays=$$LOG_RETENTION_DAYS \
+			  EnableAlerts=$$ENABLE_ALERTS
 
 aws-configure:
 	aws configure sso --region eu-west-2
