@@ -21,15 +21,12 @@ Resources:
       # Catch any messages that are strings that contain line breaks (Java stack traces)
       FilterPattern: '{ ($.message = "error") }'
       LogGroupName:
-        Fn::ImportValue: !Sub ${StackName}:${FHIRValidatorUKCoreLambdaName}:LambdaLogGroupName
+        Fn::ImportValue: !Sub ${StackName}:FHIRValidatorUKCoreResources:LambdaLogGroupName
       MetricTransformations:
         - MetricNamespace: LambdaLogFilterMetrics
           MetricName: ErrorCount
           MetricValue: 1
           Unit: Count
-          Dimensions:
-            - Key: FunctionName
-              Value: !Ref FHIRValidatorUKCoreLambdaName
 
   FHIRValidatorErrorsAlarm:
     Type: AWS::CloudWatch::Alarm
