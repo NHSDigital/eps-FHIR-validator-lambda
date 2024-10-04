@@ -18,8 +18,8 @@ Resources:
     Type: AWS::Logs::MetricFilter
     Properties:
       FilterName: FHIRValidatorErrors
-      # Catch any messages that are strings that contain line breaks (Java stack traces)
-      FilterPattern: '{ ($.message = "error") }'
+      # Catch java exceptions
+      FilterPattern: Exception
       LogGroupName:
         Fn::ImportValue: !Sub ${StackName}:functions:${FHIRValidatorUKCoreLambdaName}:LambdaLogGroupName
       MetricTransformations:
