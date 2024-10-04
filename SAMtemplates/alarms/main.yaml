@@ -35,9 +35,6 @@ Resources:
       AlarmName: !Sub ${StackName}_FHIR_Validator_Errors
       Namespace: LambdaLogFilterMetrics
       MetricName: !Sub ${StackName}FHIRValidatorErrorCount
-      Dimensions:
-        - Name: FunctionName
-          Value: !Ref FHIRValidatorUKCoreLambdaName
       Period: 60 #seconds
       EvaluationPeriods: 1
       Statistic: Sum
