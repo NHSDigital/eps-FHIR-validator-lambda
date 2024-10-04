@@ -32,7 +32,7 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmDescription: Count of FHIR Validator system errors
-      AlarmName: !Sub ${StackName}_FHIR_Validator_Errors
+      AlarmName: !Sub ${StackName}_FhirValidator_Errors
       Namespace: LambdaLogFilterMetrics
       MetricName: !Sub ${StackName}FHIRValidatorErrorCount
       Period: 60 #seconds
