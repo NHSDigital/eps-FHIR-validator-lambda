@@ -69,5 +69,6 @@ jobs:
       COMMIT_ID: ${{ needs.get_commit_id.outputs.commit_id }}
       LOG_LEVEL: INFO
       LOG_RETENTION_DAYS: 30
+      ENABLE_ALERTS: false
     secrets:
       CLOUD_FORMATION_DEPLOY_ROLE: ${{ secrets.DEV_CLOUD_FORMATION_DEPLOY_ROLE }}

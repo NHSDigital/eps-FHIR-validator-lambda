@@ -139,3 +139,8 @@ Outputs:
   LambdaRole:
     Description: "LambdaRole"
     Value: !Ref LambdaRole
+  LogGroupName:
+    Description: Lambda log group name
+    Value: !Ref LambdaLogGroup
+    Export:
+      Name: !Sub ${StackName}:functions:${LambdaName}:LambdaLogGroupName

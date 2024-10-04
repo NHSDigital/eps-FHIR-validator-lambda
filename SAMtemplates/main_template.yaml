@@ -37,6 +37,12 @@ Parameters:
         3288,
         3653,
       ]
+  EnableAlerts:
+    Type: String
+    Default: true
+    AllowedValues:
+      - true
+      - false
 
 Resources:
   FHIRValidatorUKCoreResources:
@@ -81,6 +87,15 @@ Resources:
           - LAMBDA_DLQ_CHECK
           - LAMBDA_INSIDE_VPC
           - LAMBDA_CONCURRENCY_CHECK
+
+  Alarms:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: alarms/main.yaml
+      Parameters:
+        StackName: !Ref AWS::StackName
+        EnableAlerts: !Ref EnableAlerts
+        FHIRValidatorUKCoreLambdaName: !Ref FHIRValidatorUKCore
 
 Outputs:
   FHIRValidatorUKCoreLambdaName:

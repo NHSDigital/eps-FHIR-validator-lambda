@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: |
+  FHIR Validator Cloudwatch alarms and related resources
+
+Parameters:
+  StackName:
+    Type: String
+
+  EnableAlerts:
+    Type: String
+
+  FHIRValidatorUKCoreLambdaName:
+    Type: String
+
+Resources:
+  FHIRValidatorErrorLogsMetricFilter:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      FilterName: FHIRValidatorErrors
+      # Catch java exceptions
+      FilterPattern: Exception
+      LogGroupName:
+        Fn::ImportValue: !Sub ${StackName}:functions:${FHIRValidatorUKCoreLambdaName}:LambdaLogGroupName
+      MetricTransformations:
+        - MetricNamespace: LambdaLogFilterMetrics
+          MetricName: !Sub ${StackName}FHIRValidatorErrorCount
+          MetricValue: 1
+          Unit: Count
+
+  FHIRValidatorErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: Count of FHIR Validator system errors
+      AlarmName: !Sub ${StackName}_FhirValidator_Errors
+      Namespace: LambdaLogFilterMetrics
+      MetricName: !Sub ${StackName}FHIRValidatorErrorCount
+      Period: 60 #seconds
+      EvaluationPeriods: 1
+      Statistic: Sum
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      Threshold: 1
+      Unit: Count
+      TreatMissingData: notBreaching
+      ActionsEnabled: !Ref EnableAlerts
+      AlarmActions:
+        - !ImportValue lambda-resources:SlackAlertsSnsTopicArn
+      InsufficientDataActions:
+        - !ImportValue lambda-resources:SlackAlertsSnsTopicArn
+      OKActions:
+        - !ImportValue lambda-resources:SlackAlertsSnsTopicArn
