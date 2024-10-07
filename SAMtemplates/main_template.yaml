@@ -72,10 +72,10 @@ Resources:
       Timeout: 600
       MemorySize: 4096
       Architectures:
-        - x86_64
+        - arm64
       Runtime: java21
       Layers:
-        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:38"
+        - !Sub arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension-Arm64:20
       Environment:
         Variables:
           AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
