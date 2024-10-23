@@ -14,6 +14,10 @@ jobs:
     with:
       install_java: true
 
+  sonar_scan:
+    uses: ./.github/workflows/sonar.yml
+    needs: quality_checks
+    
   get_commit_id:
     runs-on: ubuntu-latest
     outputs:

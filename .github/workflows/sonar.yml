@@ -1,0 +1,21 @@
+name: Run SonarCloud scan
+
+on:
+  workflow_call:
+
+env:
+  BRANCH_NAME: ${{ github.event.ref.BRANCH_NAME }}
+
+jobs:
+  run_sonar_scan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: run tests and Sonar scan
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        # shellcheck source=/dev/null
+        . ~/.asdf/plugins/java/set-java-home.bash
+        make download-dependencies
+        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=NHSDigital_eps-FHIR-validator-lambda
