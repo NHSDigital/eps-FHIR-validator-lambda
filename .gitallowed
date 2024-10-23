@@ -2,3 +2,4 @@
 ./src/test
 ./.github/workflows
 ./.tool-versions
+./nhsd-rules-deny.txt
