@@ -31,8 +31,8 @@ jobs:
         with:
           path: |
             ~/.asdf
-            key: ${{ runner.os }}-asdf-${{ hashFiles('**/.tool-versions') }}
-            restore-keys: |
+          key: ${{ runner.os }}-asdf-${{ hashFiles('**/.tool-versions') }}
+          restore-keys: |
             ${{ runner.os }}-asdf-
 
       - name: Install asdf dependencies in .tool-versions
