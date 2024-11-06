@@ -24,7 +24,7 @@ DestinationCidrBlock: "0\.0\.0\.0/0"
 
 ^.*pom\.xml:.*<version>([^<]+)</version>.*$
 ^.*Gemfile\.lock:.*$
-^.*\.java:.*"id":"([0-9a-f\-]+)".*$
+^.*\.java:.*\\"id\\":\\"([0-9a-f\-]+)\\".*$
 
 # General ones
 .*\.gitallowed.*
