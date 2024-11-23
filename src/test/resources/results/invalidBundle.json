@@ -216,7 +216,7 @@
                     "valueString": "Terminology_PassThrough_TX_Message"
                 }
             ],
-            "severity": "information",
+            "severity": "warning",
             "code": "processing",
             "details": {
                 "coding": [
@@ -247,7 +247,7 @@
                     "valueString": "Terminology_PassThrough_TX_Message"
                 }
             ],
-            "severity": "information",
+            "severity": "warning",
             "code": "processing",
             "details": {
                 "coding": [
