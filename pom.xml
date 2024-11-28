@@ -18,8 +18,8 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fhir.version>7.4.5</fhir.version>
-        <log4j.version>2.24.1</log4j.version>
+        <fhir.version>7.6.0</fhir.version>
+        <log4j.version>2.24.2</log4j.version>
         <fasterxml.version>2.18.1</fasterxml.version>
         <sonar.organization>nhsdigital</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>io.github.hakky54</groupId>
             <artifactId>logcaptor</artifactId>
-            <version>2.9.3</version>
+            <version>2.10.0</version>
             <scope>test</scope>
         </dependency>
         <!--The
@@ -205,7 +205,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.5.2</version>
             </plugin>
             <plugin>
                 <groupId>dev.aspectj</groupId>

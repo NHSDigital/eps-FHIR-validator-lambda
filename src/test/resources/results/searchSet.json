@@ -153,10 +153,22 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
                     "valueInteger": 499
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "This_element_does_not_match_any_known_slice_"
                 }
             ],
             "severity": "information",
             "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "This_element_does_not_match_any_known_slice_"
+                    }
+                ]
+            },
             "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
@@ -501,10 +513,22 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
                     "valueInteger": 1598
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "This_element_does_not_match_any_known_slice_"
                 }
             ],
             "severity": "information",
             "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "This_element_does_not_match_any_known_slice_"
+                    }
+                ]
+            },
             "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
@@ -849,10 +873,22 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
                     "valueInteger": 2710
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "This_element_does_not_match_any_known_slice_"
                 }
             ],
             "severity": "information",
             "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "This_element_does_not_match_any_known_slice_"
+                    }
+                ]
+            },
             "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
@@ -1197,10 +1233,22 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
                     "valueInteger": 3810
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "This_element_does_not_match_any_known_slice_"
                 }
             ],
             "severity": "information",
             "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "This_element_does_not_match_any_known_slice_"
+                    }
+                ]
+            },
             "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
@@ -1621,10 +1669,22 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
                     "valueInteger": 495
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "This_element_does_not_match_any_known_slice_"
                 }
             ],
             "severity": "information",
             "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "This_element_does_not_match_any_known_slice_"
+                    }
+                ]
+            },
             "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
@@ -2048,10 +2108,22 @@
                 {
                     "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
                     "valueInteger": 499
+                },
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
+                    "valueString": "This_element_does_not_match_any_known_slice_"
                 }
             ],
             "severity": "information",
             "code": "processing",
+            "details": {
+                "coding": [
+                    {
+                        "system": "http://hl7.org/fhir/java-core-messageId",
+                        "code": "This_element_does_not_match_any_known_slice_"
+                    }
+                ]
+            },
             "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept (this may not be a problem, but you should check that it's not intended to match a slice) - Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]: Does not match slice 'SNOMED' (discriminator: ('http://snomed.info/sct' in system))",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.medication.ofType(CodeableConcept).coding[0]",
