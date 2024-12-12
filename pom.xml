@@ -23,7 +23,7 @@
         <fasterxml.version>2.18.2</fasterxml.version>
         <sonar.organization>nhsdigital</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.projectKey>eps-FHIR-validator-lambda</sonar.projectKey>
+        <sonar.projectKey>NHSDigital_eps-FHIR-validator-lambda</sonar.projectKey>
         <aspectj.version>1.9.22.1</aspectj.version>
     </properties>
     <dependencyManagement>
