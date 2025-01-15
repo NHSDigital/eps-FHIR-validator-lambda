@@ -1,5 +1,5 @@
 [project]
-python = "3.8.15"
+python = "3.12.7"
 
 [tool.poetry]
 name = "eps-FHIR-validator-lambda"
@@ -7,21 +7,13 @@ version = "0.0.1-alpha"
 description = "lambda for Validation Service FHIR R4 API Definitions"
 license = "MIT"
 authors = [
-    "Anthony Brown <anthony.brown8@nhs.net>",
-    "Matthew Popat <matthew.popat1@nhs.net>",
-    "Phil Gee <phil.gee@nhs.net>",
-    "Kris Szlapa <kris.szlapa1@nhs.net>",
-    "Jack Spagnoli <jack.spagnoli1@nhs.net>",
-    "Tom Smith <tom.smith24@nhs.net>",
-    "Adam Brown <adam.brown41@nhs.net>",
-    "Sean Steberis <sean.steberis2@nhs.net>",
-    "Natasa Fragkou <natasa.fragkou@nhs.net>"
+    "EPS"
 ]
 readme = "README.md"
 repository = "https://github.com/NHSDigital/eps-FHIR-validator-lambda"
 
 [tool.poetry.dependencies]
-python = "3.8.15"
+python = "3.12.7"
 requests = "^2.32.3"
 
 [tool.poetry.dev-dependencies]
