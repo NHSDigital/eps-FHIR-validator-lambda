@@ -62,6 +62,8 @@ deep-clean: clean
 	rm -rf .mvn
 	rm -rf src/main/main.iml
 	rm -rf src/test/test.iml
+	find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +
+	poetry env remove --all
 
 # build targets
 compile: download-dependencies
