@@ -4,20 +4,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 
 import org.hl7.fhir.common.hapi.validation.support.CachingValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.CommonCodeSystemsTerminologyService;
 import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport;
-import org.hl7.fhir.common.hapi.validation.support.NpmPackageValidationSupport;
+import org.hl7.fhir.common.hapi.validation.support.PrePopulatedValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.SnapshotGeneratingValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.ValidationSupportChain;
 import org.hl7.fhir.common.hapi.validation.validator.FhirInstanceValidator;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.CanonicalType;
+import org.hl7.fhir.r4.model.CodeSystem;
 import org.hl7.fhir.r4.model.ElementDefinition;
+import org.hl7.fhir.r4.model.Resource;
 import org.hl7.fhir.r4.model.StructureDefinition;
+import org.hl7.fhir.r4.model.ValueSet;
 import org.hl7.fhir.utilities.npm.NpmPackage;
 
 import ca.uhn.fhir.context.FhirContext;
@@ -25,6 +29,7 @@ import ca.uhn.fhir.context.support.ConceptValidationOptions;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.context.support.IValidationSupport;
 import ca.uhn.fhir.context.support.ValidationSupportContext;
+import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.rest.server.exceptions.InternalErrorException;
 import ca.uhn.fhir.util.ClasspathUtil;
 import ca.uhn.fhir.validation.FhirValidator;
@@ -48,6 +53,44 @@ public class ValidatorConfiguration {
 
     Logger log = LogManager.getLogger(ValidatorConfiguration.class);
 
+    private <T extends Resource> List<T> getResourcesOfType(NpmPackage npmPackage, T resourceType) throws IOException {
+        IParser jsonParser = fhirContext.newJsonParser();
+
+        return npmPackage.listResources(resourceType.fhirType()).stream()
+            .map(t -> {
+                try {
+                    return npmPackage.loadResource(t);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                return null;
+            })
+            .map(jsonParser::parseResource)
+            .filter(resource -> resourceType.getClass().isInstance(resource))
+            .map(resource -> (T) resource)
+            .collect(Collectors.toList());
+    }
+
+    private PrePopulatedValidationSupport createPrePopulatedValidationSupport(InputStream inputStream) throws IOException {
+        NpmPackage npmPackage = NpmPackage.fromPackage(inputStream);
+        PrePopulatedValidationSupport prePopulatedSupport = new PrePopulatedValidationSupport(fhirContext);
+
+        for (StructureDefinition sd : getResourcesOfType(npmPackage, new StructureDefinition())) {
+            prePopulatedSupport.addStructureDefinition(sd);
+        }
+
+        for (CodeSystem cs : getResourcesOfType(npmPackage, new CodeSystem())) {
+            prePopulatedSupport.addCodeSystem(cs);
+        }
+
+        for (ValueSet vs : getResourcesOfType(npmPackage, new ValueSet())) {
+            prePopulatedSupport.addValueSet(vs);
+        }
+
+        return prePopulatedSupport;
+    }
+
     public ValidatorConfiguration(String _PROFILE_MANIFEST_FILE) {
         PROFILE_MANIFEST_FILE = _PROFILE_MANIFEST_FILE;
         fhirContext = FhirContext.forR4();
@@ -60,23 +103,22 @@ public class ValidatorConfiguration {
                 new SnapshotGeneratingValidationSupport(fhirContext));
 
         SimplifierPackage[] packages = getPackages();
-        NpmPackageValidationSupport npmPackageSupport = new NpmPackageValidationSupport(fhirContext);
 
         try {
             for (SimplifierPackage individualPackage : packages) {
                 String packagePath = String.format("classpath:package/%s-%s.tgz", individualPackage.packageName,
                         individualPackage.version);
-                npmPackageSupport.loadPackageFromClasspath(packagePath);
                 try (InputStream is = ClasspathUtil.loadResourceAsStream(packagePath)) {
                     NpmPackage pkg = NpmPackage.fromPackage(is);
                     npmPackages.add(pkg);
+                    PrePopulatedValidationSupport foo = createPrePopulatedValidationSupport(is);
+                    supportChain.addValidationSupport(foo);
                 }
             }
         } catch (InternalErrorException | IOException ex) {
             log.error(ex.getMessage(), ex);
             throw new RuntimeException("error loading simplifier packages", ex);
         }
-        supportChain.addValidationSupport(npmPackageSupport);
         generateSnapshots(supportChain);
         supportChain.fetchCodeSystem("http://snomed.info/sct");
 
@@ -183,7 +225,7 @@ public class ValidatorConfiguration {
                     String theCode,
                     String theDisplay,
                     IBaseResource theValueSet) {
-                String valueSetUrl = CommonCodeSystemsTerminologyService.getValueSetUrl(fhirContext, theValueSet);
+                String valueSetUrl = CommonCodeSystemsTerminologyService.getValueSetUrl(theValueSet);
 
                 if ("https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationRequest-Code".equals(valueSetUrl)
                         || "https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationDispense-Code".equals(valueSetUrl)
