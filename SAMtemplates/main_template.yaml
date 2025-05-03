@@ -58,6 +58,7 @@ Resources:
         LambdaName: !Sub "${AWS::StackName}-FHIRValidatorUKCore"
         LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorUKCore
         LogRetentionDays: !Ref LogRetentionDays
+        ExecutePolicyExportName: FHIRValidatorUKCoreExecuteLambdaPolicyArn
 
   FHIRValidatorUKCore:
     Type: AWS::Serverless::Function
@@ -101,6 +102,7 @@ Resources:
         LambdaName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigital"
         LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorNHSDigital
         LogRetentionDays: !Ref LogRetentionDays
+        ExecutePolicyExportName: FHIRValidatorNHSDigitalExecuteLambdaPolicyArn
 
   FHIRValidatorNHSDigital:
     Type: AWS::Serverless::Function

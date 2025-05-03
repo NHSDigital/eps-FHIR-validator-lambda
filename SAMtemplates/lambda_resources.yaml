@@ -60,6 +60,8 @@ Parameters:
         3288,
         3653,
       ]
+  ExecutePolicyExportName:
+    Type: String
 
 Conditions:
   ShouldUseSplunk: !Equals [true, !Ref EnableSplunk]
@@ -132,7 +134,7 @@ Outputs:
     Description: Lambda execution policy arn
     Value: !GetAtt ExecuteLambdaManagedPolicy.PolicyArn
     Export:
-      Name: !Sub ${StackName}:FHIRValidatorUKCoreExecuteLambdaPolicyArn
+      Name: !Sub ${StackName}:${ExecutePolicyExportName}
   LambdaRoleArn:
     Description: "LambdaRole ARN"
     Value: !GetAtt LambdaRole.Arn
