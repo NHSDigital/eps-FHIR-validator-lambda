@@ -63,7 +63,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: !Sub "${AWS::StackName}-FHIRValidatorUKCore"
-      CodeUri: ../
+      CodeUri: ../latest/
       Handler: software.nhs.fhirvalidator.handler.HandlerStream::handleRequest
       Role: !GetAtt FHIRValidatorUKCoreResources.Outputs.LambdaRoleArn
       SnapStart:

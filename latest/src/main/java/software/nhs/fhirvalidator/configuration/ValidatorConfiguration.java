@@ -64,7 +64,7 @@ public class ValidatorConfiguration {
 
         try {
             for (SimplifierPackage individualPackage : packages) {
-                String packagePath = String.format("classpath:package/%s-%s.tgz", individualPackage.packageName,
+                String packagePath = String.format("classpath:%s-%s.tgz", individualPackage.packageName,
                         individualPackage.version);
                 npmPackageSupport.loadPackageFromClasspath(packagePath);
                 try (InputStream is = ClasspathUtil.loadResourceAsStream(packagePath)) {
