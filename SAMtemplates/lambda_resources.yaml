@@ -92,6 +92,7 @@ Resources:
       ManagedPolicyArns:
         - !ImportValue lambda-resources:LambdaInsightsLogGroupPolicy
         - !ImportValue account-resources:LambdaEncryptCloudwatchKMSPolicy
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
 
   LambdaManagedPolicy:
     Type: AWS::IAM::ManagedPolicy
