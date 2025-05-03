@@ -12,7 +12,7 @@ def download_dependencies(manifest_file):
             packageName = entry["packageName"]
             version = entry["version"]
             packageData = requests.get(f"https://packages.simplifier.net/{packageName}/{version}").content
-            with open(f"src/main/resources/package/{packageName}-{version}.tgz", "wb") as packageFile:
+            with open(f"src/main/resources/{packageName}-{version}.tgz", "wb") as packageFile:
                 packageFile.write(packageData)
 
 
