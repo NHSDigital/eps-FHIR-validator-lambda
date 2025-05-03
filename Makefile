@@ -34,7 +34,7 @@ lint-githubaction-scripts:
 # test targets
 
 test: download-dependencies
-	mvn test
+	cd latest && mvn test
 
 check-licenses: check-licenses-python check-licenses-java
 
@@ -42,7 +42,8 @@ check-licenses-python:
 	scripts/check_python_licenses.sh
 
 check-licenses-java:
-	mvn validate
+	cd latest && mvn validate
+	cd legacy && mvn validate
 
 show-unused-dependencies:
 	mvn dependency:analyze
@@ -67,7 +68,7 @@ deep-clean: clean
 
 # build targets
 compile: download-dependencies
-	mvn package
+	cd latest && mvn package
 
 download-dependencies:
 	poetry run scripts/download_dependencies.py
