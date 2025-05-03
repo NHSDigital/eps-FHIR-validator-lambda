@@ -75,12 +75,55 @@ Resources:
         - x86_64
       Runtime: java21
       Layers:
-        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:38"
+        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:56"
       Environment:
         Variables:
           AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
           POWERTOOLS_LOG_LEVEL: !Ref LogLevel
           PROFILE_MANIFEST_FILE: uk_core.manifest.json
+    Metadata:
+      guard:
+        SuppressedRules:
+          - LAMBDA_DLQ_CHECK
+          - LAMBDA_INSIDE_VPC
+          - LAMBDA_CONCURRENCY_CHECK
+
+  FHIRValidatorNHSDigitalResources:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: lambda_resources.yaml
+      Parameters:
+        StackName: !Ref AWS::StackName
+        CloudWatchKMSKey: !ImportValue account-resources:CloudwatchLogsKmsKeyArn
+        SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
+        SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
+        EnableSplunk: "true"
+        LambdaName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigital"
+        LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorNHSDigital
+        LogRetentionDays: !Ref LogRetentionDays
+
+  FHIRValidatorNHSDigital:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigital"
+      CodeUri: ../legacy/
+      Handler: software.nhs.fhirvalidator.handler.HandlerStream::handleRequest
+      Role: !GetAtt FHIRValidatorNHSDigitalResources.Outputs.LambdaRoleArn
+      SnapStart:
+        ApplyOn: PublishedVersions
+      AutoPublishAlias: snap
+      Timeout: 600
+      MemorySize: 4096
+      Architectures:
+        - x86_64
+      Runtime: java21
+      Layers:
+        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:56"
+      Environment:
+        Variables:
+          AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
+          POWERTOOLS_LOG_LEVEL: !Ref LogLevel
+          PROFILE_MANIFEST_FILE: nhs_digital.manifest.json
     Metadata:
       guard:
         SuppressedRules:
@@ -109,3 +152,19 @@ Outputs:
     Value: !GetAtt FHIRValidatorUKCore.Arn
     Export:
       Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorUKCoreLambdaArn"]]
+
+  FHIRValidatorNHSDigitalLambdaName:
+    Description: Name of the FHIR validator NHS Digital lambda
+    Value: !Ref FHIRValidatorNHSDigital
+    Export:
+      Name:
+        !Join [
+          ":",
+          [!Ref "AWS::StackName", "FHIRValidatorNHSDigitalLambdaName"],
+        ]
+  FHIRValidatorNHSDigitalLambdaArn:
+    Description: Arn of the FHIR validator NHS Digital lambda
+    Value: !GetAtt FHIRValidatorNHSDigital.Arn
+    Export:
+      Name:
+        !Join [":", [!Ref "AWS::StackName", "FHIRValidatorNHSDigitalLambdaArn"]]
