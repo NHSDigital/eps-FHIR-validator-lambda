@@ -119,6 +119,11 @@ Resources:
       Runtime: java21
       Layers:
         - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:56"
+      VpcConfig:
+        SubnetIds:
+          - subnet-0df16e0ac5f81607f
+          - subnet-0fee41653b358c179
+          - subnet-02f13219e4528459b
       Environment:
         Variables:
           AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
@@ -128,7 +133,6 @@ Resources:
       guard:
         SuppressedRules:
           - LAMBDA_DLQ_CHECK
-          - LAMBDA_INSIDE_VPC
           - LAMBDA_CONCURRENCY_CHECK
 
   Alarms:
