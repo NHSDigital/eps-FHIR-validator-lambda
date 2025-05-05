@@ -111,6 +111,9 @@ Resources:
       SecurityGroupEgress:
         - CidrIp: 127.0.0.1/32
           IpProtocol: "-1"
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: "-1"
       VpcId: vpc-078cd165c7acf6f63
 
   FHIRValidatorNHSDigital:
