@@ -2,208 +2,66 @@
     "resourceType": "OperationOutcome",
     "issue": [
         {
-            "extension": [
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
-                    "valueInteger": 1
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
-                    "valueInteger": 1004
-                }
-            ],
-            "severity": "warning",
+            "severity": "information",
             "code": "processing",
-            "diagnostics": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)",
+            "diagnostics": "Binding for path Bundle.entry[0].resource.ofType(Task).businessStatus has no source, so can't be checked",
             "location": [
-                "Bundle.entry[0].resource/*Task/4d70678c-81e4-4ff4-8c67-17596fd0aa46*/",
-                "Line[1] Col[1004]"
+                "Bundle.entry[0].resource.ofType(Task).businessStatus",
+                "Line 1, Col 668"
             ]
         },
         {
-            "extension": [
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
-                    "valueInteger": 1
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
-                    "valueInteger": 1004
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
-                }
-            ],
             "severity": "error",
             "code": "processing",
-            "details": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
-                    }
-                ]
-            },
             "diagnostics": "Task.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
             "location": [
-                "Bundle.entry[0].resource/*Task/4d70678c-81e4-4ff4-8c67-17596fd0aa46*/",
-                "Line[1] Col[1004]"
+                "Bundle.entry[0].resource.ofType(Task)",
+                "Line 1, Col 267"
             ]
         },
         {
-            "extension": [
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
-                    "valueInteger": 1
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
-                    "valueInteger": 1004
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
-                }
-            ],
             "severity": "error",
             "code": "processing",
-            "details": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
-                    }
-                ]
-            },
             "diagnostics": "Task.code: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
             "location": [
-                "Bundle.entry[0].resource/*Task/4d70678c-81e4-4ff4-8c67-17596fd0aa46*/",
-                "Line[1] Col[1004]"
+                "Bundle.entry[0].resource.ofType(Task)",
+                "Line 1, Col 267"
             ]
         },
         {
-            "extension": [
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
-                    "valueInteger": 1
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
-                    "valueInteger": 1004
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
-                }
-            ],
             "severity": "error",
             "code": "processing",
-            "details": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
-                    }
-                ]
-            },
             "diagnostics": "Task.authoredOn: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
             "location": [
-                "Bundle.entry[0].resource/*Task/4d70678c-81e4-4ff4-8c67-17596fd0aa46*/",
-                "Line[1] Col[1004]"
+                "Bundle.entry[0].resource.ofType(Task)",
+                "Line 1, Col 267"
             ]
         },
         {
-            "extension": [
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
-                    "valueInteger": 1
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
-                    "valueInteger": 1004
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
-                }
-            ],
             "severity": "error",
             "code": "processing",
-            "details": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
-                    }
-                ]
-            },
             "diagnostics": "Task.requester: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
             "location": [
-                "Bundle.entry[0].resource/*Task/4d70678c-81e4-4ff4-8c67-17596fd0aa46*/",
-                "Line[1] Col[1004]"
+                "Bundle.entry[0].resource.ofType(Task)",
+                "Line 1, Col 267"
             ]
         },
         {
-            "extension": [
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
-                    "valueInteger": 1
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
-                    "valueInteger": 625
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Terminology_TX_NoValid_1_CC"
-                }
-            ],
             "severity": "error",
             "code": "processing",
-            "details": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Terminology_TX_NoValid_1_CC"
-                    }
-                ]
-            },
-            "diagnostics": "None of the codings provided are in the value set 'EPSTaskBusinessPrescriptionStatus' (https://fhir.nhs.uk/ValueSet/DM-task-business-status|1.0.0), and a coding from this value set is required) (codes = https://fhir.nhs.uk/CodeSystem/task-businessStatus-nppt#Dispatched)",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/DM-task-business-status (https://fhir.nhs.uk/ValueSet/DM-task-business-status), and a coding from this value set is required) (codes = https://fhir.nhs.uk/CodeSystem/task-businessStatus-nppt#Dispatched)",
             "location": [
-                "Bundle.entry[0].resource/*Task/4d70678c-81e4-4ff4-8c67-17596fd0aa46*/.businessStatus",
-                "Line[1] Col[625]"
+                "Bundle.entry[0].resource.ofType(Task).businessStatus",
+                "Line 1, Col 668"
             ]
         },
         {
-            "extension": [
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
-                    "valueInteger": 1
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
-                    "valueInteger": 623
-                },
-                {
-                    "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-message-id",
-                    "valueString": "Validation_VAL_Profile_Minimum"
-                }
-            ],
             "severity": "error",
             "code": "processing",
-            "details": {
-                "coding": [
-                    {
-                        "system": "http://hl7.org/fhir/java-core-messageId",
-                        "code": "Validation_VAL_Profile_Minimum"
-                    }
-                ]
-            },
             "diagnostics": "Task.businessStatus.coding.display: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
             "location": [
-                "Bundle.entry[0].resource/*Task/4d70678c-81e4-4ff4-8c67-17596fd0aa46*/.businessStatus.coding[0]",
-                "Line[1] Col[623]"
+                "Bundle.entry[0].resource.ofType(Task).businessStatus.coding[0]",
+                "Line 1, Col 676"
             ]
         }
     ]

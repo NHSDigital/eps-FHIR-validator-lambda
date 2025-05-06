@@ -117,7 +117,7 @@ class Validator_nhs_digital_Test {
                 "Unable to find a match for profile urn:uuid:56166769-c1c4-4d07-afa8-132b5dfca666 among choices: https://fhir.nhs.uk/StructureDefinition/NHSDigital-PractitionerRole-EPSLegal",
                 OperationOutcome.IssueSeverity.ERROR));
         assertTrue(issueListHasDiagnosticMessageAtSeverity(validatorResult.getIssue(),
-                "Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry",
+                "Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry  ",
                 OperationOutcome.IssueSeverity.ERROR));
     }
 
