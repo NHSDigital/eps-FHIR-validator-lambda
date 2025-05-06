@@ -45,7 +45,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1227]"
@@ -76,7 +76,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1227]"
@@ -107,7 +107,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1227]"
@@ -231,7 +231,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[779]"
@@ -262,7 +262,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[779]"
@@ -324,7 +324,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[1186]"
@@ -355,7 +355,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[1186]"
@@ -405,7 +405,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/",
                 "Line[1] Col[2326]"
@@ -436,7 +436,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/",
                 "Line[1] Col[2326]"
@@ -467,7 +467,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/",
                 "Line[1] Col[2326]"
@@ -591,7 +591,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[1878]"
@@ -622,7 +622,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[1878]"
@@ -684,7 +684,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[2285]"
@@ -715,7 +715,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[1].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[2285]"
@@ -765,7 +765,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/",
                 "Line[1] Col[3438]"
@@ -796,7 +796,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/",
                 "Line[1] Col[3438]"
@@ -827,7 +827,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/",
                 "Line[1] Col[3438]"
@@ -951,7 +951,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[2990]"
@@ -982,7 +982,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[2990]"
@@ -1044,7 +1044,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[3397]"
@@ -1075,7 +1075,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[2].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[3397]"
@@ -1125,7 +1125,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/",
                 "Line[1] Col[4538]"
@@ -1156,7 +1156,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/",
                 "Line[1] Col[4538]"
@@ -1187,7 +1187,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/",
                 "Line[1] Col[4538]"
@@ -1311,7 +1311,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[4090]"
@@ -1342,7 +1342,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[4090]"
@@ -1404,7 +1404,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[4497]"
@@ -1435,7 +1435,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[3].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[4497]"
@@ -1561,7 +1561,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1149]"
@@ -1592,7 +1592,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1149]"
@@ -1623,7 +1623,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1149]"
@@ -1747,7 +1747,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[775]"
@@ -1778,7 +1778,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[775]"
@@ -1840,7 +1840,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[1108]"
@@ -1871,7 +1871,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[1108]"
@@ -2000,7 +2000,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1227]"
@@ -2031,7 +2031,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.identifier:prescriptionOrderItem': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1227]"
@@ -2062,7 +2062,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/",
                 "Line[1] Col[1227]"
@@ -2186,7 +2186,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[779]"
@@ -2217,7 +2217,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.groupIdentifier",
                 "Line[1] Col[779]"
@@ -2279,7 +2279,7 @@
                     }
                 ]
             },
-            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1)",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[1186]"
@@ -2310,7 +2310,7 @@
                     }
                 ]
             },
-            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest). Note that other slices are allowed in addition to this required slice",
+            "diagnostics": "Slice 'MedicationRequest.dispenseRequest.extension:performerSiteType': a matching slice is required, but not found (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest|1.0.1). Note that other slices are allowed in addition to this required slice",
             "location": [
                 "Bundle.entry[0].resource/*MedicationRequest/null*/.dispenseRequest",
                 "Line[1] Col[1186]"
