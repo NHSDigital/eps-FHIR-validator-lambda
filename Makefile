@@ -34,7 +34,20 @@ lint-githubaction-scripts:
 # test targets
 
 test: download-dependencies
-	cd latest && mvn test
+	mvn clean test -Pcurrent
+	mvn clean test -Plegacy
+
+# build targets for SAM
+# the target must be build-<RESOURCE_NAME>
+build-FHIRValidatorUKCore: download-dependencies
+	mvn clean package -Pcurrent
+	mkdir -p $(ARTIFACTS_DIR)/lib
+	cp  ./target/FHIRValidator-current.jar $(ARTIFACTS_DIR)/lib/
+
+build-FHIRValidatorNHSDigital: download-dependencies
+	mvn clean package -Plegacy
+	mkdir -p $(ARTIFACTS_DIR)/lib
+	cp  ./target/FHIRValidator-legacy.jar $(ARTIFACTS_DIR)/lib/
 
 check-licenses: check-licenses-python check-licenses-java
 
@@ -79,7 +92,7 @@ sam-validate:
 	sam validate --template-file SAMtemplates/lambda_resources.yaml --region eu-west-2
 
 sam-build: sam-validate download-dependencies
-	sam build --debug --template-file SAMtemplates/main_template.yaml --region eu-west-2
+	sam build --template-file SAMtemplates/main_template.yaml --region eu-west-2
 
 sam-sync: guard-AWS_DEFAULT_PROFILE guard-stack_name download-dependencies
 	sam sync \

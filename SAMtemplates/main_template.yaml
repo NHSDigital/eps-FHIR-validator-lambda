@@ -64,7 +64,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: !Sub "${AWS::StackName}-FHIRValidatorUKCore"
-      CodeUri: ../latest/
+      CodeUri: ../
       Handler: software.nhs.fhirvalidator.handler.HandlerStream::handleRequest
       Role: !GetAtt FHIRValidatorUKCoreResources.Outputs.LambdaRoleArn
       SnapStart:
@@ -83,6 +83,7 @@ Resources:
           POWERTOOLS_LOG_LEVEL: !Ref LogLevel
           PROFILE_MANIFEST_FILE: uk_core.manifest.json
     Metadata:
+      BuildMethod: makefile
       guard:
         SuppressedRules:
           - LAMBDA_DLQ_CHECK
@@ -120,7 +121,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigital"
-      CodeUri: ../legacy/
+      CodeUri: ../
       Handler: software.nhs.fhirvalidator.handler.HandlerStream::handleRequest
       Role: !GetAtt FHIRValidatorNHSDigitalResources.Outputs.LambdaRoleArn
       SnapStart:
@@ -146,6 +147,7 @@ Resources:
           POWERTOOLS_LOG_LEVEL: !Ref LogLevel
           PROFILE_MANIFEST_FILE: nhs_digital.manifest.json
     Metadata:
+      BuildMethod: makefile
       guard:
         SuppressedRules:
           - LAMBDA_DLQ_CHECK
