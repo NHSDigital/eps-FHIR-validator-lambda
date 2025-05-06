@@ -1,0 +1,14 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "OperationOutcome.issue: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-OperationOutcome)",
+            "location": [
+                "OperationOutcome",
+                "Line 1, Col 47"
+            ]
+        }
+    ]
+}

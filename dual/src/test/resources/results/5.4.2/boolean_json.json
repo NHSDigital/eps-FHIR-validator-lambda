@@ -1,0 +1,10 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Failed to parse JSON encoded FHIR content: Content does not appear to be FHIR JSON, first non-whitespace character was: 't' (must be '{')"
+        }
+    ]
+}

@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.util.VersionUtil;
 import software.nhs.fhirvalidator.controller.ValidateController;
 import software.nhs.fhirvalidator.util.ResourceUtils;
 
@@ -26,6 +27,7 @@ class Validator_nhs_digital_Test {
 
     static ValidateController validateController;
     static FhirContext fhirContext;
+    static String versionNumber;
 
     Boolean issueListHasSeverity(List<OperationOutcomeIssueComponent> issueList, IssueSeverity severity) {
         for (OperationOutcomeIssueComponent issue : issueList) {
@@ -55,6 +57,8 @@ class Validator_nhs_digital_Test {
         String manifest_file = "nhs_digital.manifest.json";
         validateController = new ValidateController(manifest_file);
         fhirContext = FhirContext.forR4();
+        VersionUtil versionUtil = new VersionUtil();
+        versionNumber = versionUtil.getVersion();
     }
 
     @Test
@@ -69,7 +73,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/validSimpleBundle.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/validSimpleBundle.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -85,7 +89,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/validBundle.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/validBundle.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -101,7 +105,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/invalidBundle.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/invalidBundle.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -124,7 +128,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/validParameters.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/validParameters.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -137,7 +141,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/invalidParameters.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/invalidParameters.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -150,7 +154,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/successfulOperationOutcome.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/successfulOperationOutcome.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -163,7 +167,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/invalidOperationOutcome.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/invalidOperationOutcome.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -176,7 +180,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/searchSet.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/searchSet.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -189,7 +193,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/missingHeader.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/missingHeader.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -203,7 +207,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/empty.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/empty.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -217,7 +221,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/array.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/array.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -231,7 +235,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/null_java.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/null_java.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -245,7 +249,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/null_json.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/null_json.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -259,7 +263,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/number_json.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/number_json.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -273,7 +277,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/boolean_json.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/boolean_json.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -287,7 +291,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/bad_json.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/bad_json.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);
@@ -300,7 +304,7 @@ class Validator_nhs_digital_Test {
         JsonObject actualJsonResult = JsonParser
                 .parseString(fhirContext.newJsonParser().encodeResourceToString(validatorResult)).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/psu_nhs_digital.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/psu_nhs_digital.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);

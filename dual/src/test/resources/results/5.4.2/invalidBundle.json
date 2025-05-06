@@ -1,0 +1,68 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Bundle entry missing fullUrl",
+            "location": [
+                "Bundle.entry[0]",
+                "Line 1, Col 360"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = http://snomed.info/sct#15517911000001104)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 2505"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Unable to find a match for profile urn:uuid:56166769-c1c4-4d07-afa8-132b5dfca666 among choices: https://fhir.nhs.uk/StructureDefinition/NHSDigital-PractitionerRole-EPSLegal",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).requester",
+                "Line 1, Col 2838"
+            ]
+        },
+        {
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "Details for urn:uuid:56166769-c1c4-4d07-afa8-132b5dfca666 matching against Profilehttps://fhir.nhs.uk/StructureDefinition/NHSDigital-PractitionerRole-EPSLegal",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).requester",
+                "Line 1, Col 2838"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "prac-gmc: 'GMC must be of the format CNNNNNNN' Rule 'GMC must be of the format CNNNNNNN' Failed",
+            "location": [
+                "Bundle.entry[3].resource.ofType(Practitioner)",
+                "Line 1, Col 1"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "role-spurious: 'Spurious Code format must be G6NNNNNN or G7NNNNNN' Rule 'Spurious Code format must be G6NNNNNN or G7NNNNNN' Failed",
+            "location": [
+                "Bundle.entry[4].resource.ofType(PractitionerRole)",
+                "Line 1, Col 1"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Except for transactions and batches, each entry in a Bundle must have a fullUrl which is the identity of the resource in the entry  ",
+            "location": [
+                "Bundle.entry[0]",
+                "Line 1, Col 360"
+            ]
+        }
+    ]
+}
