@@ -39,13 +39,14 @@ test: download-dependencies
 
 # build targets for SAM
 # the target must be build-<RESOURCE_NAME>
+# note - we skip tests here as they will have already been run as part of the pipeline
 build-FHIRValidatorUKCore: download-dependencies
-	mvn clean package -Pcurrent
+	mvn clean package -Pcurrent -Dmaven.test.skip=true
 	mkdir -p $(ARTIFACTS_DIR)/lib
 	cp  ./target/FHIRValidator-current.jar $(ARTIFACTS_DIR)/lib/
 
 build-FHIRValidatorNHSDigital: download-dependencies
-	mvn clean package -Plegacy
+	mvn clean package -Plegacy -Dmaven.test.skip=true
 	mkdir -p $(ARTIFACTS_DIR)/lib
 	cp  ./target/FHIRValidator-legacy.jar $(ARTIFACTS_DIR)/lib/
 
