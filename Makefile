@@ -79,7 +79,7 @@ sam-validate:
 	sam validate --template-file SAMtemplates/lambda_resources.yaml --region eu-west-2
 
 sam-build: sam-validate download-dependencies
-	sam build --template-file SAMtemplates/main_template.yaml --region eu-west-2
+	sam build --debug --template-file SAMtemplates/main_template.yaml --region eu-west-2
 
 sam-sync: guard-AWS_DEFAULT_PROFILE guard-stack_name download-dependencies
 	sam sync \
