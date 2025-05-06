@@ -53,7 +53,7 @@ build-FHIRValidatorNHSDigitalLegacy: download-dependencies
 build-FHIRValidatorNHSDigitalCurrent: download-dependencies
 	mvn clean package -Pcurrent -Dmaven.test.skip=true
 	mkdir -p $(ARTIFACTS_DIR)/lib
-	cp  ./target/FHIRValidator-legacy.jar $(ARTIFACTS_DIR)/lib/
+	cp  ./target/FHIRValidator-current.jar $(ARTIFACTS_DIR)/lib/
 
 check-licenses: check-licenses-python check-licenses-java
 
