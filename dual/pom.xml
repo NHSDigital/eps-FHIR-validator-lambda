@@ -217,21 +217,26 @@
                         <groupId>ca.uhn.hapi.fhir</groupId>
                         <artifactId>hapi-fhir-validation-resources-r4</artifactId>
                         <version>${current.fhir.version}</version>
-                    </dependency>
-                    <dependency>
+                </dependency>
+                <dependency>
                         <groupId>ca.uhn.hapi.fhir</groupId>
                         <artifactId>hapi-fhir-structures-r4</artifactId>
                         <version>${current.fhir.version}</version>
-                    </dependency>
-                    <dependency>
+                </dependency>
+                <dependency>
                         <groupId>ca.uhn.hapi.fhir</groupId>
                         <artifactId>hapi-fhir-validation</artifactId>
                         <version>${current.fhir.version}</version>
-                    </dependency>
-                    <dependency>
+                </dependency>
+                <dependency>
                         <groupId>ca.uhn.hapi.fhir</groupId>
                         <artifactId>hapi-fhir-base</artifactId>
                         <version>${current.fhir.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>ca.uhn.hapi.fhir</groupId>
+                    <artifactId>hapi-fhir-caching-caffeine</artifactId>
+                    <version>${current.fhir.version}</version>
                 </dependency>
             </dependencies>
         </profile>
