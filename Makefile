@@ -45,8 +45,13 @@ build-FHIRValidatorUKCore: download-dependencies
 	mkdir -p $(ARTIFACTS_DIR)/lib
 	cp  ./target/FHIRValidator-current.jar $(ARTIFACTS_DIR)/lib/
 
-build-FHIRValidatorNHSDigital: download-dependencies
+build-FHIRValidatorNHSDigitalLegacy: download-dependencies
 	mvn clean package -Plegacy -Dmaven.test.skip=true
+	mkdir -p $(ARTIFACTS_DIR)/lib
+	cp  ./target/FHIRValidator-legacy.jar $(ARTIFACTS_DIR)/lib/
+
+build-FHIRValidatorNHSDigitalCurrent: download-dependencies
+	mvn clean package -Pcurrent -Dmaven.test.skip=true
 	mkdir -p $(ARTIFACTS_DIR)/lib
 	cp  ./target/FHIRValidator-legacy.jar $(ARTIFACTS_DIR)/lib/
 
