@@ -55,8 +55,7 @@ check-licenses-python:
 	scripts/check_python_licenses.sh
 
 check-licenses-java:
-	cd latest && mvn validate
-	cd legacy && mvn validate
+	mvn validate
 
 show-unused-dependencies:
 	mvn dependency:analyze
@@ -81,7 +80,7 @@ deep-clean: clean
 
 # build targets
 compile: download-dependencies
-	cd latest && mvn package
+	mvn package -Pcurrent
 
 download-dependencies:
 	poetry run scripts/download_dependencies.py
