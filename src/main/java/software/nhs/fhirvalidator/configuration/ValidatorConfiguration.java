@@ -110,8 +110,8 @@ public class ValidatorConfiguration {
                 String packagePath = String.format("%s-%s.tgz", individualPackage.packageName,
                         individualPackage.version);
                 try (InputStream is = ClasspathUtil.loadResourceAsStream(packagePath)) {
-                    PrePopulatedValidationSupport foo = createPrePopulatedValidationSupport(is);
-                    supportChain.addValidationSupport(foo);
+                    PrePopulatedValidationSupport prePopulatedValidationSupport = createPrePopulatedValidationSupport(is);
+                    supportChain.addValidationSupport(prePopulatedValidationSupport);
                 }
                 try (InputStream is = ClasspathUtil.loadResourceAsStream(packagePath)) {
                     NpmPackage pkg = NpmPackage.fromPackage(is);

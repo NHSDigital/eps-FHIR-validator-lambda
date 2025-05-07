@@ -126,7 +126,6 @@ Resources:
         CloudWatchKMSKey: !ImportValue account-resources:CloudwatchLogsKmsKeyArn
         SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
         SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
-        EnableSplunk: "true"
         LambdaName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigitalLegacy"
         LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorNHSDigitalLegacy
         LogRetentionDays: !Ref LogRetentionDays
