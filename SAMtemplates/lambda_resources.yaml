@@ -20,11 +20,6 @@ Parameters:
     Type: String
     Description: Splunk delivery stream
     Default: none
-  EnableSplunk:
-    Type: String
-    Description: Whether to use splunk
-    Default: false
-    AllowedValues: [true, false]
   LambdaName:
     Type: String
     Description: Name of lambda we are creating for
@@ -62,9 +57,18 @@ Parameters:
       ]
   ExecutePolicyExportName:
     Type: String
+  IncludeAdditionalPolicies:
+    Type: String
+    Default: false
+  AdditionalPolicies:
+    Type: CommaDelimitedList
+    Description: A list of additional policies to attach the lambdas role (comma delimited).
+    Default: none
 
 Conditions:
-  ShouldUseSplunk: !Equals [true, !Ref EnableSplunk]
+  ShouldIncludeAdditionalPolicies: !Equals
+    - true
+    - !Ref IncludeAdditionalPolicies
 
 Resources:
   ExecuteLambdaManagedPolicy:
@@ -89,10 +93,19 @@ Resources:
             Principal:
               Service: "lambda.amazonaws.com"
             Action: "sts:AssumeRole"
-      ManagedPolicyArns:
-        - !ImportValue lambda-resources:LambdaInsightsLogGroupPolicy
-        - !ImportValue account-resources:LambdaEncryptCloudwatchKMSPolicy
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
+      ManagedPolicyArns: !Split
+        - ","
+        - !Join
+          - ","
+          - - !Ref LambdaManagedPolicy
+            - !ImportValue lambda-resources:LambdaInsightsLogGroupPolicy
+            - !ImportValue account-resources:CloudwatchEncryptionKMSPolicyArn
+            - !If
+              - ShouldIncludeAdditionalPolicies
+              - !Join
+                - ","
+                - !Ref AdditionalPolicies
+              - !Ref AWS::NoValue
 
   LambdaManagedPolicy:
     Type: AWS::IAM::ManagedPolicy
@@ -122,7 +135,6 @@ Resources:
       KmsKeyId: !Ref CloudWatchKMSKey
 
   LambdaSplunkSubscriptionFilter:
-    Condition: ShouldUseSplunk
     Type: AWS::Logs::SubscriptionFilter
     Properties:
       RoleArn: !Ref SplunkSubscriptionFilterRole

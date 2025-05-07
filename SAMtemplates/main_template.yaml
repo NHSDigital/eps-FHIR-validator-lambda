@@ -54,7 +54,6 @@ Resources:
         CloudWatchKMSKey: !ImportValue account-resources:CloudwatchLogsKmsKeyArn
         SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
         SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
-        EnableSplunk: "true"
         LambdaName: !Sub "${AWS::StackName}-FHIRValidatorUKCore"
         LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorUKCore
         LogRetentionDays: !Ref LogRetentionDays
@@ -102,6 +101,22 @@ Resources:
           IpProtocol: "-1"
       VpcId: !ImportValue vpc-resources:VpcId
 
+  LambdaVPCPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - ec2:CreateNetworkInterface
+              - ec2:DescribeNetworkInterfaces
+              - ec2:DescribeSubnets
+              - ec2:DeleteNetworkInterface
+              - ec2:AssignPrivateIpAddresses
+              - ec2:UnassignPrivateIpAddresses
+            Resource: "*"
+
   FHIRValidatorNHSDigitalLegacyResources:
     Type: AWS::Serverless::Application
     Properties:
@@ -116,6 +131,8 @@ Resources:
         LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorNHSDigitalLegacy
         LogRetentionDays: !Ref LogRetentionDays
         ExecutePolicyExportName: FHIRValidatorNHSDigitalLegacyExecuteLambdaPolicyArn
+        IncludeAdditionalPolicies: true
+        AdditionalPolicies: !Ref LambdaVPCPolicy
 
   FHIRValidatorNHSDigitalLegacy:
     Type: AWS::Serverless::Function
@@ -162,11 +179,12 @@ Resources:
         CloudWatchKMSKey: !ImportValue account-resources:CloudwatchLogsKmsKeyArn
         SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
         SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
-        EnableSplunk: "true"
         LambdaName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigitalCurrent"
         LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorNHSDigitalCurrent
         LogRetentionDays: !Ref LogRetentionDays
         ExecutePolicyExportName: FHIRValidatorNHSDigitalCurrentExecuteLambdaPolicyArn
+        IncludeAdditionalPolicies: true
+        AdditionalPolicies: !Ref LambdaVPCPolicy
 
   FHIRValidatorNHSDigitalCurrent:
     Type: AWS::Serverless::Function
