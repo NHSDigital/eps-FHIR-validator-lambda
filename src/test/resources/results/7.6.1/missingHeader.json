@@ -1,0 +1,13 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "No MessageHeader found.",
+            "expression": [
+                "Bundle.entry"
+            ]
+        }
+    ]
+}
