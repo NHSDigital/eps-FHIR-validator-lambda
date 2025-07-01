@@ -93,8 +93,9 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Limits security group egress traffic
+      # fix this to allow egress to service endpoints?
       SecurityGroupEgress:
-        - CidrIp: 127.0.0.1/32
+        - CidrIp: 0.0.0.0/0
           IpProtocol: "-1"
       SecurityGroupIngress:
         - CidrIp: 0.0.0.0/0
