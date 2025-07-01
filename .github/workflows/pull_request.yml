@@ -79,7 +79,7 @@ jobs:
     uses: ./.github/workflows/sam_release_code.yml
     with:
       ARTIFACT_BUCKET_PREFIX: fhir-validator-PR-${{needs.get_issue_number.outputs.issue_number}}
-      STACK_NAME: fhir-validator
+      STACK_NAME: fhir-validator-pr-${{needs.get_issue_number.outputs.issue_number}}
       TARGET_ENVIRONMENT: ref
       BUILD_ARTIFACT: packaged_code
       VERSION_NUMBER: fhir-validator-PR-${{ needs.get_issue_number.outputs.issue_number }}
