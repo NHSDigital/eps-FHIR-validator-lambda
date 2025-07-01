@@ -1,0 +1,14 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "Binding for path Bundle.entry[0].resource.ofType(Task).businessStatus has no source, so can't be checked",
+            "location": [
+                "Bundle.entry[0].resource.ofType(Task).businessStatus",
+                "Line 1, Col 481"
+            ]
+        }
+    ]
+}
