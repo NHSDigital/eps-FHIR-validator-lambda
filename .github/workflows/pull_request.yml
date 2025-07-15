@@ -79,7 +79,7 @@ jobs:
     needs: [get_issue_number, package_code, get_commit_id]
     uses: ./.github/workflows/sam_release_code.yml
     with:
-      ARTIFACT_BUCKET_PREFIX: ${{needs.tag_release.outputs.version_tag}}
+      ARTIFACT_BUCKET_PREFIX: ${{needs.get_issue_number.outputs.issue_number}}
       STACK_NAME: fhir-validator
       TARGET_ENVIRONMENT: recovery
       BUILD_ARTIFACT: packaged_code
