@@ -1,0 +1,68 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "Binding for path Bundle.entry[0].resource.ofType(Task).businessStatus has no source, so can't be checked",
+            "location": [
+                "Bundle.entry[0].resource.ofType(Task).businessStatus",
+                "Line 1, Col 668"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Task.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(Task)",
+                "Line 1, Col 267"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Task.code: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(Task)",
+                "Line 1, Col 267"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Task.authoredOn: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(Task)",
+                "Line 1, Col 267"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Task.requester: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(Task)",
+                "Line 1, Col 267"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/DM-task-business-status (https://fhir.nhs.uk/ValueSet/DM-task-business-status), and a coding from this value set is required) (codes = https://fhir.nhs.uk/CodeSystem/task-businessStatus-nppt#Dispatched)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(Task).businessStatus",
+                "Line 1, Col 668"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "Task.businessStatus.coding.display: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-Task-EPS)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(Task).businessStatus.coding[0]",
+                "Line 1, Col 676"
+            ]
+        }
+    ]
+}
