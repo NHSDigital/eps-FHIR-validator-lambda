@@ -74,3 +74,19 @@ jobs:
       ENABLE_ALERTS: false
     secrets:
       CLOUD_FORMATION_DEPLOY_ROLE: ${{ secrets.DEV_CLOUD_FORMATION_DEPLOY_ROLE }}
+
+  release_recovery:
+    needs: [get_issue_number, package_code, get_commit_id]
+    uses: ./.github/workflows/sam_release_code.yml
+    with:
+      ARTIFACT_BUCKET_PREFIX: ${{needs.tag_release.outputs.version_tag}}
+      STACK_NAME: fhir-validator
+      TARGET_ENVIRONMENT: recovery
+      BUILD_ARTIFACT: packaged_code
+      VERSION_NUMBER: fhir-validator-PR-${{ needs.get_issue_number.outputs.issue_number }}
+      COMMIT_ID: ${{ needs.get_commit_id.outputs.commit_id }}
+      LOG_LEVEL: INFO
+      LOG_RETENTION_DAYS: 30
+      ENABLE_ALERTS: true
+    secrets:
+      CLOUD_FORMATION_DEPLOY_ROLE: ${{ secrets.RECOVERY_CLOUD_FORMATION_DEPLOY_ROLE }}
