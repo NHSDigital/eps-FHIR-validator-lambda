@@ -54,10 +54,10 @@ Resources:
         CloudWatchKMSKey: !ImportValue account-resources:CloudwatchLogsKmsKeyArn
         SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
         SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
-        EnableSplunk: "true"
         LambdaName: !Sub "${AWS::StackName}-FHIRValidatorUKCore"
         LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorUKCore
         LogRetentionDays: !Ref LogRetentionDays
+        ExecutePolicyExportName: FHIRValidatorUKCoreExecuteLambdaPolicyArn
 
   FHIRValidatorUKCore:
     Type: AWS::Serverless::Function
@@ -75,17 +75,151 @@ Resources:
         - x86_64
       Runtime: java21
       Layers:
-        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:38"
+        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:56"
       Environment:
         Variables:
           AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
           POWERTOOLS_LOG_LEVEL: !Ref LogLevel
           PROFILE_MANIFEST_FILE: uk_core.manifest.json
     Metadata:
+      BuildMethod: makefile
       guard:
         SuppressedRules:
           - LAMBDA_DLQ_CHECK
           - LAMBDA_INSIDE_VPC
+          - LAMBDA_CONCURRENCY_CHECK
+
+  SecurityGroupWithoutEgress:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Limits security group egress traffic
+      # fix this to allow egress to service endpoints?
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: "-1"
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: "-1"
+      VpcId: !ImportValue vpc-resources:VpcId
+
+  LambdaVPCPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - ec2:CreateNetworkInterface
+              - ec2:DescribeNetworkInterfaces
+              - ec2:DescribeSubnets
+              - ec2:DeleteNetworkInterface
+              - ec2:AssignPrivateIpAddresses
+              - ec2:UnassignPrivateIpAddresses
+            Resource: "*"
+
+  FHIRValidatorNHSDigitalLegacyResources:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: lambda_resources.yaml
+      Parameters:
+        StackName: !Ref AWS::StackName
+        CloudWatchKMSKey: !ImportValue account-resources:CloudwatchLogsKmsKeyArn
+        SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
+        SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
+        LambdaName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigitalLegacy"
+        LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorNHSDigitalLegacy
+        LogRetentionDays: !Ref LogRetentionDays
+        ExecutePolicyExportName: FHIRValidatorNHSDigitalLegacyExecuteLambdaPolicyArn
+        IncludeAdditionalPolicies: true
+        AdditionalPolicies: !Ref LambdaVPCPolicy
+
+  FHIRValidatorNHSDigitalLegacy:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigitalLegacy"
+      CodeUri: ../
+      Handler: software.nhs.fhirvalidator.handler.HandlerStream::handleRequest
+      Role: !GetAtt FHIRValidatorNHSDigitalLegacyResources.Outputs.LambdaRoleArn
+      SnapStart:
+        ApplyOn: PublishedVersions
+      AutoPublishAlias: snap
+      Timeout: 600
+      MemorySize: 4096
+      Architectures:
+        - x86_64
+      Runtime: java21
+      Layers:
+        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:56"
+      VpcConfig:
+        SecurityGroupIds:
+          - !Ref SecurityGroupWithoutEgress
+        SubnetIds:
+          - !ImportValue vpc-resources:PrivateSubnetA
+          - !ImportValue vpc-resources:PrivateSubnetB
+          - !ImportValue vpc-resources:PrivateSubnetC
+      Environment:
+        Variables:
+          AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
+          POWERTOOLS_LOG_LEVEL: !Ref LogLevel
+          PROFILE_MANIFEST_FILE: nhs_digital.manifest.json
+    Metadata:
+      BuildMethod: makefile
+      guard:
+        SuppressedRules:
+          - LAMBDA_DLQ_CHECK
+          - LAMBDA_CONCURRENCY_CHECK
+
+  FHIRValidatorNHSDigitalCurrentResources:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: lambda_resources.yaml
+      Parameters:
+        StackName: !Ref AWS::StackName
+        CloudWatchKMSKey: !ImportValue account-resources:CloudwatchLogsKmsKeyArn
+        SplunkSubscriptionFilterRole: !ImportValue lambda-resources:SplunkSubscriptionFilterRole
+        SplunkDeliveryStream: !ImportValue lambda-resources:SplunkDeliveryStream
+        LambdaName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigitalCurrent"
+        LambdaArn: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-FHIRValidatorNHSDigitalCurrent
+        LogRetentionDays: !Ref LogRetentionDays
+        ExecutePolicyExportName: FHIRValidatorNHSDigitalCurrentExecuteLambdaPolicyArn
+        IncludeAdditionalPolicies: true
+        AdditionalPolicies: !Ref LambdaVPCPolicy
+
+  FHIRValidatorNHSDigitalCurrent:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-FHIRValidatorNHSDigitalCurrent"
+      CodeUri: ../
+      Handler: software.nhs.fhirvalidator.handler.HandlerStream::handleRequest
+      Role: !GetAtt FHIRValidatorNHSDigitalCurrentResources.Outputs.LambdaRoleArn
+      SnapStart:
+        ApplyOn: PublishedVersions
+      AutoPublishAlias: snap
+      Timeout: 600
+      MemorySize: 4096
+      Architectures:
+        - x86_64
+      Runtime: java21
+      Layers:
+        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:56"
+      VpcConfig:
+        SecurityGroupIds:
+          - !Ref SecurityGroupWithoutEgress
+        SubnetIds:
+          - !ImportValue vpc-resources:PrivateSubnetA
+          - !ImportValue vpc-resources:PrivateSubnetB
+          - !ImportValue vpc-resources:PrivateSubnetC
+      Environment:
+        Variables:
+          AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
+          POWERTOOLS_LOG_LEVEL: !Ref LogLevel
+          PROFILE_MANIFEST_FILE: nhs_digital.manifest.json
+    Metadata:
+      BuildMethod: makefile
+      guard:
+        SuppressedRules:
+          - LAMBDA_DLQ_CHECK
           - LAMBDA_CONCURRENCY_CHECK
 
   Alarms:
@@ -104,8 +238,59 @@ Outputs:
     Export:
       Name:
         !Join [":", [!Ref "AWS::StackName", "FHIRValidatorUKCoreLambdaName"]]
+
   FHIRValidatorUKCoreLambdaArn:
     Description: Arn of the FHIR validator UK Core lambda
     Value: !GetAtt FHIRValidatorUKCore.Arn
     Export:
       Name: !Join [":", [!Ref "AWS::StackName", "FHIRValidatorUKCoreLambdaArn"]]
+
+  FHIRValidatorNHSDigitalLegacyLambdaName:
+    Description: Name of the FHIR validator NHS Digital lambda using legacy hapi fhir
+    Value: !Ref FHIRValidatorNHSDigitalLegacy
+    Export:
+      Name:
+        !Join [
+          ":",
+          [
+            !Ref "AWS::StackName",
+            "functions:FHIRValidatorNHSDigitalLegacy:Name",
+          ],
+        ]
+  FHIRValidatorNHSDigitalLegacyLambdaArn:
+    Description: Arn of the FHIR validator NHS Digital lambda using legacy hapi fhir
+    Value: !GetAtt FHIRValidatorNHSDigitalLegacy.Arn
+    Export:
+      Name:
+        !Join [
+          ":",
+          [
+            !Ref "AWS::StackName",
+            "functions:FHIRValidatorNHSDigitalLegacy:Arn",
+          ],
+        ]
+
+  FHIRValidatorNHSDigitalCurrentLambdaName:
+    Description: Name of the FHIR validator NHS Digital lambda using current hapi fhir
+    Value: !Ref FHIRValidatorNHSDigitalCurrent
+    Export:
+      Name:
+        !Join [
+          ":",
+          [
+            !Ref "AWS::StackName",
+            "functions:FHIRValidatorNHSDigitalCurrent:Name",
+          ],
+        ]
+  FHIRValidatorNHSDigitalCurrentLambdaArn:
+    Description: Arn of the FHIR validator NHS Digital lambda using current hapi fhir
+    Value: !GetAtt FHIRValidatorNHSDigitalCurrent.Arn
+    Export:
+      Name:
+        !Join [
+          ":",
+          [
+            !Ref "AWS::StackName",
+            "functions:FHIRValidatorNHSDigitalCurrent:Arn",
+          ],
+        ]

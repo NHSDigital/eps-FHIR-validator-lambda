@@ -1,0 +1,14 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "inv-1: 'A parameter must have one and only one of (value, resource, part)' Rule 'A parameter must have one and only one of (value, resource, part)' Failed",
+            "location": [
+                "Parameters.parameter[0]",
+                "Line 1, Col 52"
+            ]
+        }
+    ]
+}
