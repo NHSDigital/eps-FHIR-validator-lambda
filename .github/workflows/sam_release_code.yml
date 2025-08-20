@@ -64,7 +64,7 @@ jobs:
 
     steps:
       - name: Checkout local github actions
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ env.BRANCH_NAME }}
           fetch-depth: 0
@@ -91,7 +91,7 @@ jobs:
           role-session-name: fhir-validator-lambda-release-code
 
       - name: download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: ${{ inputs.BUILD_ARTIFACT }}
           path: .
@@ -100,13 +100,13 @@ jobs:
         shell: bash
         working-directory: .github/scripts
         env:
-          artifact_bucket_prefix: fhir_validator/${{ inputs.ARTIFACT_BUCKET_PREFIX }}
+          ARTIFACT_BUCKET_PREFIX: fhir_validator/${{ inputs.ARTIFACT_BUCKET_PREFIX }}
           COMMIT_ID: ${{ inputs.COMMIT_ID }}
           LOG_LEVEL: ${{ inputs.LOG_LEVEL }}
           LOG_RETENTION_DAYS: ${{ inputs.LOG_RETENTION_DAYS }}
-          stack_name: ${{ inputs.STACK_NAME }}
+          STACK_NAME: ${{ inputs.STACK_NAME }}
           TARGET_ENVIRONMENT: ${{ inputs.TARGET_ENVIRONMENT }}
-          template_file: template.yaml
+          TEMPLATE_FILE: template.yaml
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
           ENABLE_ALERTS: ${{ inputs.ENABLE_ALERTS }}
         run: ./release_code.sh
@@ -141,7 +141,7 @@ jobs:
           DEV_CLOUD_FORMATION_EXECUTE_LAMBDA_ROLE: ${{ secrets.DEV_CLOUD_FORMATION_EXECUTE_LAMBDA_ROLE }}
 
       - name: Checkout gh-pages
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: gh-pages
           path: gh-pages
