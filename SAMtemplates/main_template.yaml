@@ -81,6 +81,16 @@ Resources:
           AWS_LAMBDA_LOG_LEVEL: !Ref LogLevel
           POWERTOOLS_LOG_LEVEL: !Ref LogLevel
           PROFILE_MANIFEST_FILE: uk_core.manifest.json
+      DeadLetterQueue:
+        Type: SQS
+        TargetArn: !GetAtt DeadLetterQueue.Arn
+      KmsKeyArn: "PLACEHOLDER_FOR_YOUR_KMS_KEY_ARN"
+      ReservedConcurrentExecutions: 100
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-xxx
+        SubnetIds:
+          - subnet-xxx
     Metadata:
       guard:
         SuppressedRules:
@@ -88,6 +98,10 @@ Resources:
           - LAMBDA_INSIDE_VPC
           - LAMBDA_CONCURRENCY_CHECK
 
+  DeadLetterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      KmsMasterKeyId: alias/aws/sqs
   Alarms:
     Type: AWS::Serverless::Application
     Properties:
