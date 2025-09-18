@@ -9,7 +9,7 @@ RUN apt-get update \
     jq apt-transport-https ca-certificates gnupg-agent \
     software-properties-common bash-completion python3-pip make libbz2-dev \
     libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev liblzma-dev netcat ruby-full build-essential zlib1g-dev \
+    xz-utils tk-dev liblzma-dev netcat-traditional ruby-full build-essential zlib1g-dev \
     && apt remove -y openjdk-8-jdk-headless openjdk-8-jre-headless openjdk-8-jre
 
 # install aws stuff
