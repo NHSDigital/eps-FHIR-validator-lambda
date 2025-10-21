@@ -9,13 +9,5 @@
     },
     "author": "NHS Digital",
     "license": "MIT",
-    "homepage": "https://github.com/NHSDigital/eps-FHIR-validator-lambda",
-    "devDependencies": {
-        "@semantic-release/changelog": "^6.0.3",
-        "@semantic-release/release-notes-generator": "^14.1.0",
-        "semantic-release": "^25.0.0"
-    },
-    "dependencies": {
-        "conventional-changelog-eslint": "^6.0.0"
-    }
+    "homepage": "https://github.com/NHSDigital/eps-FHIR-validator-lambda"
 }
