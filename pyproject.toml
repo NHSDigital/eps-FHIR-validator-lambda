@@ -1,5 +1,5 @@
 [project]
-python = "^3.14"
+python = "^3.12"
 name = "eps-FHIR-validator-lambda"
 
 [tool.poetry]
@@ -15,11 +15,12 @@ repository = "https://github.com/NHSDigital/eps-FHIR-validator-lambda"
 package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.14"
+python = "^3.12"
+flake8 = "^7.3.0"
 
 [tool.poetry.group.dev.dependencies]
 pip-licenses = "^5.0.0"
 pre-commit = "^4.5.1"
-cfn-lint = "^1.27.0"
+cfn-lint = "^1.43.2"
 
 [tool.poetry.scripts]
