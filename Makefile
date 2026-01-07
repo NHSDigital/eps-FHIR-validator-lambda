@@ -5,13 +5,10 @@ guard-%:
 	fi
 
 # install targets
-install: install-python install-hooks install-node
+install: install-python install-hooks
 
 install-python:
 	poetry install
-
-install-node:
-	npm ci
 
 install-hooks: install-python
 	poetry run pre-commit install --install-hooks --overwrite
