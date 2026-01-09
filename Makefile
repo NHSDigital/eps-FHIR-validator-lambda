@@ -33,13 +33,9 @@ lint-githubaction-scripts:
 test: download-dependencies
 	mvn test
 
-check-licenses: check-licenses-python check-licenses-java
-
-check-licenses-python:
-	scripts/check_python_licenses.sh
-
-check-licenses-java:
-	mvn validate
+check-licenses: 
+	echo "not implemented from console"
+	exit 1
 
 show-unused-dependencies:
 	mvn dependency:analyze
