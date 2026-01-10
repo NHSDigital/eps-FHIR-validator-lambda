@@ -24,7 +24,7 @@
         <sonar.organization>nhsdigital</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.projectKey>NHSDigital_eps-FHIR-validator-lambda</sonar.projectKey>
-        <aspectj.version>1.9.25</aspectj.version>
+        <aspectj.version>1.9.25.1</aspectj.version>
     </properties>
     <dependencyManagement>
         <dependencies>
