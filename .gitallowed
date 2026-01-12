@@ -34,3 +34,4 @@ CidrIp: 0\.0\.0\.0/0
 .*\.venv.*
 .*node_modules.*
 pom\.xml
+poetry\.lock
