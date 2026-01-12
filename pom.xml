@@ -89,7 +89,7 @@
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-log4j2</artifactId>
-            <version>1.6.0</version>
+            <version>1.6.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -175,27 +175,6 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <groupId>se.ayoy.maven-plugins</groupId>
-                <artifactId>ayoy-license-verifier-maven-plugin</artifactId>
-                <version>1.2.0</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <licenseFile>${project.basedir}/licenses/licenses.xml</licenseFile>
-                    <excludedMissingLicensesFile>
-                        ${project.basedir}/licenses/allowedMissingLicense.xml</excludedMissingLicensesFile>
-                    <failOnForbidden>true</failOnForbidden>
-                    <failOnMissing>true</failOnMissing>
-                    <failOnUnknown>true</failOnUnknown>
-                </configuration>
-            </plugin>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.9.0</version>
@@ -305,6 +284,11 @@
                         <version>2.15</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>5.5.0.6356</version>
             </plugin>
         </plugins>
     </build>
