@@ -15,7 +15,6 @@ Parameters:
   SplunkSubscriptionFilterRole:
     Type: String
     Description: Subscription filter role for sending logs to splunk
-    Default: none
   SplunkDeliveryStream:
     Type: String
     Description: Splunk delivery stream
