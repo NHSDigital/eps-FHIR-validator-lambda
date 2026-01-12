@@ -1,4 +1,4 @@
-name: 'Delete old cloudformation stacks'
+name: "Delete old cloudformation stacks"
 
 # Controls when the action will run - in this case triggered manually
 on:
@@ -13,20 +13,20 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-22.04
     permissions:
-        id-token: write
-        contents: read
+      id-token: write
+      contents: read
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout local github scripts
-        uses: actions/checkout@v5
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           ref: ${{ env.BRANCH_NAME }}
           sparse-checkout: |
             .github/scripts
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708
         with:
           aws-region: eu-west-2
           role-to-assume: ${{ secrets.DEV_CLOUD_FORMATION_DEPLOY_ROLE }}

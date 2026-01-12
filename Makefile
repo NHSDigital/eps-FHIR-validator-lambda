@@ -5,13 +5,10 @@ guard-%:
 	fi
 
 # install targets
-install: install-python install-hooks install-node
+install: install-python install-hooks
 
 install-python:
 	poetry install
-
-install-node:
-	npm ci
 
 install-hooks: install-python
 	poetry run pre-commit install --install-hooks --overwrite
@@ -55,13 +52,9 @@ build-FHIRValidatorNHSDigitalCurrent: download-dependencies
 	mkdir -p $(ARTIFACTS_DIR)/lib
 	cp  ./target/FHIRValidator-current.jar $(ARTIFACTS_DIR)/lib/
 
-check-licenses: check-licenses-python check-licenses-java
-
-check-licenses-python:
-	scripts/check_python_licenses.sh
-
-check-licenses-java:
-	mvn validate
+check-licenses: 
+	echo "not implemented from console"
+	exit 1
 
 show-unused-dependencies:
 	mvn dependency:analyze

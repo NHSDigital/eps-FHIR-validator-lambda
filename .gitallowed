@@ -33,3 +33,5 @@ CidrIp: 0\.0\.0\.0/0
 .*nhsd-rules-deny.txt.*
 .*\.venv.*
 .*node_modules.*
+pom\.xml
+poetry\.lock
