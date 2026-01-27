@@ -151,14 +151,14 @@ jobs:
         run: |
           cd gh-pages
           NOW=$(date +'%Y-%m-%dT%H:%M:%S')
-          echo "tag,release_datetime" > _data/${TARGET_ENVIRONMENT}_latest.csv
-          echo "${VERSION_NUMBER},${NOW}" >> _data/${TARGET_ENVIRONMENT}_latest.csv
-          echo "${VERSION_NUMBER},${NOW}" >> _data/${TARGET_ENVIRONMENT}_deployments.csv
+          echo "tag,release_datetime" > "_data/${TARGET_ENVIRONMENT}_latest.csv"
+          echo "${VERSION_NUMBER},${NOW}" >> "_data/${TARGET_ENVIRONMENT}_latest.csv"
+          echo "${VERSION_NUMBER},${NOW}" >> "_data/${TARGET_ENVIRONMENT}_deployments.csv"
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add _data/${TARGET_ENVIRONMENT}_latest.csv
-          git add _data/${TARGET_ENVIRONMENT}_deployments.csv
-          git commit -m 'update releases for ${TARGET_ENVIRONMENT}'
+          git add "_data/${TARGET_ENVIRONMENT}_latest.csv"
+          git add "_data/${TARGET_ENVIRONMENT}_deployments.csv"
+          git commit -m "update releases for ${TARGET_ENVIRONMENT}"
           parallel --retries 10 --delay 3 ::: "git pull --rebase && git push"
         env:
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
