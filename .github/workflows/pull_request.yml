@@ -94,7 +94,7 @@ jobs:
     needs: get_issue_number
     uses: ./.github/workflows/sam_package_code.yml
 
-  release_code:
+  release_dev:
     needs: [get_issue_number, package_code, get_commit_id]
     uses: ./.github/workflows/sam_release_code.yml
     with:
