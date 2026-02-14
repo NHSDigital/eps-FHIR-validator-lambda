@@ -1,0 +1,59 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = http://snomed.info/sct#39732311000001104)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 2877"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = http://snomed.info/sct#322341003)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 6222"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = http://snomed.info/sct#321080004)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 9562"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = http://snomed.info/sct#324252006)",
+            "location": [
+                "Bundle.entry[4].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 12915"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "Unknown code in fragment CodeSystem 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#R8000' for 'https://fhir.nhs.uk/CodeSystem/NHSDigital-SDS-JobRoleCode#R8000'",
+            "location": [
+                "Bundle.entry[6].resource.ofType(PractitionerRole).code[0].coding[0]",
+                "Line 1, Col 16802"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "prac-gmc: 'GMC must be of the format CNNNNNNN' Rule 'GMC must be of the format CNNNNNNN' Failed",
+            "location": [
+                "Bundle.entry[7].resource.ofType(Practitioner)",
+                "Line 1, Col 1"
+            ]
+        }
+    ]
+}

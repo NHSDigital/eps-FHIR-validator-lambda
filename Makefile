@@ -31,7 +31,26 @@ lint-githubaction-scripts:
 # test targets
 
 test: download-dependencies
-	mvn test
+	mvn clean test -Pcurrent
+	mvn clean test -Plegacy
+
+# build targets for SAM
+# the target must be build-<RESOURCE_NAME>
+# note - we skip tests here as they will have already been run as part of the pipeline
+build-FHIRValidatorUKCore: download-dependencies
+	mvn clean package -Pcurrent -Dmaven.test.skip=true
+	mkdir -p $(ARTIFACTS_DIR)/lib
+	cp  ./target/FHIRValidator-current.jar $(ARTIFACTS_DIR)/lib/
+
+build-FHIRValidatorNHSDigitalLegacy: download-dependencies
+	mvn clean package -Plegacy -Dmaven.test.skip=true
+	mkdir -p $(ARTIFACTS_DIR)/lib
+	cp  ./target/FHIRValidator-legacy.jar $(ARTIFACTS_DIR)/lib/
+
+build-FHIRValidatorNHSDigitalCurrent: download-dependencies
+	mvn clean package -Pcurrent -Dmaven.test.skip=true
+	mkdir -p $(ARTIFACTS_DIR)/lib
+	cp  ./target/FHIRValidator-current.jar $(ARTIFACTS_DIR)/lib/
 
 check-licenses: 
 	echo "not implemented from console"
@@ -60,7 +79,7 @@ deep-clean: clean
 
 # build targets
 compile: download-dependencies
-	mvn package
+	mvn package -Pcurrent
 
 download-dependencies:
 	poetry run scripts/download_dependencies.py
