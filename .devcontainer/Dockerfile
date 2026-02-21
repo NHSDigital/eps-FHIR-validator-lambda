@@ -1,13 +1,29 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
-ARG TARGETARCH
-ENV TARGETARCH=${TARGETARCH}
+# provide DOCKER_GID via build args if you need to force group id to match host
+ARG DOCKER_GID
+
+# specify DOCKER_GID to force container docker group id to match host
+RUN if [ -n "${DOCKER_GID}" ]; then \
+      if ! getent group docker; then \
+        groupadd -g ${DOCKER_GID} docker; \
+      else \
+        groupmod -g ${DOCKER_GID} docker; \
+      fi && \
+      usermod -aG docker vscode; \
+    fi
 
 ARG ASDF_VERSION
 COPY .tool-versions.asdf /tmp/.tool-versions.asdf
 
+ARG TARGETARCH
+ENV TARGETARCH=${TARGETARCH}
+
 # Add amd64 architecture if on arm64
 RUN if [ "$TARGETARCH" = "arm64" ] || [ "$TARGETARCH" = "aarch64" ]; then dpkg --add-architecture amd64; fi
+
+# Anticipate and resolve potential permission issues with apt
+RUN mkdir -p /tmp && chmod 1777 /tmp
 
 RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
@@ -50,7 +66,6 @@ RUN ASDF_VERSION=$(awk '!/^#/ && NF {print $1; exit}' /tmp/.tool-versions.asdf) 
     fi && \
     tar -xvzf /tmp/asdf.tar.gz && \
     mv asdf /usr/bin
-
 
 USER vscode
 
