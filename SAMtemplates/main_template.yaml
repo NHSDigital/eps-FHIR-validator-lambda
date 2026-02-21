@@ -73,7 +73,7 @@ Resources:
       MemorySize: 4096
       Architectures:
         - x86_64
-      Runtime: java21
+      Runtime: java25
       Layers:
         - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:38"
       Environment:
