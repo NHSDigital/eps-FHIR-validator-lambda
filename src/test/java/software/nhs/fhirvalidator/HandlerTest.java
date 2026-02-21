@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import nl.altindag.log.LogCaptor;
 import software.nhs.fhirvalidator.handler.HandlerStream;
 import software.nhs.fhirvalidator.util.ResourceUtils;
+import ca.uhn.fhir.util.VersionUtil;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.google.gson.JsonObject;
@@ -33,6 +34,8 @@ class HandlerTest {
 
     @Test
     void handlerCanProcessEvent() throws IOException {
+        VersionUtil versionUtil = new VersionUtil();
+        String versionNumber = versionUtil.getVersion();
         String stepFunctionEvent = ResourceUtils.getResourceContent("examples/stepFunctionEvent.json");
         HandlerStream handlerStream = new HandlerStream();
 
@@ -43,7 +46,7 @@ class HandlerTest {
 
         JsonObject actualJsonResult = JsonParser.parseString(outputStream.toString()).getAsJsonObject();
 
-        String expectedResult = ResourceUtils.getResourceContent("results/stepFunctionResult.json");
+        String expectedResult = ResourceUtils.getResourceContent(String.format("results/%s/stepFunctionResult.json", versionNumber));
         JsonObject expectedJsonResult = JsonParser.parseString(expectedResult).getAsJsonObject();
 
         assertEquals(expectedJsonResult, actualJsonResult);

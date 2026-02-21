@@ -1,0 +1,607 @@
+{
+    "resourceType": "OperationOutcome",
+    "issue": [
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest)",
+                "Line 1, Col 246"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest)",
+                "Line 1, Col 246"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest)",
+                "Line 1, Col 246"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#39732311000001104)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 492"
+            ]
+        },
+        {
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept).coding[0]",
+                "Line 1, Col 500"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 492"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 933"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 933"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).courseOfTherapyType",
+                "Line 1, Col 1090"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 1329"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 1329"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest)",
+                "Line 1, Col 1874"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest)",
+                "Line 1, Col 1874"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest)",
+                "Line 1, Col 1874"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#322341003)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 2120"
+            ]
+        },
+        {
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept).coding[0]",
+                "Line 1, Col 2128"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 2120"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 2556"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 2556"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).courseOfTherapyType",
+                "Line 1, Col 2713"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 2952"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[1].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 2952"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest)",
+                "Line 1, Col 3497"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest)",
+                "Line 1, Col 3497"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest)",
+                "Line 1, Col 3497"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#321080004)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 3743"
+            ]
+        },
+        {
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept).coding[0]",
+                "Line 1, Col 3751"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 3743"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 4192"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 4192"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest).courseOfTherapyType",
+                "Line 1, Col 4349"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 4588"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[2].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 4588"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest)",
+                "Line 1, Col 5133"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest)",
+                "Line 1, Col 5133"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest)",
+                "Line 1, Col 5133"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#324252006)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 5382"
+            ]
+        },
+        {
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept).coding[0]",
+                "Line 1, Col 5390"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 5382"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 5816"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 5816"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest).courseOfTherapyType",
+                "Line 1, Col 5973"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 6212"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[3].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 6212"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest)",
+                "Line 1, Col 246"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest)",
+                "Line 1, Col 246"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest)",
+                "Line 1, Col 246"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#324252006)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 495"
+            ]
+        },
+        {
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept).coding[0]",
+                "Line 1, Col 503"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 495"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 929"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 929"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).courseOfTherapyType",
+                "Line 1, Col 1086"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 1325"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 1325"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "URN reference is not locally contained within the bundle urn:uuid:56166769-c1c4-4d07-afa8-132b5dfca666",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).requester"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest)",
+                "Line 1, Col 246"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.identifier:prescriptionOrderItem: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest)",
+                "Line 1, Col 246"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dosageInstruction: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest)",
+                "Line 1, Col 246"
+            ]
+        },
+        {
+            "severity": "warning",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode (https://fhir.nhs.uk/ValueSet/NHSDigital-MedicationCode), and a coding should come from this value set unless it has no suitable code (note that the validator cannot judge what is suitable) (codes = https://snomed.info/sct#39732311000001104)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 492"
+            ]
+        },
+        {
+            "severity": "information",
+            "code": "processing",
+            "diagnostics": "This element does not match any known slice defined in the profile https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept).coding[0]",
+                "Line 1, Col 500"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "CodeableConcept.coding:SNOMED: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest-CodeableConcept)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).medication.ofType(CodeableConcept)",
+                "Line 1, Col 492"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 933"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.groupIdentifier.extension:PrescriptionOrderUUID: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).groupIdentifier",
+                "Line 1, Col 933"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "None of the codings provided are in the value set https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy (https://fhir.nhs.uk/ValueSet/DM-medicationrequest-course-of-therapy), and a coding from this value set is required) (codes = https://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy#acute)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).courseOfTherapyType",
+                "Line 1, Col 1090"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 1329"
+            ]
+        },
+        {
+            "severity": "error",
+            "code": "processing",
+            "diagnostics": "MedicationRequest.dispenseRequest.extension:performerSiteType: minimum required = 1, but only found 0 (from https://fhir.nhs.uk/StructureDefinition/NHSDigital-MedicationRequest)",
+            "location": [
+                "Bundle.entry[0].resource.ofType(MedicationRequest).dispenseRequest",
+                "Line 1, Col 1329"
+            ]
+        }
+    ]
+}

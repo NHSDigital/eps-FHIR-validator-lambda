@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import ca.uhn.fhir.util.VersionUtil;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 import com.google.gson.JsonObject;
@@ -22,9 +23,14 @@ import software.nhs.fhirvalidator.util.ResourceUtils;
 public class HandlerStream implements RequestStreamHandler {
 
     private final ValidateController validateController;
+    private final String versionNumber;
     Logger log = LogManager.getLogger(HandlerStream.class);
 
     public HandlerStream() {
+        VersionUtil versionUtil = new VersionUtil();
+        versionNumber = versionUtil.getVersion();
+        LoggingUtils.appendKey("hapi.fhir.version", versionNumber);
+        log.info(String.format("hapi fhir version %s", versionNumber));
         log.info("Creating the Validator instance for the first time...");
         String manifest_file = System.getenv("PROFILE_MANIFEST_FILE");
         if (manifest_file == null) {
@@ -46,6 +52,7 @@ public class HandlerStream implements RequestStreamHandler {
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
+        LoggingUtils.appendKey("hapi.fhir.version", versionNumber);
         try {
             for (int length; (length = inputStream.read(buffer)) != -1;) {
                 result.write(buffer, 0, length);
