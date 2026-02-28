@@ -19,11 +19,6 @@ Parameters:
     Type: String
     Description: Splunk delivery stream
     Default: none
-  EnableSplunk:
-    Type: String
-    Description: Whether to use splunk
-    Default: false
-    AllowedValues: [true, false]
   LambdaName:
     Type: String
     Description: Name of lambda we are creating for
@@ -59,9 +54,20 @@ Parameters:
         3288,
         3653,
       ]
+  ExecutePolicyExportName:
+    Type: String
+  IncludeAdditionalPolicies:
+    Type: String
+    Default: false
+  AdditionalPolicies:
+    Type: CommaDelimitedList
+    Description: A list of additional policies to attach the lambdas role (comma delimited).
+    Default: none
 
 Conditions:
-  ShouldUseSplunk: !Equals [true, !Ref EnableSplunk]
+  ShouldIncludeAdditionalPolicies: !Equals
+    - true
+    - !Ref IncludeAdditionalPolicies
 
 Resources:
   ExecuteLambdaManagedPolicy:
@@ -86,15 +92,23 @@ Resources:
             Principal:
               Service: "lambda.amazonaws.com"
             Action: "sts:AssumeRole"
-      ManagedPolicyArns:
-        - !ImportValue lambda-resources:LambdaInsightsLogGroupPolicy
-        - !ImportValue account-resources:LambdaEncryptCloudwatchKMSPolicy
+      ManagedPolicyArns: !Split
+        - ","
+        - !Join
+          - ","
+          - - !Ref LambdaManagedPolicy
+            - !ImportValue lambda-resources:LambdaInsightsLogGroupPolicy
+            - !ImportValue account-resources:CloudwatchEncryptionKMSPolicyArn
+            - !If
+              - ShouldIncludeAdditionalPolicies
+              - !Join
+                - ","
+                - !Ref AdditionalPolicies
+              - !Ref AWS::NoValue
 
   LambdaManagedPolicy:
     Type: AWS::IAM::ManagedPolicy
     Properties:
-      Roles:
-        - !Ref LambdaRole
       PolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -103,8 +117,8 @@ Resources:
               - logs:CreateLogStream
               - logs:PutLogEvents
             Resource:
-              - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LambdaLogGroup}"
-              - !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LambdaLogGroup}:log-stream:*"
+              - !GetAtt LambdaLogGroup.Arn
+              - !Sub ${LambdaLogGroup.Arn}:log-stream:*
 
   LambdaLogGroup:
     Type: "AWS::Logs::LogGroup"
@@ -118,7 +132,6 @@ Resources:
       KmsKeyId: !Ref CloudWatchKMSKey
 
   LambdaSplunkSubscriptionFilter:
-    Condition: ShouldUseSplunk
     Type: AWS::Logs::SubscriptionFilter
     Properties:
       RoleArn: !Ref SplunkSubscriptionFilterRole
@@ -131,7 +144,12 @@ Outputs:
     Description: Lambda execution policy arn
     Value: !GetAtt ExecuteLambdaManagedPolicy.PolicyArn
     Export:
-      Name: !Sub ${StackName}:FHIRValidatorUKCoreExecuteLambdaPolicyArn
+      Name: !Sub ${StackName}:${ExecutePolicyExportName}
+  ExecuteLambdaPolicyArnNewFormat:
+    Description: Lambda execution policy arn
+    Value: !GetAtt ExecuteLambdaManagedPolicy.PolicyArn
+    Export:
+      Name: !Sub ${StackName}:functions:${LambdaName}:ExecutePolicy:Arn
   LambdaRoleArn:
     Description: "LambdaRole ARN"
     Value: !GetAtt LambdaRole.Arn
