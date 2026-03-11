@@ -43,3 +43,4 @@ node_modules/
 .jekyll-metadata
 vendor
 cfn_guard_output/
+.trivy_out/
