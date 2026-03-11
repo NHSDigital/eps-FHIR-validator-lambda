@@ -1,4 +1,4 @@
-.PHONY: install install-python install-hooks lint lint-samtemplates lint-python lint-githubactions lint-githubaction-scripts test show-unused-dependencies clean clean-packages deep-clean compile download-dependencies sam-validate sam-build sam-sync sam-deploy-package
+.PHONY: install install-python install-hooks lint lint-python lint-githubactions lint-githubaction-scripts test show-unused-dependencies clean clean-packages deep-clean compile download-dependencies sam-validate sam-build sam-sync sam-deploy-package
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \
 		echo "Environment variable $* not set"; \
@@ -15,13 +15,10 @@ install-hooks: install-python
 	poetry run pre-commit install --install-hooks --overwrite
 
 # lint targets
-lint: lint-samtemplates lint-python lint-githubactions lint-githubaction-scripts
+lint: cfn-lint lint-python lint-githubactions lint-githubaction-scripts
 
 lint-python:
 	poetry run flake8 scripts/*.py --config .flake8
-
-lint-samtemplates:
-	poetry run cfn-lint -t SAMtemplates/*.yaml
 
 lint-githubactions:
 	actionlint
