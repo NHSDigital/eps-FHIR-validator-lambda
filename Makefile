@@ -1,3 +1,4 @@
+.PHONY: install install-python install-hooks lint lint-python lint-githubactions lint-githubaction-scripts test show-unused-dependencies clean clean-packages deep-clean compile download-dependencies sam-validate sam-build sam-sync sam-deploy-package
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \
 		echo "Environment variable $* not set"; \
@@ -14,13 +15,10 @@ install-hooks: install-python
 	poetry run pre-commit install --install-hooks --overwrite
 
 # lint targets
-lint: lint-samtemplates lint-python lint-githubactions lint-githubaction-scripts
+lint: cfn-lint lint-python lint-githubactions lint-githubaction-scripts
 
 lint-python:
 	poetry run flake8 scripts/*.py --config .flake8
-
-lint-samtemplates:
-	poetry run cfn-lint -t SAMtemplates/*.yaml
 
 lint-githubactions:
 	actionlint
@@ -33,9 +31,6 @@ lint-githubaction-scripts:
 test: download-dependencies
 	mvn test
 
-check-licenses: 
-	echo "not implemented from console"
-	exit 1
 
 show-unused-dependencies:
 	mvn dependency:analyze
@@ -99,11 +94,5 @@ sam-deploy-package: guard-artifact_bucket guard-artifact_bucket_prefix guard-sta
 			  LogRetentionDays=$$LOG_RETENTION_DAYS \
 			  EnableAlerts=$$ENABLE_ALERTS
 
-aws-configure:
-	aws configure sso --region eu-west-2
-
-aws-login:
-	aws sso login --sso-session sso-session
-
-cfn-guard:
-	./scripts/run_cfn_guard.sh
+%:
+	@$(MAKE) -f /usr/local/share/eps/Mk/common.mk $@

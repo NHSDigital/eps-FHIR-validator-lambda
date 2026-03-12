@@ -4,7 +4,7 @@
         {
             "severity": "error",
             "code": "processing",
-            "diagnostics": "Cannot invoke \"String.length()\" because \"s\" is null"
+            "diagnostics": "Invalid JSON"
         }
     ]
 }
